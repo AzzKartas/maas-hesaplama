@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sıkça Sorulan Sorular | maashesaplama.com</title>
+<meta name="description" content="Maaş hesaplama, kredi hesaplama, kıdem tazminatı ve borç takibi hakkında sıkça sorulan sorular ve cevapları.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f5f7;color:#1d1d1f;min-height:100vh;}
+
+/* NAVBAR */
+.navbar{background:#fff;border-bottom:1px solid #e5e5ea;position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+.navbar-inner{max-width:1200px;margin:0 auto;padding:0 1.5rem;height:60px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-logo-icon{width:34px;height:34px;background:#534AB7;border-radius:9px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:17px;font-weight:700;}
+.nav-logo-text{font-size:16px;font-weight:700;color:#1d1d1f;letter-spacing:-.3px;}
+.nav-logo-text span{color:#534AB7;}
+.nav-links{display:flex;align-items:center;gap:6px;}
+.nav-link{padding:7px 14px;font-size:13px;font-weight:500;color:#6e6e73;text-decoration:none;border-radius:8px;cursor:pointer;border:none;background:none;}
+.nav-link:hover{background:#f5f5f7;color:#1d1d1f;}
+.nav-link.active-nav{background:#f0eefe;color:#534AB7;}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#f3f0fd 0%,#eaf3fd 100%);border-bottom:1px solid #e0dbf8;padding:2rem 0 1.75rem;}
+.hero-inner{max-width:1200px;margin:0 auto;padding:0 1.5rem;}
+.hero h1{font-size:28px;font-weight:700;letter-spacing:-.5px;margin-bottom:.4rem;}
+.hero h1 span{color:#534AB7;}
+.hero-sub{font-size:14px;color:#6e6e73;max-width:560px;line-height:1.6;}
+
+/* LAYOUT */
+.section-inner{max-width:900px;margin:0 auto;padding:0 1.5rem;}
+.page-section{padding:2rem 0;}
+
+/* KATEGORİ */
+.kat-baslik{display:flex;align-items:center;gap:10px;margin:1.75rem 0 .9rem;}
+.kat-ikon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;}
+.kat-text{font-size:17px;font-weight:700;letter-spacing:-.3px;}
+.kat-sayi{font-size:12px;color:#aeaeb2;font-weight:500;margin-left:auto;}
+
+/* SSS */
+.sss-item{background:#fff;border:1px solid #e5e5ea;border-radius:12px;margin-bottom:.6rem;overflow:hidden;}
+.sss-q{width:100%;text-align:left;padding:1rem 1.2rem;font-size:14px;font-weight:600;color:#1d1d1f;background:none;border:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;}
+.sss-q:hover{background:#fafafa;}
+.sss-arrow{font-size:18px;color:#534AB7;transition:transform .2s;flex-shrink:0;}
+.sss-a{display:none;padding:0 1.2rem 1rem;font-size:13px;color:#6e6e73;line-height:1.7;border-top:1px solid #f2f2f7;}
+.sss-a a{color:#534AB7;font-weight:600;}
+
+/* ARAMA */
+.sss-ara{width:100%;font-size:14px;padding:12px 16px 12px 42px;border:1.5px solid #d2d2d7;border-radius:12px;background:#fff url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%236e6e73" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>') no-repeat 14px center;outline:none;margin-bottom:.5rem;}
+.sss-ara:focus{border-color:#534AB7;box-shadow:0 0 0 3px rgba(83,74,183,.1);}
+.sonuc-yok{display:none;text-align:center;padding:2rem;color:#aeaeb2;font-size:14px;}
+
+/* CTA */
+.cta-kutu{background:linear-gradient(135deg,#534AB7,#7F77DD);border-radius:14px;padding:1.75rem;text-align:center;color:#fff;margin-top:2.5rem;}
+.cta-kutu h3{font-size:18px;font-weight:700;margin-bottom:.4rem;}
+.cta-kutu p{font-size:13px;opacity:.9;margin-bottom:1rem;}
+.cta-butonlar{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.cta-btn{padding:9px 20px;background:#fff;color:#534AB7;border-radius:9px;font-size:13px;font-weight:700;text-decoration:none;}
+.cta-btn:hover{background:#f0eefe;}
+
+/* FOOTER */
+.footer{background:#1d1d1f;color:#aeaeb2;padding:2rem 0;margin-top:2.5rem;}
+.footer-inner{max-width:1200px;margin:0 auto;padding:0 1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+.footer-logo{font-size:15px;font-weight:700;color:#fff;}
+.footer-logo span{color:#534AB7;}
+.footer-links{display:flex;gap:1.5rem;}
+.footer-links a{font-size:13px;color:#aeaeb2;text-decoration:none;}
+.footer-links a:hover{color:#fff;}
+.footer-copy{font-size:12px;color:#6e6e73;width:100%;border-top:1px solid #2d2d2f;margin-top:1rem;padding-top:1rem;text-align:center;}
+
+@media(max-width:768px){
+  .hero h1{font-size:24px;}
+  .nav-links .nav-link:not(.active-nav){display:none;}
+  .footer-inner{flex-direction:column;text-align:center;}
+  .footer-links{justify-content:center;}
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a class="nav-logo" href="index.html">
+      <div class="nav-logo-icon">₺</div>
+      <span class="nav-logo-text">maaş<span>hesaplama</span>.com</span>
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="index.html">Maaş Hesaplama</a>
+      <a class="nav-link" href="kredi-hesaplama.html">🏦 Kredi</a>
+      <a class="nav-link" href="kidem-hesaplama.html">⚖️ Kıdem</a>
+      <button class="nav-link active-nav">❓ SSS</button>
+    </div>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <h1>Sıkça Sorulan <span>Sorular</span></h1>
+    <p class="hero-sub">Maaş, kredi, kıdem tazminatı ve borç takibi hakkında merak ettikleriniz. Sorunuzu aratabilir ya da kategorilere göz atabilirsiniz.</p>
+  </div>
+</div>
+
+<div class="page-section">
+<div class="section-inner">
+
+  <input type="text" class="sss-ara" id="sssAra" placeholder="Soru ara... (örn: vergi dilimi, mesai, kıdem)" onkeyup="sssFiltrele()">
+  <div class="sonuc-yok" id="sonucYok">😕 Aramanızla eşleşen soru bulunamadı.</div>
+
+  <!-- ═══ MAAŞ HESAPLAMA ═══ -->
+  <div class="kat-grup" data-kat="maas">
+    <div class="kat-baslik">
+      <div class="kat-ikon" style="background:#f0eefe;">💰</div>
+      <span class="kat-text">Maaş Hesaplama</span>
+    </div>
+
+    <div class="sss-item">
+      <button class="sss-q" onclick="sssToggle(this)">Brüt maaş ile net maaş arasındaki fark nedir? <span class="sss-arrow">▾</span></button>
+      <div class="sss-a">Brüt maaş, işverenin size ödemeyi taahhüt ettiği toplam tutardır. Net maaş ise bu tutardan SGK primi (%14), işsizlik sigortası (%1) ve gelir vergisi düşüldükten sonra elinize geçen miktardır. Genellikle net maaş, brüt maaşın %75-85'i civarındadır.</div>
+    </div>
+
+    <div class="sss-item">
+      <button class="sss-q" onclick="sssToggle(this)">Gelir vergisi dilimleri 2026'da nasıl uygulanıyor? <span class="sss-arrow">▾</span></button>
+      <div class="sss-a">Türkiye'de gelir vergisi kümülatif (yıl içinde biriken) matrah üzerinden artan oranlı uygulanır. Yılın başında düşük dilimden (%15) başlar, matrah yükseldikçe üst dilimlere (%20, %27, %35, %40) geçilir. Bu nedenle yılın sonuna doğru elinize geçen net maaş azalabilir. Araç bu geçişleri otomatik hesaplar.</div>
+    </div>
+
+    <div class="sss-item">
+      <button class="sss-q" onclick="sssToggle(this)">Mesai ücreti nasıl hesaplanır? <span class="sss-arrow">▾</span></button>
+      <div class="sss-a">Yasal olarak normal çalışma saatinin üzerindeki çalışmalar için saat başı ücret en az %50 zamlı ödenir (×1,5). Hafta tatili ve ulusal bayramlarda yapılan mesailerde bu oran %100'e çıkar (×2,0). Saatlik ücret hesabında brüt maaş 225'e bölünür. Araç bu iki oranı ayrı ayrı hesaplayıp net tutarı gösterir.</div>
+    </div>
+
+    <div class="sss-item">
+      <button class="sss-q" onclick="sssToggle(this)">ARGe teşviği nedir, kime uygulanır? <span class="sss-arrow">▾</span></button>
+      <div class="sss-a">Araştırma-Geliştirme ve Tasarım Merkezlerinde çalışan personelin gelir vergisinin bir kısmı, eğitim durumuna göre işveren tarafından karşılanır. Ön lisans ve altı için %80, lisans için %90, yüksek lisans ve üstü için %95 oranında teşvik uygulanır.</div>
+    </div>
+
+    <div class="sss-item">
+      <button class="sss-q" onclick="sssToggle(this)">Netten brüte hesaplama nasıl çalışıyor? <span class="sss-arrow">▾</span></button>
+      <div class="sss-a">Maaş anlaşmanız net üzerinden ise, "Netten → Brüte" modunu seçip hedef net maaşınızı girersiniz. Araç, vergi dilimi geçişlerini dikkate alarak her ay için işverenin ödemesi gereken brütü ayrı ayrı hesaplar. Kümülatif matrah arttıkça yılın sonuna doğru brüt yükselir ama elinize geçen net sabit kalır.</div>
+    </div>
+
+    <div class="sss-item">
+      <button class="sss-q" onclick="sssToggle(this)">Eksik çalışma günü girersem ne olur? <span class="sss-arrow">▾</span></button>
+      <div class="sss-a">Çalışma günü kutusu normalde 30'dur (tam ay). Raporlu, izinli veya işe geç başlama gibi nedenlerle eksik çalıştıysanız gün sayısını düşürürsünüz; araç o ayın maaşını orantılı olarak keser. Kesinti yalnızca seçtiğiniz aya uygulanır, diğer aylar tam maaştan hesaplanmaya devam eder.</div>
+    </div>
+
+    <div class="sss-item">
+      <button class="sss-q" onclick="sssToggle(this)">Hesaplamalar ne kadar doğru? <span class="sss-arrow">▾</span></button>
+      <div class="sss-a">Araç, 2026 yılı için geçerli yasal parametreleri kullanarak standart bir çalışan için hesaplama yapar. Özel durumlarda (kısmi çalışma, birden fazla işveren, engellilik indirimi vb.) sonuçlar farklılık gösterebilir. Kesin bordrolar için insan kaynakları veya muhasebe departmanınızla iletişime geçin.</div>
+    </div>
+  </div>
+
+  <!-- ═══ KREDİ HESAPLAMA ═══ -->
+  <div class="kat-grup" data-kat="kredi">
+    <div class="kat-baslik">
+      <div class="kat-ikon" style="background:#fde8e8;">🏦</div>
+      <span class="kat-text">Kredi Hesaplama</span>
+    </div>
+
+    <div class="sss-item">
+      <button class="sss-q" onclick="sssToggle(this)">Eşit taksit (annüite) hesaplama nasıl çalışır? <span class="sss-arrow">▾</span></button>
+      <div class="sss-a">Eşit taksit yönteminde her ay aynı tutarı ödersiniz. Ancak aylık ödemenin içindeki ana para ve faiz oranı değişir. İlk aylarda faiz payı yüksek, ana para payı düşüktür. Ay geçtikçe kalan borç azaldığından faiz payı düşer, ana para payı artar. Bu yöntem Türkiye'deki bireysel kredilerde standart olarak uygulanır.</div>
+    </div>
+
+    <div class="sss-item">
+      <button class="sss-q" onclick="sssToggle(this)">KKDF ve BSMV nedir, kim öder? <span class="sss-arrow">▾</span></button>
+      <div class="sss-a">KKDF (Kaynak Kullanımını Destekleme Fonu) tüketici kredilerinde faiz üzerinden %15 oranında alınan bir fondur. BSMV (Banka ve Sigorta Muameleleri Vergisi) ise yine faiz üzerinden %5 oranında uygulanan bir vergidir. Her ikisi de bankalar tarafından tahsil edilir ve aylık taksitinize yansır. Konut kredileri KKDF'den muaf tutulmaktadır.</div>
+    </div>
+
+    <div class="sss-item">
+      <button class="sss-q" onclick="sssToggle(this)">Erken ödeme yaparsam ne olur? <span class="sss-arrow">▾</span></button>
+      <div class="sss-a">Erken ödeme yapmak istediğinizde banka kalan ana paranız üzerinden hesaplayarak size bir kapama tutarı bildirir. Banka yasal olarak erken kapama için komisyon alabilir (genellikle %1–2). Bu araç standart amortizasyon planını hesaplar; erken ödeme senaryoları için bankanızla iletişime geçmenizi öneririz.</div>
+    </div>
+
+    <div class="sss-item">
+      <button class="sss-q" onclick="sssToggle(this)">Masraf tutarı nedir, neden girilmeli? <span class="sss-arrow">▾</span></button>
+      <div class="sss-a">Bankalar kredi verirken dosya masrafı, ekspertiz ücreti veya sigorta gibi ek ücretler alabilir. Bu masraflar genellikle peşin tahsil edilir veya ilk taksitle alınır. Masraf tutarını girerek gerçek toplam maliyetinizi ve efektif yıllık maliyet oranınızı daha doğru görebilirsiniz.</div>
+    </div>
+
+    <div class="sss-item">
+      <button class="sss-q" onclick="sssToggle(this)">Efektif yıllık maliyet (YSMBM) ne demek? <span class="sss-arrow">▾</span></button>
+      <div class="sss-a">Bankaların reklamlarda gösterdiği aylık faiz oranı, kredinin gerçek maliyetini tam yansıtmaz. YSMBM; faiz, KKDF, BSMV ve masrafların tamamını dahil ederek kredinin size yıllık gerçek maliyetini tek bir oranda gösterir. Farklı bankaların tekliflerini karşılaştırırken bu orana bakmak en sağlıklısıdır.</div>
+    </div>
+  </div>
+
+  <!-- ═══ KIDEM TAZMİNATI ═══ -->
+  <div class="kat-grup" data-kat="kidem">
+    <div class="kat-baslik">
+      <div class="kat-ikon" style="background:#fff8e1;">⚖️</div>
+      <span class="kat-text">Kıdem & İhbar Tazminatı</span>
+    </div>
+
+    <div class="sss-item">
+      <button class="sss-q" onclick="sssToggle(this)">Kıdem tazminatına hak kazanma koşulları nelerdir? <span class="sss-arrow">▾</span></button>
+      <div class="sss-a">Kıdem tazminatına hak kazanmak için aynı işyerinde en az 1 yıl kesintisiz çalışmış olmak gerekir. İşveren tarafından haksız fesih, emeklilik, askerlik veya evlilik nedeniyle ayrılma gibi durumlarda hak doğar. Tazminat tutarı brüt maaş üzerinden hesaplanır ve 2026 kıdem tazminatı tavanı esas alınır.</div>
+    </div>
+
+    <div class="sss-item">
+      <button class="sss-q" onclick="sssToggle(this)">Kıdem tazminatı tavanı nedir? <span class="sss-arrow">▾</span></button>
+      <div class="sss-a">Devlet her yıl bir kıdem tazminatı tavanı belirler. Brüt maaşınız bu tavanın üzerindeyse, tazminat hesabında maaşınız değil tavan tutarı esas alınır. Yüksek maaşlı çalışanlar için bu önemli bir sınırlamadır. Aracımız 2026 tavanını otomatik kontrol eder ve tavan uygulandıysa bunu size bildirir.</div>
+    </div>
+
+    <div class="sss-item">
+      <button class="sss-q" onclick="sssToggle(this)">İhbar tazminatı kıdemden farklı mı? <span class="sss-arrow">▾</span></button>
+      <div class="sss-a">Evet, ikisi farklı haklardır. Kıdem tazminatı çalışma sürenize göre hesaplanırken, ihbar tazminatı işten çıkarmanın önceden bildirilmemesi durumunda ödenir. İhbar süresi kıdeme göre 2 ila 8 hafta arasında değişir. İhbar tazminatından gelir vergisi ve damga vergisi kesilir; kıdem tazminatından ise yalnızca damga vergisi kesilir.</div>
+    </div>
+
+    <div class="sss-item">
+      <button class="sss-q" onclick="sssToggle(this)">İstifa edersem kıdem tazminatı alabilir miyim? <span class="sss-arrow">▾</span></button>
+      <div class="sss-a">Kural olarak kendi isteğiyle istifa eden çalışan kıdem tazminatı alamaz. Ancak istisnalar vardır: askerlik, kadın çalışanın evlilik nedeniyle 1 yıl içinde ayrılması, emeklilik hakkı kazanma, sağlık sorunları veya işverenin ahlak ve iyi niyet kurallarına aykırı davranışı (haklı fesih) durumlarında istifa etseniz bile tazminat hakkınız doğar.</div>
+    </div>
+  </div>
+
+  <!-- ═══ BORÇ TAKİBİ ═══ -->
+  <div class="kat-grup" data-kat="borc">
+    <div class="kat-baslik">
+      <div class="kat-ikon" style="background:#f0faf6;">💳</div>
+      <span class="kat-text">Borç Takibi</span>
+    </div>
+
+    <div class="sss-item">
+      <button class="sss-q" onclick="sssToggle(this)">Borçlarım bölümüne hangi borçları ekleyebilirim? <span class="sss-arrow">▾</span></button>
+      <div class="sss-a">Banka kredisi, kredi kartı taksiti, alışveriş taksiti, kişisel borç (aileden/arkadaştan alınan) ve diğer tüm düzenli ödemelerinizi ekleyebilirsiniz. Her borca tür seçerek görsel ayrım sağlayabilirsiniz. Aylık taksit + süre veya toplam borç + süre şeklinde iki farklı yöntemle giriş yapabilirsiniz.</div>
+    </div>
+
+    <div class="sss-item">
+      <button class="sss-q" onclick="sssToggle(this)">Girdiğim borç bilgileri nerede saklanıyor? <span class="sss-arrow">▾</span></button>
+      <div class="sss-a">Hiçbir yerde! Girdiğiniz tüm veriler yalnızca tarayıcınızın geçici belleğinde tutulur ve sayfayı kapattığınızda silinir. Sunucuya hiçbir bilgi gönderilmez. Bu gizlilik açısından avantajlıdır ancak verilerinizi kalıcı tutmak isterseniz ekran görüntüsü almanızı öneririz.</div>
+    </div>
+
+    <div class="sss-item">
+      <button class="sss-q" onclick="sssToggle(this)">Borç yükü oranı neden önemli? <span class="sss-arrow">▾</span></button>
+      <div class="sss-a">Finansal sağlık açısından aylık borç ödemelerinizin net gelirinizin %30-40'ını geçmemesi önerilir. %50'yi aşması ciddi bir risk işaretidir. Maaş hesaplama aracında brütünüzü girdiyseniz, borçlar bölümü otomatik olarak bu oranı hesaplar ve yüksekse sizi uyarır.</div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-kutu">
+    <h3>Sorunuz cevaplanmadı mı?</h3>
+    <p>Hesaplama araçlarımızı kullanarak kendi durumunuza özel sonuçları görebilirsiniz.</p>
+    <div class="cta-butonlar">
+      <a class="cta-btn" href="index.html">💰 Maaş Hesapla</a>
+      <a class="cta-btn" href="kredi-hesaplama.html">🏦 Kredi Hesapla</a>
+      <a class="cta-btn" href="kidem-hesaplama.html">⚖️ Kıdem Hesapla</a>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">maaş<span>hesaplama</span>.com</div>
+    <div class="footer-links">
+      <a href="index.html">Maaş Hesaplama</a>
+      <a href="kredi-hesaplama.html">Kredi Hesaplama</a>
+      <a href="kidem-hesaplama.html">Kıdem Tazminatı</a>
+      <a href="sss.html">SSS</a>
+    </div>
+    <div class="footer-copy">© 2026 maashesaplama.com — Bu araç bilgilendirme amaçlıdır, resmi belge yerine geçmez.</div>
+  </div>
+</footer>
+
+<script>
+function sssToggle(el){
+  const a = el.nextElementSibling;
+  const arrow = el.querySelector('.sss-arrow');
+  if(a.style.display === 'block'){ a.style.display = 'none'; arrow.style.transform = 'rotate(0deg)'; }
+  else{ a.style.display = 'block'; arrow.style.transform = 'rotate(180deg)'; }
+}
+
+function sssFiltrele(){
+  const q = document.getElementById('sssAra').value.toLowerCase().trim();
+  let toplamGorunen = 0;
+  
+  document.querySelectorAll('.kat-grup').forEach(grup => {
+    let grupGorunen = 0;
+    grup.querySelectorAll('.sss-item').forEach(item => {
+      const metin = item.textContent.toLowerCase();
+      const eslesme = !q || metin.includes(q);
+      item.style.display = eslesme ? '' : 'none';
+      if(eslesme) grupGorunen++;
+    });
+    grup.style.display = grupGorunen > 0 ? '' : 'none';
+    toplamGorunen += grupGorunen;
+  });
+  
+  document.getElementById('sonucYok').style.display = toplamGorunen === 0 ? 'block' : 'none';
+}
+</script>
+</body>
+</html>

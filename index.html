@@ -83,6 +83,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   .hero-stats{gap:1.2rem;}
   .footer-inner{flex-direction:column;text-align:center;}
   .footer-links{justify-content:center;}
+  #borcAnaGrid{grid-template-columns:1fr!important;}
 }
 .wrap{max-width:1200px;margin:0 auto;padding:1.5rem;}
 h1{font-size:20px;font-weight:600;margin-bottom:1.25rem;color:#1d1d1f;}
@@ -125,6 +126,48 @@ input:focus,select:focus{border-color:#534AB7;box-shadow:0 0 0 3px rgba(83,74,18
 .mt td{padding:5px 6px;border-bottom:1px solid #f2f2f7;}
 .mt td:first-child{font-weight:600;color:#1d1d1f;padding-left:10px;}
 .info{background:#fff8e1;border:1px solid #f3cc4a;border-radius:10px;padding:8px 12px;font-size:12px;color:#8a6300;margin-bottom:10px;}
+/* ── BORÇ TAKİBİ ── */
+.borc-kart{background:#fff;border:1px solid #e5e5ea;border-radius:12px;padding:1rem 1.2rem;display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;margin-bottom:.6rem;transition:box-shadow .15s;}
+.borc-kart:hover{box-shadow:0 2px 12px rgba(0,0,0,.07);}
+.borc-ikon{width:44px;height:44px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:20px;}
+.borc-baslik{font-size:14px;font-weight:700;}
+.borc-alt{font-size:12px;color:#6e6e73;margin-top:2px;}
+.borc-tutar{text-align:right;}
+.borc-aylik{font-size:16px;font-weight:700;color:#534AB7;}
+.borc-kalan{font-size:11px;color:#aeaeb2;margin-top:2px;}
+.borc-progress{height:6px;background:#e5e5ea;border-radius:3px;overflow:hidden;margin-top:8px;grid-column:1/-1;}
+.borc-progress-fill{height:100%;border-radius:3px;background:#534AB7;transition:width .5s;}
+.borc-badge{padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700;}
+.bb-son{background:#fff8e1;color:#8a6300;}
+.bb-bitti{background:#f0faf6;color:#1d9e75;}
+.borc-modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:1000;display:none;align-items:center;justify-content:center;}
+.borc-modal-bg.acik{display:flex;}
+.borc-modal{background:#fff;border-radius:14px;padding:1.5rem;width:420px;max-width:92vw;max-height:88vh;overflow-y:auto;box-shadow:0 8px 32px rgba(0,0,0,.18);}
+.borc-mod-btn{flex:1;padding:8px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;border:1.5px solid #d2d2d7;background:#fff;color:#6e6e73;transition:all .15s;}
+.borc-mod-btn.aktif{border-color:#534AB7;background:#f0eefe;color:#534AB7;}
+.borc-empty{text-align:center;padding:2.5rem 1rem;color:#6e6e73;}
+.borc-empty-icon{font-size:42px;margin-bottom:.8rem;}
+/* Takvim zaman çizelgesi */
+.tkv-ay{display:grid;grid-template-columns:90px 1fr;gap:12px;margin-bottom:10px;position:relative;}
+.tkv-sol{text-align:right;padding-top:8px;position:relative;}
+.tkv-ay-adi{font-size:13px;font-weight:700;color:#1d1d1f;}
+.tkv-ay-yil{font-size:11px;color:#aeaeb2;}
+.tkv-nokta{position:absolute;right:-19px;top:12px;width:11px;height:11px;border-radius:50%;background:#534AB7;border:2.5px solid #fff;box-shadow:0 0 0 2px #c9c2f0;z-index:2;}
+.tkv-nokta.bitti{background:#1d9e75;box-shadow:0 0 0 2px #a7e3cd;}
+.tkv-sag{border-left:2px solid #e8e5f7;padding:6px 0 6px 16px;}
+.tkv-kutu{background:#fafafe;border:1px solid #ece9fb;border-radius:10px;padding:10px 12px;}
+.tkv-toplam{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.tkv-toplam-tutar{font-size:16px;font-weight:700;color:#534AB7;}
+.tkv-toplam-lbl{font-size:11px;color:#6e6e73;font-weight:600;}
+.tkv-odeme{display:flex;justify-content:space-between;align-items:center;padding:4px 0;font-size:12px;border-top:1px dashed #ece9fb;}
+.tkv-odeme-ad{display:flex;align-items:center;gap:6px;color:#1d1d1f;}
+.tkv-odeme-tutar{font-weight:600;}
+.tkv-mini-bar{height:4px;border-radius:2px;background:#ece9fb;margin-top:8px;overflow:hidden;}
+.tkv-mini-fill{height:100%;background:linear-gradient(90deg,#534AB7,#7F77DD);border-radius:2px;}
+.tkv-rozet{font-size:9px;font-weight:800;padding:1px 6px;border-radius:10px;letter-spacing:.3px;}
+.tkv-rozet.son{background:#fff3cd;color:#8a6300;}
+.tkv-rozet.dusuk{background:#f0faf6;color:#1d9e75;}
+.tkv-ozgur{background:linear-gradient(135deg,#f0faf6,#e3f7ef);border:1.5px solid #1d9e75;border-radius:12px;padding:14px;text-align:center;margin-top:4px;}
 </style>
 </head>
 <body>
@@ -139,7 +182,9 @@ input:focus,select:focus{border-color:#534AB7;box-shadow:0 0 0 3px rgba(83,74,18
     <div class="nav-links">
       <button class="nav-link active-nav" onclick="navGit('hesapla')">Hesaplama Aracı</button>
       <button class="nav-link" onclick="navGit('hakkinda')">Hakkında</button>
-      <button class="nav-link" onclick="navGit('sss')">SSS</button>
+      <a class="nav-link" href="sss.html" style="text-decoration:none;">SSS</a>
+      <a class="nav-link" href="kredi-hesaplama.html" style="text-decoration:none;">🏦 Kredi Hesaplama</a>
+      <a class="nav-link" href="kidem-hesaplama.html" style="text-decoration:none;">⚖️ Kıdem Tazminatı</a>
       <button class="nav-link nav-cta" onclick="navGit('hesapla')">Hemen Hesapla</button>
     </div>
   </div>
@@ -175,8 +220,7 @@ input:focus,select:focus{border-color:#534AB7;box-shadow:0 0 0 3px rgba(83,74,18
     <button onclick="yilEkle('sonra')" title="Sonraki yıl ekle"
       style="padding:5px 8px;border:none;background:#fff;cursor:pointer;color:#6e6e73;font-size:12px;">Yıl ▶</button>
   </div>
-    <button onclick="dosyayaKaydet()"
-      style="padding:6px 14px;background:#534AB7;color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;">💾 Kaydet</button>
+
   </div>
 </div>
 <div class="tabs">
@@ -185,15 +229,46 @@ input:focus,select:focus{border-color:#534AB7;box-shadow:0 0 0 3px rgba(83,74,18
   <button class="tab" data-tab="ikramiye" onclick="showTab('ikramiye')">🎁 İkramiye</button>
   <button class="tab" data-tab="aylik" onclick="showTab('aylik')">Yıllık Tablo</button>
   <button class="tab" data-tab="analiz" onclick="showTab('analiz')">Analiz</button>
-  <button class="tab" data-tab="kidem" onclick="showTab('kidem')">⚖️ Kıdem</button>
+  <button class="tab" data-tab="borc" onclick="showTab('borc')">💳 Borçlarım</button>
 </div>
 
 <!-- HESAPLA -->
 <div id="sec-hesapla" class="sec active">
+
+  <!-- MOD SEÇİCİ -->
+  <div style="display:flex;gap:6px;margin-bottom:1rem;background:#f5f5f7;border-radius:10px;padding:4px;">
+    <button id="modBrutBtn" onclick="hesapModu('brut')"
+      style="flex:1;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:none;background:#534AB7;color:#fff;transition:all .15s;">
+      Brütten → Nete
+    </button>
+    <button id="modNetBtn" onclick="hesapModu('net')"
+      style="flex:1;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:none;background:transparent;color:#6e6e73;transition:all .15s;">
+      Netten → Brüte
+    </button>
+  </div>
+
   <div class="g2" style="gap:1rem;margin-bottom:1rem;">
     <div class="card">
       <p class="st">Çalışan & Ay Bilgileri</p>
       <div style="display:grid;gap:10px;">
+        <!-- NET → BRÜT MODU -->
+        <div id="netInputKutu" style="display:none;">
+          <label>Hedef Net Maaş (₺)</label>
+          <input type="number" id="hedefNetMaas" value="" min="0" step="500" placeholder="Örn: 50.000"
+            oninput="nettenBruteHesapla()"
+            style="width:100%;font-size:15px;font-weight:700;padding:9px 12px;border:2px solid #1d9e75;border-radius:8px;color:#1d9e75;">
+          <div id="nettenBruteSonuc" style="margin-top:8px;display:none;">
+            <div style="background:#f0faf6;border:1px solid #1d9e75;border-radius:8px;padding:10px 12px;">
+              <div style="font-size:11px;color:#6e6e73;margin-bottom:4px;">Bu net maaşa karşılık gelen brüt:</div>
+              <div style="font-size:20px;font-weight:700;color:#534AB7;" id="bulunanBrut">₺0</div>
+              <div style="font-size:11px;color:#aeaeb2;margin-top:3px;" id="nettenBruteAciklama"></div>
+              <button onclick="nettenBruteUygula()"
+                style="margin-top:8px;width:100%;padding:7px;background:#534AB7;color:#fff;border:none;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;">
+                Yıllık Tabloyu Gör →
+              </button>
+            </div>
+          </div>
+        </div>
         <div>
           <label>Başlangıç Brüt Maaş (₺)</label>
           <input type="number" id="brut" value="" min="0" step="500" oninput="zamGuncelleVeHesapla()">
@@ -250,6 +325,21 @@ input:focus,select:focus{border-color:#534AB7;box-shadow:0 0 0 3px rgba(83,74,18
         </div>
 
         <div style="background:#f5f5f7;border-radius:10px;padding:10px 12px;">
+          <!-- EKSİK ÇALIŞMA GÜNÜ -->
+          <div style="background:#f0eefe;border:1px solid #c9c2f0;border-radius:8px;padding:8px 10px;margin-bottom:8px;display:flex;align-items:center;gap:10px;">
+            <div style="flex:1;">
+              <div style="font-size:10px;font-weight:700;color:#534AB7;letter-spacing:.4px;margin-bottom:3px;">ÇALIŞMA GÜNÜ</div>
+              <div style="display:flex;align-items:center;gap:6px;">
+                <input type="number" id="calismaGunu" value="30" min="1" max="31" step="1" oninput="hesapla()"
+                  style="width:60px;font-size:15px;font-weight:700;padding:4px 7px;border:1.5px solid #c9c2f0;border-radius:6px;text-align:center;color:#534AB7;background:#fff;">
+                <span style="font-size:12px;color:#534AB7;font-weight:600;">/ 30 gün</span>
+                <span id="calismaGunuBilgi" style="font-size:11px;color:#aeaeb2;"></span>
+              </div>
+            </div>
+            <div style="font-size:11px;color:#6e6e73;line-height:1.5;max-width:160px;">
+              30 = tam ay. Eksik girersen orantılı kesinti uygulanır.
+            </div>
+          </div>
           <p style="font-size:12px;font-weight:600;color:#1d1d1f;margin-bottom:8px;">Bu Ayın Mesai Bilgileri</p>
           <div style="display:grid;gap:6px;margin-bottom:8px;">
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:center;">
@@ -467,43 +557,159 @@ input:focus,select:focus{border-color:#534AB7;box-shadow:0 0 0 3px rgba(83,74,18
 
 <!-- ANALİZ -->
 <div id="sec-analiz" class="sec">
+
+  <!-- ÜST METRİK KARTLAR - genişletilmiş -->
   <div class="g4" style="margin-bottom:1rem;" id="analizMC"></div>
-  <div class="g2" style="gap:1rem;margin-bottom:1rem;">
-    <div class="card">
-      <p class="st">Aylık Net ve Toplam Elde Geçen</p>
-      <div id="legNet" style="display:flex;gap:14px;margin-bottom:8px;font-size:11px;color:#6e6e73;"></div>
-      <div style="position:relative;height:200px;"><canvas id="cNet"></canvas></div>
+
+  <!-- İKİNCİ SATIR METRİKLER -->
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:1rem;" id="analizMC2"></div>
+
+  <!-- TAB İÇİ SEKMELEr -->
+  <div style="display:flex;gap:2px;border-bottom:1px solid #d2d2d7;margin-bottom:1rem;overflow-x:auto;" id="analizTabBar">
+    <button class="tab active" onclick="analizTab('gelir')" id="atab-gelir" style="font-size:12px;padding:7px 14px;">📈 Gelir Analizi</button>
+    <button class="tab" onclick="analizTab('kesinti')" id="atab-kesinti" style="font-size:12px;padding:7px 14px;">💸 Kesinti Analizi</button>
+    <button class="tab" onclick="analizTab('vergi')" id="atab-vergi" style="font-size:12px;padding:7px 14px;">🧾 Vergi Dilimleri</button>
+    <button class="tab" onclick="analizTab('simul')" id="atab-simul" style="font-size:12px;padding:7px 14px;">🔬 Simülasyon</button>
+    <button class="tab" onclick="analizTab('karsi')" id="atab-karsi" style="font-size:12px;padding:7px 14px;">⚖️ Karşılaştırma</button>
+  </div>
+
+  <!-- GELİR ANALİZİ -->
+  <div id="asec-gelir">
+    <div class="g2" style="gap:1rem;margin-bottom:1rem;">
+      <div class="card">
+        <p class="st">Aylık Net & Toplam Elde Geçen</p>
+        <div id="legNet" style="display:flex;gap:14px;margin-bottom:8px;font-size:11px;color:#6e6e73;"></div>
+        <div style="position:relative;height:200px;"><canvas id="cNet"></canvas></div>
+      </div>
+      <div class="card">
+        <p class="st">Yıllık Gelir Dağılımı (Pasta)</p>
+        <div style="position:relative;height:190px;"><canvas id="cPie"></canvas></div>
+        <div id="legPie" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;font-size:11px;color:#6e6e73;"></div>
+      </div>
     </div>
+    <div class="card" style="margin-bottom:1rem;">
+      <p class="st">Aylık Efektif Maaş Artışı (Zam Etkisi)</p>
+      <div style="font-size:11px;color:#6e6e73;margin-bottom:8px;">Her ay brüt maaş değişimi ve net maaşa yansıması</div>
+      <div style="position:relative;height:180px;"><canvas id="cZamEtkisi"></canvas></div>
+    </div>
+    <!-- Detaylı tablo -->
     <div class="card">
-      <p class="st">Aylık VD Dilim Geçişleri</p>
-      <div id="legVD" style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px;font-size:11px;color:#6e6e73;"></div>
-      <div style="position:relative;height:200px;"><canvas id="cVD"></canvas></div>
+      <p class="st">Aylık Gelir Özeti Tablosu</p>
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;font-size:12px;" id="analizGelirTbl">
+          <thead>
+            <tr style="background:#f5f5f7;">
+              <th style="padding:7px 8px;text-align:left;font-weight:700;color:#6e6e73;">Ay</th>
+              <th style="padding:7px 8px;text-align:right;font-weight:700;color:#6e6e73;">Brüt</th>
+              <th style="padding:7px 8px;text-align:right;font-weight:700;color:#6e6e73;">Net (J)</th>
+              <th style="padding:7px 8px;text-align:right;font-weight:700;color:#6e6e73;">Mesai Net</th>
+              <th style="padding:7px 8px;text-align:right;font-weight:700;color:#6e6e73;">Toplam (N)</th>
+              <th style="padding:7px 8px;text-align:right;font-weight:700;color:#6e6e73;">Elde Oranı</th>
+            </tr>
+          </thead>
+          <tbody id="analizGelirTblBody"></tbody>
+        </table>
+      </div>
     </div>
   </div>
-  <div class="g2" style="gap:1rem;margin-bottom:1rem;">
-    <div class="card">
-      <p class="st">Kümülatif Matrah (E) — Yıl Boyunca</p>
-      <div style="font-size:11px;color:#6e6e73;margin-bottom:8px;">Yatay çizgiler vergi dilim sınırlarını gösterir</div>
-      <div style="position:relative;height:190px;"><canvas id="cKum"></canvas></div>
+
+  <!-- KESİNTİ ANALİZİ -->
+  <div id="asec-kesinti" style="display:none;">
+    <div class="g2" style="gap:1rem;margin-bottom:1rem;">
+      <div class="card">
+        <p class="st">Aylık Kesinti Dağılımı (SGK + Vergi + Damga)</p>
+        <div style="font-size:11px;color:#6e6e73;margin-bottom:8px;">Her ayın toplam kesintisi — mesai ve ikramiye dahil</div>
+        <div style="position:relative;height:200px;"><canvas id="cKesinti"></canvas></div>
+      </div>
+      <div class="card">
+        <p class="st">Kesinti Oranı Trendi (%)</p>
+        <div style="font-size:11px;color:#6e6e73;margin-bottom:8px;">Brüte oranla toplam kesinti yüzdesi</div>
+        <div style="position:relative;height:200px;"><canvas id="cKesOran"></canvas></div>
+      </div>
     </div>
-    <div class="card">
-      <p class="st">Yıllık Gelir Dağılımı</p>
-      <div style="position:relative;height:190px;"><canvas id="cPie"></canvas></div>
-      <div id="legPie" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;font-size:11px;color:#6e6e73;"></div>
+    <div class="g2" style="gap:1rem;margin-bottom:1rem;">
+      <div class="card">
+        <p class="st">Kesinti Kalemleri Özeti</p>
+        <div id="kesintiOzet" style="display:grid;gap:6px;margin-top:6px;"></div>
+      </div>
+      <div class="card">
+        <p class="st">Yıllık Vergi Yükü Analizi</p>
+        <div id="vergiYukuOzet" style="display:grid;gap:6px;margin-top:6px;"></div>
+      </div>
     </div>
   </div>
-  <div class="g2" style="gap:1rem;margin-bottom:1rem;">
-    <div class="card">
-      <p class="st">Mesai Saati → Net Ek Maaş (Bu Ay Simülasyonu)</p>
-      <div style="font-size:11px;color:#6e6e73;margin-bottom:8px;" id="mesaiEtkisiInfo"></div>
-      <div style="position:relative;height:180px;"><canvas id="cMesai"></canvas></div>
+
+  <!-- VERGİ DİLİMLERİ -->
+  <div id="asec-vergi" style="display:none;">
+    <div class="g2" style="gap:1rem;margin-bottom:1rem;">
+      <div class="card">
+        <p class="st">Aylık VD Dilim Geçişleri</p>
+        <div id="legVD" style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px;font-size:11px;color:#6e6e73;"></div>
+        <div style="position:relative;height:200px;"><canvas id="cVD"></canvas></div>
+      </div>
+      <div class="card">
+        <p class="st">Kümülatif Matrah (E) — Yıl Boyunca</p>
+        <div style="font-size:11px;color:#6e6e73;margin-bottom:8px;">Yatay çizgiler vergi dilim sınırlarını gösterir</div>
+        <div style="position:relative;height:200px;"><canvas id="cKum"></canvas></div>
+      </div>
     </div>
     <div class="card">
-      <p class="st">Aylık Kesinti Analizi (SGK + Vergi)</p>
-      <div style="font-size:11px;color:#6e6e73;margin-bottom:8px;">Her ayın toplam kesintisi — mesai dahil</div>
-      <div style="position:relative;height:180px;"><canvas id="cKesinti"></canvas></div>
+      <p class="st">2026 Vergi Dilimi Bilgileri & Durumunuz</p>
+      <div id="dilimDurumu" style="display:grid;gap:8px;margin-top:8px;"></div>
     </div>
   </div>
+
+  <!-- SİMÜLASYON -->
+  <div id="asec-simul" style="display:none;">
+    <div class="g2" style="gap:1rem;margin-bottom:1rem;">
+      <div class="card">
+        <p class="st">Mesai Saati → Net Ek Maaş Simülasyonu</p>
+        <div style="font-size:11px;color:#6e6e73;margin-bottom:8px;" id="mesaiEtkisiInfo"></div>
+        <div style="position:relative;height:200px;"><canvas id="cMesai"></canvas></div>
+      </div>
+      <div class="card">
+        <p class="st">Zam Senaryoları — Net Maaşa Etkisi</p>
+        <div style="font-size:11px;color:#6e6e73;margin-bottom:8px;">Farklı zam oranlarında aylık net maaş değişimi</div>
+        <div style="position:relative;height:200px;"><canvas id="cZamSenaryosu"></canvas></div>
+      </div>
+    </div>
+    <div class="card">
+      <p class="st">Brüt Maaş → Net Maaş Dönüşüm Eğrisi (Bu Ay)</p>
+      <div style="font-size:11px;color:#6e6e73;margin-bottom:8px;" id="donusumEgriInfo"></div>
+      <div style="position:relative;height:220px;"><canvas id="cDonusumEgrisi"></canvas></div>
+    </div>
+  </div>
+
+  <!-- KARŞILAŞTIRMA -->
+  <div id="asec-karsi" style="display:none;">
+    <div class="card" style="margin-bottom:1rem;">
+      <p class="st">⚖️ Çalışan Karşılaştırması</p>
+      <div style="font-size:12px;color:#6e6e73;margin-bottom:1rem;">İki farklı brüt maaşı karşılaştırın</div>
+      <div class="g2" style="gap:1rem;margin-bottom:1rem;">
+        <div>
+          <label>1. Çalışan Brüt Maaş (₺)</label>
+          <input type="number" id="karsi1" placeholder="Mevcut maaşınız" style="font-size:14px;font-weight:600;border:2px solid #534AB7;" oninput="karsiHesapla()">
+        </div>
+        <div>
+          <label>2. Çalışan Brüt Maaş (₺)</label>
+          <input type="number" id="karsi2" placeholder="Karşılaştırılacak maaş" style="font-size:14px;font-weight:600;border:2px solid #1d9e75;" oninput="karsiHesapla()">
+        </div>
+      </div>
+      <div id="karsiSonuclar" style="display:none;">
+        <div class="g2" style="gap:1rem;margin-bottom:1rem;">
+          <div style="position:relative;height:220px;"><canvas id="cKarsi"></canvas></div>
+          <div id="karsiTablo" style="display:grid;gap:6px;align-content:start;"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="st">📊 İşveren Maliyeti Analizi</p>
+      <div style="font-size:12px;color:#6e6e73;margin-bottom:1rem;">Size ödenen brüt maaş için işverenin toplam maliyeti</div>
+      <div id="isverenMaliyet" style="display:grid;gap:6px;"></div>
+    </div>
+  </div>
+
 </div>
 
 <!-- İKRAMİYE -->
@@ -638,130 +844,135 @@ input:focus,select:focus{border-color:#534AB7;box-shadow:0 0 0 3px rgba(83,74,18
 </div>
 </div>
 
-<!-- KIDEM TAZMİNATI -->
-<div id="sec-kidem" class="sec">
-  <div class="g2" style="gap:1rem;margin-bottom:1rem;">
+</div>
 
-    <!-- SOL: Giriş -->
-    <div class="card">
-      <p class="st">⚖️ Kıdem Tazminatı Hesaplama</p>
-      <div style="display:grid;gap:12px;">
-        <div>
-          <label>İşe Giriş Tarihi</label>
-          <input type="date" id="kidemGirisTarihi" oninput="kidemHesapla()"
-            style="width:100%;font-size:14px;padding:8px 10px;border:1.5px solid #534AB7;border-radius:8px;">
-        </div>
-        <div>
-          <label>Ayrılma / Hesaplama Tarihi</label>
-          <div style="display:flex;gap:6px;">
-            <input type="date" id="kidemCikisTarihi" oninput="kidemHesapla()"
-              style="flex:1;font-size:14px;padding:8px 10px;border:1px solid #d2d2d7;border-radius:8px;">
-            <button onclick="kidemBugunSec()"
-              style="padding:8px 12px;background:#f5f5f7;border:1px solid #d2d2d7;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;">
-              Bugün
-            </button>
-          </div>
-        </div>
-        <div>
-          <label>Güncel Brüt Maaş (₺) <span style="font-size:11px;color:#aeaeb2;">— boş bırakılırsa yukarıdakini kullanır</span></label>
-          <input type="number" id="kidemBrut" placeholder="Otomatik" min="0" step="500" oninput="kidemHesapla()"
-            style="width:100%;font-size:14px;padding:8px 10px;border:1px solid #d2d2d7;border-radius:8px;">
-        </div>
+<!-- ════════ BORÇLARIM ════════ -->
+<div id="sec-borc" class="sec">
 
-        <!-- Çalışma süresi göstergesi -->
-        <div id="kidemSureKutu" style="display:none;background:#f0eefd;border:1px solid #c9c2f0;border-radius:10px;padding:12px 14px;">
-          <div style="font-size:11px;color:#6e6e73;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px;">Toplam Çalışma Süresi</div>
-          <div style="font-size:26px;font-weight:700;color:#534AB7;" id="kidemSureBuyuk">—</div>
-          <div style="display:flex;gap:16px;margin-top:6px;flex-wrap:wrap;">
-            <div><span style="font-size:20px;font-weight:700;color:#534AB7;" id="kidemYil">0</span><span style="font-size:12px;color:#6e6e73;margin-left:3px;">Yıl</span></div>
-            <div><span style="font-size:20px;font-weight:700;color:#534AB7;" id="kidemAy">0</span><span style="font-size:12px;color:#6e6e73;margin-left:3px;">Ay</span></div>
-            <div><span style="font-size:20px;font-weight:700;color:#534AB7;" id="kidemGunSay">0</span><span style="font-size:12px;color:#6e6e73;margin-left:3px;">Gün</span></div>
-            <div><span style="font-size:16px;font-weight:600;color:#6e6e73;" id="kidemToplamGun">0</span><span style="font-size:11px;color:#aeaeb2;margin-left:3px;">toplam gün</span></div>
-          </div>
-          <div style="margin-top:8px;font-size:12px;color:#6e6e73;" id="kidemSureAcik">—</div>
-        </div>
-
-        <!-- Hak ediş durumu -->
-        <div id="kidemHakKutu" style="display:none;border-radius:10px;padding:12px 14px;border:1px solid;">
-          <div style="font-size:13px;font-weight:600;" id="kidemHakBaslik">—</div>
-          <div style="font-size:12px;color:#6e6e73;margin-top:4px;" id="kidemHakAcik">—</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SAĞ: Tazminat detayı -->
-    <div class="card">
-      <p class="st">📊 Hesaplama Detayı</p>
-      <div id="kidemDetayBos" style="color:#aeaeb2;font-size:13px;padding:2rem 0;text-align:center;">
-        İşe giriş ve ayrılma tarihini girin.
-      </div>
-      <div id="kidemDetayIcerik" style="display:none;">
-        <div class="g2" style="gap:8px;margin-bottom:1rem;">
-          <div class="mc"><div class="ml">Kıdem Tazminatı</div><div class="mv pur" id="kidemTazminat">₺0</div><div class="ms">brüt toplam</div></div>
-          <div class="mc"><div class="ml">Net Tahmini</div><div class="mv pos" id="kidemNet">₺0</div><div class="ms">~%15 GV varsayımı</div></div>
-        </div>
-        <div id="kidemHesapAdimlar" style="display:grid;gap:4px;"></div>
-      </div>
-    </div>
+  <!-- Üst metrikler -->
+  <div class="g4" style="margin-bottom:1.25rem;">
+    <div class="mc"><div class="ml">Toplam Kalan Borç</div><div class="mv neg" id="bmToplam">₺0</div><div class="ms" id="bmToplamAlt">—</div></div>
+    <div class="mc"><div class="ml">Bu Ay Ödenecek</div><div class="mv pur" id="bmBuAy">₺0</div><div class="ms" id="bmBuAyAlt">—</div></div>
+    <div class="mc"><div class="ml">Borçsuz Olma Tarihi</div><div class="mv pos" id="bmBitis">—</div><div class="ms" id="bmBitisAlt">—</div></div>
+    <div class="mc"><div class="ml">Aktif Borç</div><div class="mv" id="bmAdet">0</div><div class="ms" id="bmAdetAlt">—</div></div>
   </div>
 
-  <!-- Alt: Yasal bilgi ve tavan -->
-  <div class="card">
-    <p class="st">📋 2026 Yasal Kıdem Tazminatı Kuralları</p>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:1rem;">
-      <div class="mc">
-        <div class="ml">Kıdem Tazminatı Tavanı</div>
-        <div class="mv" style="color:#1d9e75;font-size:16px;" id="kidemTavan">₺64.948,77</div>
-        <div class="ms">Temmuz 2025–Ocak 2026</div>
+  <!-- Maaş ile ilişki uyarısı -->
+  <div id="borcMaasOran" style="display:none;background:#f3f0fd;border:1px solid #c9c2f0;border-radius:10px;padding:10px 14px;font-size:12px;color:#534AB7;margin-bottom:1rem;line-height:1.6;"></div>
+
+  <div style="display:grid;grid-template-columns:400px 1fr;gap:1.25rem;align-items:start;" id="borcAnaGrid">
+
+    <!-- SOL: liste -->
+    <div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem;">
+        <p style="font-size:14px;font-weight:600;margin:0;">💳 Borç Listesi</p>
+        <button class="btn-mini" onclick="borcModalAc()" style="padding:7px 14px;background:#534AB7;color:#fff;border:none;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer;">+ Borç Ekle</button>
       </div>
-      <div class="mc">
-        <div class="ml">Minimum Hak Kazanma</div>
-        <div class="mv">1 Yıl</div>
-        <div class="ms">kesintisiz çalışma</div>
-      </div>
-      <div class="mc">
-        <div class="ml">Tazminat Formülü</div>
-        <div class="mv" style="font-size:14px;">Yıl × 30 Gün</div>
-        <div class="ms">brüt günlük ücret</div>
-      </div>
-    </div>
-    <div style="font-size:12px;color:#6e6e73;line-height:1.8;">
-      <div style="display:grid;gap:6px;">
-        <div style="display:flex;gap:8px;"><span style="color:#1d9e75;font-weight:600;">✓</span><span><strong>Hak kazanma koşulu:</strong> Aynı işyerinde kesintisiz en az 1 yıl çalışmış olmak</span></div>
-        <div style="display:flex;gap:8px;"><span style="color:#1d9e75;font-weight:600;">✓</span><span><strong>Hesaplama:</strong> Çalışma yılı × 30 günlük brüt ücret (günlük = aylık ÷ 30)</span></div>
-        <div style="display:flex;gap:8px;"><span style="color:#1d9e75;font-weight:600;">✓</span><span><strong>Tavan:</strong> Yıllık tavan tutarı geçilemez (her 6 ayda güncellenir)</span></div>
-        <div style="display:flex;gap:8px;"><span style="color:#e24b4a;font-weight:600;">✗</span><span><strong>İstifa:</strong> Kıdem tazminatı ödenmez (bazı istisnalar hariç)</span></div>
-        <div style="display:flex;gap:8px;"><span style="color:#1d9e75;font-weight:600;">✓</span><span><strong>İşten çıkarma:</strong> Haksız fesihte hem kıdem hem ihbar tazminatı hakkı doğar</span></div>
-        <div style="display:flex;gap:8px;"><span style="color:#1d9e75;font-weight:600;">✓</span><span><strong>İhbar süreleri:</strong> 0–6 ay → 2 hafta | 6–18 ay → 4 hafta | 18–36 ay → 6 hafta | 36+ ay → 8 hafta</span></div>
-        <div style="display:flex;gap:8px;"><span style="color:#1d9e75;font-weight:600;">✓</span><span><strong>Vergi:</strong> Kıdem tazminatı brüt tavan altında kalıyorsa gelir vergisi ve damga vergisinden muaf</span></div>
-        <div style="display:flex;gap:8px;"><span style="color:#534AB7;font-weight:600;">ℹ</span><span><strong>Evlilik istifası (kadınlar):</strong> Evlilik tarihinden itibaren 1 yıl içinde istifa edilirse kıdem tazminatı hakkı doğar</span></div>
-        <div style="display:flex;gap:8px;"><span style="color:#534AB7;font-weight:600;">ℹ</span><span><strong>Askerlik/emeklilik:</strong> Bu nedenle ayrılırsa kıdem tazminatı ödenir</span></div>
-      </div>
+      <div id="borcListesi"></div>
     </div>
 
-    <!-- İhbar Tazminatı -->
-    <div id="ihbarKutu" style="display:none;margin-top:1rem;background:#f0f7ff;border:1px solid #b8d9f5;border-radius:10px;padding:12px 14px;">
-      <div style="font-size:13px;font-weight:600;color:#185FA5;margin-bottom:8px;">📣 İhbar Tazminatı (Haksız Fesih Durumunda)</div>
-      <div class="g2" style="gap:8px;">
-        <div class="mc" style="border:1px solid #b8d9f5;">
-          <div class="ml">İhbar Süresi</div>
-          <div class="mv" id="ihbarSure" style="color:#185FA5;">—</div>
-          <div class="ms" id="ihbarGrubu">çalışma süresine göre</div>
+    <!-- SAĞ: takvim + grafik -->
+    <div>
+      <div class="card" style="margin-bottom:1rem;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:8px;">
+          <p class="st" style="margin:0;">📅 Ay Ay Ödeme Takvimi</p>
+          <div style="display:flex;gap:4px;background:#f5f5f7;border-radius:8px;padding:3px;">
+            <button id="tkvModKart" onclick="takvimGorunum('kart')" style="padding:5px 12px;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;background:#534AB7;color:#fff;">Zaman Çizelgesi</button>
+            <button id="tkvModTablo" onclick="takvimGorunum('tablo')" style="padding:5px 12px;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;background:transparent;color:#6e6e73;">Tablo</button>
+          </div>
         </div>
-        <div class="mc" style="border:1px solid #b8d9f5;">
-          <div class="ml">İhbar Tazminatı (Brüt)</div>
-          <div class="mv" id="ihbarTazminat" style="color:#185FA5;">—</div>
-          <div class="ms">ihbar süresi × günlük ücret</div>
+
+        <!-- ZAMAN ÇİZELGESİ GÖRÜNÜMÜ -->
+        <div id="takvimKartGorunum" style="max-height:480px;overflow-y:auto;padding-right:4px;"></div>
+
+        <!-- TABLO GÖRÜNÜMÜ -->
+        <div id="takvimTabloGorunum" style="display:none;overflow-x:auto;max-height:420px;overflow-y:auto;">
+          <table class="kt">
+            <thead style="position:sticky;top:0;"><tr id="borcTakvimBaslik"></tr></thead>
+            <tbody id="borcTakvimGovde"></tbody>
+          </table>
         </div>
       </div>
-      <div id="ihbarDetaysatirlar" style="margin-top:8px;display:grid;gap:2px;"></div>
-      <div style="margin-top:12px;background:#f0eefd;border-radius:8px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;">
-        <span style="font-size:13px;font-weight:700;color:#534AB7;">Genel Toplam (Kıdem Net + İhbar Net)</span>
-        <span style="font-size:18px;font-weight:700;color:#534AB7;" id="kidemGenelToplam">—</span>
+      <div class="g2" style="gap:1rem;">
+        <div class="card">
+          <p class="st">Aylık Ödeme Yükü</p>
+          <div style="position:relative;height:200px;"><canvas id="cBorcYuk"></canvas></div>
+        </div>
+        <div class="card">
+          <p class="st">Borç Dağılımı</p>
+          <div style="position:relative;height:200px;"><canvas id="cBorcDagilim"></canvas></div>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+<!-- BORÇ EKLEME MODALİ -->
+<div class="borc-modal-bg" id="borcModalBg">
+  <div class="borc-modal">
+    <h3 style="font-size:16px;font-weight:700;margin-bottom:1rem;">Yeni Borç Ekle</h3>
+    <div style="display:grid;gap:11px;">
+      <div>
+        <label>Borç Adı</label>
+        <input type="text" id="bfAd" placeholder="Örn: İhtiyaç Kredisi, Telefon Taksiti">
+      </div>
+      <div>
+        <label>Borç Türü</label>
+        <select id="bfTur">
+          <option value="kredi">🏦 Banka Kredisi</option>
+          <option value="karti">💳 Kredi Kartı</option>
+          <option value="taksit">🛒 Taksitli Alışveriş</option>
+          <option value="kisisel">🤝 Kişisel Borç</option>
+          <option value="diger">📌 Diğer</option>
+        </select>
+      </div>
+
+      <!-- HESAPLAMA MODU SEÇİMİ -->
+      <div>
+        <label>Nasıl Gireceksiniz?</label>
+        <div style="display:flex;gap:6px;">
+          <button class="borc-mod-btn aktif" id="bmodTaksit" onclick="borcGirisModu('taksit')">Aylık Taksit + Süre</button>
+          <button class="borc-mod-btn" id="bmodToplam" onclick="borcGirisModu('toplam')">Toplam Borç + Süre</button>
+        </div>
+      </div>
+
+      <!-- MOD 1: Aylık taksit + kalan sayı -->
+      <div id="bgTaksitModu" class="g2" style="gap:8px;">
+        <div>
+          <label>Aylık Taksit (₺)</label>
+          <input type="number" id="bfTaksit" placeholder="5.000" min="0" oninput="borcOnizle()">
+        </div>
+        <div>
+          <label>Kalan Taksit Sayısı</label>
+          <input type="number" id="bfKalan" placeholder="12" min="1" max="360" oninput="borcOnizle()">
+        </div>
+      </div>
+
+      <!-- MOD 2: Toplam borç + süre -->
+      <div id="bgToplamModu" class="g2" style="gap:8px;display:none;">
+        <div>
+          <label>Toplam Kalan Borç (₺)</label>
+          <input type="number" id="bfToplam" placeholder="60.000" min="0" oninput="borcOnizle()">
+        </div>
+        <div>
+          <label>Kaç Aya Bölünecek?</label>
+          <input type="number" id="bfSure" placeholder="12" min="1" max="360" oninput="borcOnizle()">
+        </div>
+      </div>
+
+      <!-- Önizleme -->
+      <div id="borcOnizleKutu" style="display:none;background:#f0faf6;border:1px solid #1d9e75;border-radius:8px;padding:9px 12px;font-size:12px;color:#0f6e56;"></div>
+
+      <div>
+        <label>İlk/Sonraki Ödeme Tarihi</label>
+        <input type="date" id="bfTarih">
+      </div>
+      <div style="display:flex;gap:8px;margin-top:4px;">
+        <button onclick="borcKaydet()" style="flex:1;padding:10px;background:#534AB7;color:#fff;border:none;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer;">Ekle</button>
+        <button onclick="borcModalKapat()" style="flex:1;padding:10px;background:#f5f5f7;color:#6e6e73;border:1px solid #d2d2d7;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer;">İptal</button>
+      </div>
+    </div>
+  </div>
 </div>
 </div>
 
@@ -848,18 +1059,42 @@ function argeAktifMi(){return document.getElementById('argeToggle')&&document.ge
 function egitimDegeri(){const el=document.getElementById('egitim');return el?el.value:'lis';}
 
 // ── ANA HESAPLAMA ─────────────────────────────────────
+// ── ÇALIŞMA GÜNÜ ORANINI OKU ─────────────────────────
+function gunOraniAl(){
+  const el=document.getElementById('calismaGunu');
+  const gun=el?parseFloat(el.value)||30:30;
+  return Math.min(1,gun/30);
+}
+
 // ARGe KAPALI  → kümülatif GV farkı yöntemi + damga vergisi (Excel ile birebir)
 // ARGe AÇIK    → 5746 sayılı Kanun: kümülatif GV farkı, önce asgari ücret istisnası,
 //                kalan vergi üzerinden stopaj teşviği, ARGe damga vergisi de sıfır.
-function hesaplaAy(brut,ayIdx,saat,eg,E_prev,ikSaat,arge,mesaiCarpan,saat20){
+function hesaplaAy(brut,ayIdx,saat,eg,E_prev,ikSaat,arge,mesaiCarpan,saat20,gunOrani){
   ikSaat=ikSaat||0;
   saat20=saat20||0;
   mesaiCarpan=mesaiCarpan||1.5;
+  // gunOrani: undefined veya 1 ise tam maaş (yıllık tablo, net mod vb.)
+  // Sadece hesapla() doğrudan çağrısında DOM'dan okur
+
+  // ── Eksik çalışma günü oranı ─────────────────────────
+  // gunOrani: undefined ise DOM'dan oku (her zaman güncel değeri al)
+  const _gunEl=document.getElementById('calismaGunu');
+  const _girilenGun=_gunEl?parseFloat(_gunEl.value)||30:30;
+  const _effGunOrani=(gunOrani!==undefined)?Math.min(1,gunOrani):Math.min(1,_girilenGun/30);
+  const brutEfektif=brut*_effGunOrani;
+  // Bilgi metnini sadece ana hesaplama ekranında göster (gunOrani undefined ise)
+  if(gunOrani===undefined){
+    const _gunBilgiEl=document.getElementById('calismaGunuBilgi');
+    if(_gunBilgiEl){
+      if(_girilenGun<30) _gunBilgiEl.textContent='−'+fmt(brut-brutEfektif)+' eksik gün kesintisi';
+      else _gunBilgiEl.textContent='';
+    }
+  }
 
   // ── Ortak: SGK matrahı ve mesai ──────────────────────
   // SGK işçi payı %14 + işsizlik %1 = %15 → D = Brüt × (1−0.15) = Brüt × 0.85
-  const D=Math.round(brut*0.85*100)/100;
-  const saatBasi=brut/225;
+  const D=Math.round(brutEfektif*0.85*100)/100;
+  const saatBasi=brutEfektif/225;
   const L15=(saatBasi)*saat*1.5;
   const L20=(saatBasi)*saat20*2.0;
   const L=L15+L20;
@@ -923,10 +1158,40 @@ function fmt(n){
 }
 
 function tumAylariHesapla(brut,eg,arge){
+  if(_hesapModu==='net'){
+    const hedefNet=parseFloat(document.getElementById('hedefNetMaas')?.value)||0;
+    if(hedefNet>0) return tumAylariNetModHesapla(hedefNet,eg,arge);
+  }
+  const _secilenAy=parseInt(document.getElementById('ay')?.value)||0;
   let E_prev=0;const s=[];
   for(let i=0;i<12;i++){
     const ayBrut=(typeof brutAyaGore==='function')?brutAyaGore(i,aktifYil):brut;
-    const r=hesaplaAy(ayBrut,i,mesai15[i],eg,E_prev,ikramiyeSaatler[i],arge,1.5,mesai20[i]);
+    // Eksik gün sadece seçili ayda uygulanır
+    const _ayGunOrani = (i===_secilenAy) ? gunOraniAl() : 1;
+    const r=hesaplaAy(ayBrut,i,mesai15[i],eg,E_prev,ikramiyeSaatler[i],arge,1.5,mesai20[i],_ayGunOrani);
+    s.push({...r,saat15:mesai15[i],saat20:mesai20[i],saat:mesai15[i]+(mesai20[i]||0),ikSaat:ikramiyeSaatler[i],brutAktif:ayBrut});
+    E_prev=r.E;
+  }
+  return s;
+}
+
+// Net modda her ay için ayrı binary search
+function tumAylariNetModHesapla(hedefNet,eg,arge){
+  const _secilenAy2=parseInt(document.getElementById('ay')?.value)||0;
+  const s=[];
+  let E_prev=0;
+  for(let i=0;i<12;i++){
+    let lo=hedefNet*0.5, hi=hedefNet*8, ayBrut=hedefNet*1.5;
+    for(let iter=0;iter<80;iter++){
+      const mid=(lo+hi)/2;
+      const r=hesaplaAy(mid,i,0,eg,E_prev,0,arge,1.5,0,1);
+      if(Math.abs(r.J-hedefNet)<0.5){ ayBrut=mid; break; }
+      if(r.J<hedefNet) lo=mid; else hi=mid;
+      ayBrut=mid;
+    }
+    ayBrut=Math.round(ayBrut*100)/100;
+    const _ayGunOrani2 = (i===_secilenAy2) ? gunOraniAl() : 1;
+    const r=hesaplaAy(ayBrut,i,mesai15[i],eg,E_prev,ikramiyeSaatler[i],arge,1.5,mesai20[i],_ayGunOrani2);
     s.push({...r,saat15:mesai15[i],saat20:mesai20[i],saat:mesai15[i]+(mesai20[i]||0),ikSaat:ikramiyeSaatler[i],brutAktif:ayBrut});
     E_prev=r.E;
   }
@@ -976,7 +1241,28 @@ function hesapla(){
   const thArge=document.getElementById('thArge');
   if(thArge)thArge.style.display=arge?'':'none';
 
-  const baslangicBrut=parseFloat(document.getElementById('brut').value)||0;
+  // Net modda: seçili ay için binary search ile brütü bul
+  let baslangicBrut=parseFloat(document.getElementById('brut').value)||0;
+  if(_hesapModu==='net'){
+    const _hedefNet=parseFloat(document.getElementById('hedefNetMaas')?.value)||0;
+    if(_hedefNet>0){
+      const _arge=argeAktifMi(); const _eg=_arge?egitimDegeri():'lis';
+      const _ayIdx=parseInt(document.getElementById('ay').value)||0;
+      let _E_prev=0, _lo=_hedefNet*0.5, _hi=_hedefNet*8, _br=_hedefNet*1.5;
+      // Önce o aya kadar kümülatif E'yi hesapla (net mod: her ay farklı brüt)
+      const _netAylar=tumAylariNetModHesapla(_hedefNet,_eg,_arge);
+      _E_prev = _ayIdx>0 ? _netAylar[_ayIdx-1].E : 0;
+      for(let _it=0;_it<80;_it++){
+        const _mid=(_lo+_hi)/2;
+        const _r=hesaplaAy(_mid,_ayIdx,0,_eg,_E_prev,0,_arge,1.5,0,1);
+        if(Math.abs(_r.J-_hedefNet)<0.5){_br=_mid;break;}
+        if(_r.J<_hedefNet)_lo=_mid;else _hi=_mid;
+        _br=_mid;
+      }
+      baslangicBrut=Math.round(_br*100)/100;
+      document.getElementById('brut').value=baslangicBrut.toFixed(2);
+    }
+  }
   const ayIdxB=parseInt(document.getElementById('ay').value)||0;
   const brut=(typeof brutAyaGore==='function')?brutAyaGore(ayIdxB,aktifYil):baslangicBrut;
   const guncelEl=document.getElementById('guncelBrut');
@@ -991,7 +1277,7 @@ function hesapla(){
   const saat=(mesai15[ayIdx]||0)+(mesai20[ayIdx]||0);
 
   let E_prev=0;
-  for(let i=0;i<ayIdx;i++){const bI=(typeof brutAyaGore==='function')?brutAyaGore(i,aktifYil):baslangicBrut;E_prev=hesaplaAy(bI,i,mesai15[i],eg,E_prev,ikramiyeSaatler[i],arge,1.5,mesai20[i]).E;}
+  for(let i=0;i<ayIdx;i++){const bI=(typeof brutAyaGore==='function')?brutAyaGore(i,aktifYil):baslangicBrut;E_prev=hesaplaAy(bI,i,mesai15[i],eg,E_prev,ikramiyeSaatler[i],arge,1.5,mesai20[i],1).E;}
   const ikSaat=ikramiyeSaatler[ayIdx];
   const r=hesaplaAy(brut,ayIdx,mesai15[ayIdx],eg,E_prev,ikSaat,arge,1.5,mesai20[ayIdx]);
 
@@ -1005,6 +1291,7 @@ function hesapla(){
   document.getElementById('brutIkramiye').value=ikSaat?fmt(r.LIK)+' ('+ikSaat+' saat eşd.)':'-';
   document.getElementById('netIkramiye').value=ikSaat?fmt(r.MIK):'-';
   document.getElementById('mJ').textContent=fmt(r.J);
+  window.sonNetMaas=r.J; // borç bölümü için
   document.getElementById('mN').textContent=fmt(r.N);
   document.getElementById('mG').textContent=fmt(r.G);
   document.getElementById('mAsg').textContent=fmt(r.asgT);
@@ -1207,110 +1494,428 @@ function guncelleYillikTablo(brut,eg,arge){
   document.getElementById('aylikBody').innerHTML=html;
 }
 
+// ── ANALİZ TAB GEÇİŞİ ─────────────────────────────────
+let _analizAktifTab = 'gelir';
+function analizTab(t){
+  ['gelir','kesinti','vergi','simul','karsi'].forEach(id=>{
+    document.getElementById('asec-'+id).style.display = id===t?'':'none';
+    const btn = document.getElementById('atab-'+id);
+    if(btn){ btn.classList.toggle('active', id===t); }
+  });
+  _analizAktifTab = t;
+  guncelleAnaliz();
+}
+
+// ── BRÜT/NET MOD SEÇİCİ ────────────────────────────────
+let _hesapModu = 'brut';
+function hesapModu(mod){
+  _hesapModu = mod;
+  const brutBtn = document.getElementById('modBrutBtn');
+  const netBtn = document.getElementById('modNetBtn');
+  const netKutu = document.getElementById('netInputKutu');
+  if(mod==='brut'){
+    brutBtn.style.background='#534AB7'; brutBtn.style.color='#fff';
+    netBtn.style.background='transparent'; netBtn.style.color='#6e6e73';
+    netKutu.style.display='none';
+  } else {
+    netBtn.style.background='#1d9e75'; netBtn.style.color='#fff';
+    brutBtn.style.background='transparent'; brutBtn.style.color='#6e6e73';
+    netKutu.style.display='';
+    // mevcut brütü net inputa dönüştür
+    const brut = parseFloat(document.getElementById('brut').value)||0;
+    if(brut>0){
+      const ayIdx=parseInt(document.getElementById('ay').value);
+      const arge=argeAktifMi(); const eg=arge?egitimDegeri():'lis';
+      const r=hesaplaAy(brut,ayIdx,0,eg,0,0,arge,1.5,0,1);
+      document.getElementById('hedefNetMaas').value=Math.round(r.J);
+      nettenBruteHesapla();
+    }
+  }
+}
+
+// ── NET → BRÜT HESAPLAMA (Ay ay kümülatif binary search) ──
+// Her ay aynı net maaşı alacakmış gibi, kümülatif matrah birikimini
+// göz önünde bulundurarak her ay için gerekli brütü ayrı ayrı bulur.
+function nettenBruteHesapla(){
+  const hedefNet=parseFloat(document.getElementById('hedefNetMaas').value)||0;
+  if(hedefNet<=0){ document.getElementById('nettenBruteSonuc').style.display='none'; return; }
+  const arge=argeAktifMi(); const eg=arge?egitimDegeri():'lis';
+
+  // Her ay için ayrı binary search: kümülatif matrah birikimini dikkate alır
+  const aylar=tumAylariNetModHesapla(hedefNet,eg,arge);
+
+  let toplamBrut=0, toplamNet=0;
+  aylar.forEach(r=>{ toplamBrut+=r.brutAktif; toplamNet+=r.J; });
+  const minBrut=Math.min(...aylar.map(r=>r.brutAktif));
+  const maxBrut=Math.max(...aylar.map(r=>r.brutAktif));
+  const kesOran=((toplamBrut-toplamNet)/toplamBrut*100).toFixed(1);
+
+  // Tablo
+  const tblHtml=`
+    <div style="margin-top:10px;overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:11px;">
+        <thead>
+          <tr style="background:#f0eefe;">
+            <th style="padding:5px 7px;text-align:left;color:#534AB7;font-weight:700;">Ay</th>
+            <th style="padding:5px 7px;text-align:right;color:#534AB7;font-weight:700;">Brüt (İşveren Öder)</th>
+            <th style="padding:5px 7px;text-align:right;color:#534AB7;font-weight:700;">Net (Sabit)</th>
+            <th style="padding:5px 7px;text-align:right;color:#534AB7;font-weight:700;">VD%</th>
+            <th style="padding:5px 7px;text-align:right;color:#534AB7;font-weight:700;">Kesinti</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${aylar.map((r,i)=>`
+            <tr style="border-bottom:1px solid #f2f2f7;${i%2?'background:#fafafa':''}">
+              <td style="padding:4px 7px;font-weight:600;">${AYLAR[i]}</td>
+              <td style="padding:4px 7px;text-align:right;font-weight:700;color:#534AB7;">${fmt(r.brutAktif)}</td>
+              <td style="padding:4px 7px;text-align:right;font-weight:700;color:#1d9e75;">${fmt(r.J)}</td>
+              <td style="padding:4px 7px;text-align:right;"><span style="background:${r.vd===0.15?'#f0faf6':r.vd===0.20?'#f0faf6':'#fff8e1'};color:${r.vd<=0.20?'#1d9e75':'#8a6300'};padding:1px 5px;border-radius:10px;font-size:10px;font-weight:700;">%${(r.vd*100).toFixed(0)}</span></td>
+              <td style="padding:4px 7px;text-align:right;color:#e24b4a;font-size:11px;">${fmt(r.brutAktif-r.J)}</td>
+            </tr>`).join('')}
+          <tr style="background:#f0eefe;font-weight:700;">
+            <td style="padding:5px 7px;">Yıllık Toplam</td>
+            <td style="padding:5px 7px;text-align:right;color:#534AB7;">${fmt(toplamBrut)}</td>
+            <td style="padding:5px 7px;text-align:right;color:#1d9e75;">${fmt(toplamNet)}</td>
+            <td style="padding:5px 7px;text-align:right;">—</td>
+            <td style="padding:5px 7px;text-align:right;color:#e24b4a;">-%${kesOran}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>`;
+
+  document.getElementById('bulunanBrut').textContent=fmt(minBrut)+' – '+fmt(maxBrut);
+  document.getElementById('nettenBruteAciklama').textContent=
+    'Her ay sabit '+fmt(hedefNet)+' net | Brüt: '+fmt(minBrut)+' (Oca) → '+fmt(maxBrut)+' (Ara) | Yıllık kesinti: %'+kesOran;
+  document.getElementById('nettenBruteSonuc').style.display='';
+
+  let tblDiv=document.getElementById('nettenBruteTablo');
+  if(!tblDiv){
+    tblDiv=document.createElement('div');
+    tblDiv.id='nettenBruteTablo';
+    document.getElementById('nettenBruteSonuc').appendChild(tblDiv);
+  }
+  tblDiv.innerHTML=tblHtml;
+
+  // Ana hesaplamayı da güncelle (yıllık tablo, analiz vb. için)
+  hesapla();
+}
+
+function nettenBruteUygula(){
+  // Net modda: Yıllık Tablo sekmesine geç, hesapla zaten çalışıyor
+  showTab('aylik');
+}
+
 let CH={};
 function guncelleAnaliz(){
+  if(typeof Chart==='undefined') return;
   const brut=parseFloat(document.getElementById('brut').value)||0;
   const arge=argeAktifMi();
   const eg=arge?egitimDegeri():'lis';
   const ayIdx=parseInt(document.getElementById('ay').value);
   if(!brut)return;
   const aylar=tumAylariHesapla(brut,eg,arge);
-  let totJ=0,totM=0,totG=0;
-  const netler=[],toplamlar=[],vdler=[],kumler=[];
-  aylar.forEach(r=>{totJ+=r.J;totM+=r.M;totG+=Math.max(0,r.G);
+  let totJ=0,totM=0,totG=0,totMIK=0,totLIK=0;
+  const netler=[],toplamlar=[],vdler=[],kumler=[],brutler=[];
+  aylar.forEach(r=>{
+    totJ+=r.J;totM+=r.M;totG+=Math.max(0,r.G);totMIK+=r.MIK||0;totLIK+=r.LIK||0;
     netler.push(Math.round(r.J));toplamlar.push(Math.round(r.N));
-    vdler.push(r.vd*100);kumler.push(Math.round(r.E));});
+    vdler.push(r.vd*100);kumler.push(Math.round(r.E));
+    brutler.push(Math.round(r.brutAktif||brut));
+  });
   const totSGK=brut*0.15*12;
+  const toplamBrut=brutler.reduce((s,v)=>s+v,0);
+  const eldeOran=(totJ/toplamBrut*100).toFixed(1);
+  const efektifGVOran=(totG/toplamBrut*100).toFixed(1);
+  const isverenSGK=brut*0.205*12; // İşveren SGK %20.5
 
+  // ── Üst metrik kartlar ──
   document.getElementById('analizMC').innerHTML=`
-    <div class="mc"><div class="ml">Yıllık Brüt</div><div class="mv">${fmt(brut*12)}</div><div class="ms">12 ay</div></div>
+    <div class="mc"><div class="ml">Yıllık Brüt</div><div class="mv">${fmt(toplamBrut)}</div><div class="ms">12 ay toplam</div></div>
     <div class="mc"><div class="ml">Yıllık Net</div><div class="mv pos">${fmt(totJ)}</div><div class="ms">Mesaisiz</div></div>
-    <div class="mc"><div class="ml">Yıl. Net Mesai</div><div class="mv" style="color:#0f6e56;">${fmt(totM)}</div><div class="ms">Tüm ay mesaileri</div></div>
-    <div class="mc"><div class="ml">Efektif Vergi</div><div class="mv neg">${fmt(totG)}</div><div class="ms">Yıllık toplam</div></div>
+    <div class="mc"><div class="ml">Yıl. Net Mesai</div><div class="mv" style="color:#0f6e56;">${fmt(totM)}</div><div class="ms">Tüm mesailer</div></div>
+    <div class="mc"><div class="ml">Efektif Vergi</div><div class="mv neg">${fmt(totG)}</div><div class="ms">%${efektifGVOran} brütün</div></div>
+  `;
+  document.getElementById('analizMC2').innerHTML=`
+    <div class="mc"><div class="ml">Elde Geçen Oran</div><div class="mv pos">%${eldeOran}</div><div class="ms">Net/Brüt</div></div>
+    <div class="mc"><div class="ml">SGK Kesintisi</div><div class="mv neg">${fmt(totSGK)}</div><div class="ms">%15 işçi payı</div></div>
+    <div class="mc"><div class="ml">Yıllık İkramiye Net</div><div class="mv" style="color:#8a6300;">${fmt(totMIK)}</div><div class="ms">Toplam net</div></div>
+    <div class="mc"><div class="ml">İşveren Toplam</div><div class="mv" style="color:#534AB7;">${fmt(toplamBrut+isverenSGK)}</div><div class="ms">Brüt + %20.5 SGK</div></div>
   `;
 
   for(const k of Object.keys(CH)){if(CH[k])CH[k].destroy();}
 
-  document.getElementById('legNet').innerHTML=`
-    <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#5DCAA5;display:inline-block;"></span>Net</span>
-    <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#7F77DD;display:inline-block;"></span>Toplam</span>`;
-  CH.n=new Chart(document.getElementById('cNet'),{
-    type:'bar',data:{labels:AYLAR,datasets:[
-      {label:'Net',data:netler,backgroundColor:'#5DCAA5',borderRadius:3},
-      {label:'Toplam',data:toplamlar,backgroundColor:'#7F77DD',borderRadius:3}
-    ]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-      scales:{y:{ticks:{callback:v=>'₺'+Math.round(v/1000)+'K'},grid:{color:'rgba(0,0,0,.05)'}}}}
-  });
+  const t=_analizAktifTab;
 
-  const vdColors=vdler.map(v=>v===15?'#9FE1CB':v===20?'#5DCAA5':v===27?'#EF9F27':v===35?'#E24B4A':'#8B0000');
-  document.getElementById('legVD').innerHTML=`
-    <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#9FE1CB;display:inline-block;"></span>%15</span>
-    <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#5DCAA5;display:inline-block;"></span>%20</span>
-    <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#EF9F27;display:inline-block;"></span>%27</span>
-    <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#E24B4A;display:inline-block;"></span>%35</span>
-    <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#8B0000;display:inline-block;"></span>%40</span>`;
-  CH.vd=new Chart(document.getElementById('cVD'),{
-    type:'bar',data:{labels:AYLAR,datasets:[{data:vdler,backgroundColor:vdColors,borderRadius:3}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-      scales:{y:{min:0,max:45,ticks:{callback:v=>'%'+v},grid:{color:'rgba(0,0,0,.05)'}}}}
-  });
+  // ── GELİR ANALİZİ ──
+  if(t==='gelir'){
+    document.getElementById('legNet').innerHTML=`
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#5DCAA5;display:inline-block;"></span>Net</span>
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#7F77DD;display:inline-block;"></span>Toplam</span>`;
+    CH.n=new Chart(document.getElementById('cNet'),{
+      type:'bar',data:{labels:AYLAR,datasets:[
+        {label:'Net',data:netler,backgroundColor:'#5DCAA5',borderRadius:3},
+        {label:'Toplam',data:toplamlar,backgroundColor:'#7F77DD',borderRadius:3}
+      ]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+        scales:{y:{ticks:{callback:v=>'₺'+Math.round(v/1000)+'K'},grid:{color:'rgba(0,0,0,.05)'}}}}
+    });
 
-  CH.km=new Chart(document.getElementById('cKum'),{
-    type:'line',
-    data:{labels:AYLAR,datasets:[{
-      label:'Kümülatif E',data:kumler,borderColor:'#534AB7',backgroundColor:'rgba(83,74,183,.1)',
-      borderWidth:2,pointRadius:4,pointBackgroundColor:'#534AB7',fill:true,tension:.3
-    }]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-      scales:{y:{ticks:{callback:v=>'₺'+Math.round(v/1000)+'K'},grid:{color:'rgba(0,0,0,.05)'}}}}
-  });
+    const pieData=[Math.round(totSGK),Math.round(totG),Math.round(totM+totMIK),Math.round(totJ)];
+    document.getElementById('legPie').innerHTML=[
+      ['#E24B4A','SGK+İşsizlik'],['#EF9F27','Efektif Vergi'],['#7F77DD','Net Mesai+İkr.'],['#5DCAA5','Net Maaş']
+    ].map(([c,l])=>`<span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:${c};display:inline-block;"></span>${l}</span>`).join('');
+    CH.pie=new Chart(document.getElementById('cPie'),{
+      type:'doughnut',
+      data:{labels:['SGK+İşsizlik','Efektif Vergi','Net Mesai+İkr.','Net Maaş'],
+        datasets:[{data:pieData,backgroundColor:['#E24B4A','#EF9F27','#7F77DD','#5DCAA5'],borderWidth:0,hoverOffset:6}]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},cutout:'60%'}
+    });
 
-  const pieData=[Math.round(totSGK),Math.round(totG),Math.round(totM),Math.round(totJ)];
-  document.getElementById('legPie').innerHTML=[
-    ['#E24B4A','SGK+İşsizlik'],['#EF9F27','Efektif Vergi'],['#7F77DD','Net Mesai'],['#5DCAA5','Net Maaş']
-  ].map(([c,l])=>`<span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:${c};display:inline-block;"></span>${l}</span>`).join('');
-  CH.pie=new Chart(document.getElementById('cPie'),{
-    type:'doughnut',
-    data:{labels:['SGK+İşsizlik','Efektif Vergi','Net Mesai','Net Maaş'],
-      datasets:[{data:pieData,backgroundColor:['#E24B4A','#EF9F27','#7F77DD','#5DCAA5'],borderWidth:0,hoverOffset:6}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},cutout:'60%'}
-  });
+    // Zam etkisi grafiği
+    CH.zam=new Chart(document.getElementById('cZamEtkisi'),{
+      type:'line',
+      data:{labels:AYLAR,datasets:[
+        {label:'Brüt',data:brutler,borderColor:'#534AB7',backgroundColor:'rgba(83,74,183,.08)',fill:true,tension:.3,pointRadius:3,borderWidth:2},
+        {label:'Net',data:netler,borderColor:'#5DCAA5',backgroundColor:'rgba(93,202,165,.08)',fill:true,tension:.3,pointRadius:3,borderWidth:2},
+      ]},
+      options:{responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{labels:{font:{size:11},color:'#6e6e73',boxWidth:10}}},
+        scales:{y:{ticks:{callback:v=>'₺'+Math.round(v/1000)+'K'},grid:{color:'rgba(0,0,0,.05)'}},x:{grid:{display:false}}}}
+    });
 
-  let E_simPrev=0;
-  for(let i=0;i<ayIdx;i++)E_simPrev=aylar[i].E;
-  const simSaatler=[0,10,20,30,40,50,60,75,90,100,120];
-  const simNetEk=simSaatler.map(s=>Math.round(hesaplaAy(brut,ayIdx,s,eg,E_simPrev,0,arge,1.5,0).M));
-  document.getElementById('mesaiEtkisiInfo').textContent=AYLAR[ayIdx]+' ayı için 0–120 saat aralığında net mesai simülasyonu. VD: %'+(aylar[ayIdx].vd*100).toFixed(0);
-  CH.ms=new Chart(document.getElementById('cMesai'),{
-    type:'line',
-    data:{labels:simSaatler.map(s=>s+'h'),datasets:[{
-      label:'Net Ek Maaş',data:simNetEk,borderColor:'#1d9e75',backgroundColor:'rgba(29,158,117,.1)',
-      borderWidth:2,pointRadius:3,fill:true,tension:.4
-    }]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-      scales:{y:{ticks:{callback:v=>'₺'+Math.round(v/1000)+'K'},grid:{color:'rgba(0,0,0,.05)'}},x:{grid:{display:false}}}}
-  });
+    // Tablo
+    let tblHtml='';
+    aylar.forEach((r,i)=>{
+      const oran=(r.J/(r.brutAktif||brut)*100).toFixed(1);
+      tblHtml+=`<tr style="${i%2?'background:#fafafa':''}">
+        <td style="padding:6px 8px;font-weight:600;">${AYLAR[i]}</td>
+        <td style="padding:6px 8px;text-align:right;">${fmt(r.brutAktif||brut)}</td>
+        <td style="padding:6px 8px;text-align:right;color:#1d9e75;font-weight:600;">${fmt(r.J)}</td>
+        <td style="padding:6px 8px;text-align:right;color:#0f6e56;">${r.M>0?fmt(r.M):'—'}</td>
+        <td style="padding:6px 8px;text-align:right;color:#534AB7;font-weight:600;">${fmt(r.N)}</td>
+        <td style="padding:6px 8px;text-align:right;">
+          <span style="background:${parseFloat(oran)>70?'#f0faf6':'#fff8e1'};color:${parseFloat(oran)>70?'#1d9e75':'#8a6300'};padding:2px 7px;border-radius:20px;font-size:11px;font-weight:600;">%${oran}</span>
+        </td>
+      </tr>`;
+    });
+    document.getElementById('analizGelirTblBody').innerHTML=tblHtml;
+  }
 
-  const sgkAy=aylar.map(()=>Math.round(brut*0.15));
-  const vergAy=aylar.map(r=>Math.round(Math.max(0,r.G)));
-  CH.kes=new Chart(document.getElementById('cKesinti'),{
+  // ── KESİNTİ ANALİZİ ──
+  if(t==='kesinti'){
+    const sgkAy=aylar.map(r=>Math.round((r.brutAktif||brut)*0.15));
+    const vergAy=aylar.map(r=>Math.round(Math.max(0,r.G)));
+    const damgaAy=aylar.map(r=>Math.round(r.damgaNet||0));
+    CH.kes=new Chart(document.getElementById('cKesinti'),{
+      type:'bar',
+      data:{labels:AYLAR,datasets:[
+        {label:'SGK+İşsizlik',data:sgkAy,backgroundColor:'#E24B4A',borderRadius:3,stack:'s'},
+        {label:'Gelir Vergisi',data:vergAy,backgroundColor:'#EF9F27',borderRadius:3,stack:'s'},
+        {label:'Damga Vergisi',data:damgaAy,backgroundColor:'#aeaeb2',borderRadius:3,stack:'s'}
+      ]},
+      options:{responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{labels:{font:{size:11},color:'#6e6e73',boxWidth:10}}},
+        scales:{y:{ticks:{callback:v=>'₺'+Math.round(v/1000)+'K'},grid:{color:'rgba(0,0,0,.05)'}},x:{stacked:true}}}
+    });
+    const kesOranAy=aylar.map(r=>{
+      const brutAy=r.brutAktif||brut;
+      return +((brutAy*0.15+Math.max(0,r.G)+(r.damgaNet||0))/brutAy*100).toFixed(1);
+    });
+    CH.ko=new Chart(document.getElementById('cKesOran'),{
+      type:'line',
+      data:{labels:AYLAR,datasets:[{
+        label:'Kesinti Oranı',data:kesOranAy,borderColor:'#e24b4a',backgroundColor:'rgba(226,75,74,.1)',
+        fill:true,tension:.3,pointRadius:3,borderWidth:2
+      }]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+        scales:{y:{min:0,ticks:{callback:v=>'%'+v},grid:{color:'rgba(0,0,0,.05)'}},x:{grid:{display:false}}}}
+    });
+    // Özet tablolar
+    const topDamga=aylar.reduce((s,r)=>s+(r.damgaNet||0),0);
+    document.getElementById('kesintiOzet').innerHTML=`
+      <div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #f2f2f7;font-size:13px;"><span style="color:#6e6e73;">SGK İşçi Payı (%14)</span><span style="font-weight:600;color:#e24b4a;">${fmt(brut*0.14*12)}</span></div>
+      <div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #f2f2f7;font-size:13px;"><span style="color:#6e6e73;">İşsizlik Sigortası (%1)</span><span style="font-weight:600;color:#e24b4a;">${fmt(brut*0.01*12)}</span></div>
+      <div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #f2f2f7;font-size:13px;"><span style="color:#6e6e73;">Gelir Vergisi</span><span style="font-weight:600;color:#EF9F27;">${fmt(totG)}</span></div>
+      <div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #f2f2f7;font-size:13px;"><span style="color:#6e6e73;">Damga Vergisi</span><span style="font-weight:600;color:#aeaeb2;">${fmt(topDamga)}</span></div>
+      <div style="display:flex;justify-content:space-between;padding:8px 0;font-size:14px;font-weight:700;"><span>Toplam Kesinti</span><span style="color:#e24b4a;">${fmt(totSGK+totG+topDamga)}</span></div>
+    `;
+    document.getElementById('vergiYukuOzet').innerHTML=`
+      <div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #f2f2f7;font-size:13px;"><span style="color:#6e6e73;">Yıllık Brüt Toplam</span><span style="font-weight:600;">${fmt(toplamBrut)}</span></div>
+      <div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #f2f2f7;font-size:13px;"><span style="color:#6e6e73;">Toplam Kesinti</span><span style="font-weight:600;color:#e24b4a;">${fmt(totSGK+totG+topDamga)}</span></div>
+      <div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #f2f2f7;font-size:13px;"><span style="color:#6e6e73;">Efektif Vergi Oranı</span><span style="font-weight:600;color:#EF9F27;">%${efektifGVOran}</span></div>
+      <div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #f2f2f7;font-size:13px;"><span style="color:#6e6e73;">Elde Geçen Oran</span><span style="font-weight:600;color:#1d9e75;">%${eldeOran}</span></div>
+      <div style="display:flex;justify-content:space-between;padding:7px 0;font-size:13px;"><span style="color:#6e6e73;">İşveren SGK (%20.5)</span><span style="font-weight:600;color:#534AB7;">${fmt(isverenSGK)}</span></div>
+    `;
+  }
+
+  // ── VERGİ DİLİMLERİ ──
+  if(t==='vergi'){
+    document.getElementById('legVD').innerHTML=`
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#9FE1CB;display:inline-block;"></span>%15</span>
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#5DCAA5;display:inline-block;"></span>%20</span>
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#EF9F27;display:inline-block;"></span>%27</span>
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#E24B4A;display:inline-block;"></span>%35</span>
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#8B0000;display:inline-block;"></span>%40</span>`;
+    const vdColors=vdler.map(v=>v===15?'#9FE1CB':v===20?'#5DCAA5':v===27?'#EF9F27':v===35?'#E24B4A':'#8B0000');
+    CH.vd=new Chart(document.getElementById('cVD'),{
+      type:'bar',data:{labels:AYLAR,datasets:[{data:vdler,backgroundColor:vdColors,borderRadius:3}]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+        scales:{y:{min:0,max:45,ticks:{callback:v=>'%'+v},grid:{color:'rgba(0,0,0,.05)'}}}}
+    });
+    CH.km=new Chart(document.getElementById('cKum'),{
+      type:'line',
+      data:{labels:AYLAR,datasets:[{
+        label:'Kümülatif E',data:kumler,borderColor:'#534AB7',backgroundColor:'rgba(83,74,183,.1)',
+        borderWidth:2,pointRadius:4,pointBackgroundColor:'#534AB7',fill:true,tension:.3
+      }]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+        scales:{y:{ticks:{callback:v=>'₺'+Math.round(v/1000)+'K'},grid:{color:'rgba(0,0,0,.05)'}}}}
+    });
+    // Dilim durumu
+    const sonE=kumler[kumler.length-1];
+    const dilimler=[
+      {sinir:190000,oran:'%15',renk:'#9FE1CB',renkT:'#1d9e75'},
+      {sinir:400000,oran:'%20',renk:'#5DCAA5',renkT:'#0f6e56'},
+      {sinir:1500000,oran:'%27',renk:'#EF9F27',renkT:'#8a6300'},
+      {sinir:5300000,oran:'%35',renk:'#E24B4A',renkT:'#c81e1e'},
+      {sinir:Infinity,oran:'%40',renk:'#8B0000',renkT:'#8B0000'},
+    ];
+    let html='';
+    dilimler.forEach((d,i)=>{
+      const prev=i===0?0:dilimler[i-1].sinir;
+      const icinde=sonE>prev;
+      const aktif=vdler[vdler.length-1]===(parseFloat(d.oran.replace('%','')))||false;
+      html+=`<div style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;background:${icinde?'#f0faf6':'#f5f5f7'};border:1px solid ${icinde?'#1d9e75':'#e5e5ea'};">
+        <span style="width:32px;height:32px;border-radius:8px;background:${d.renk};display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;">${d.oran}</span>
+        <div style="flex:1;">
+          <div style="font-size:12px;font-weight:600;">${d.oran} Dilimi${icinde?' ✓':''}</div>
+          <div style="font-size:11px;color:#6e6e73;">${prev>0?'₺'+Math.round(prev/1000)+'K':'0'} — ${d.sinir===Infinity?'üzeri':'₺'+Math.round(d.sinir/1000)+'K'} arası matrah</div>
+        </div>
+        ${icinde?`<span style="font-size:11px;color:#1d9e75;font-weight:600;">Girildi</span>`:`<span style="font-size:11px;color:#aeaeb2;">—</span>`}
+      </div>`;
+    });
+    document.getElementById('dilimDurumu').innerHTML=html;
+  }
+
+  // ── SİMÜLASYON ──
+  if(t==='simul'){
+    let E_simPrev=0;
+    for(let i=0;i<ayIdx;i++)E_simPrev=aylar[i].E;
+    const simSaatler=[0,10,20,30,40,50,60,75,90,100,120];
+    const simNetEk=simSaatler.map(s=>Math.round(hesaplaAy(brut,ayIdx,s,eg,E_simPrev,0,arge,1.5,0,1).M));
+    document.getElementById('mesaiEtkisiInfo').textContent=AYLAR[ayIdx]+' ayı için 0–120 saat aralığında net mesai simülasyonu. VD: %'+(aylar[ayIdx].vd*100).toFixed(0);
+    CH.ms=new Chart(document.getElementById('cMesai'),{
+      type:'line',
+      data:{labels:simSaatler.map(s=>s+'h'),datasets:[{
+        label:'Net Ek Maaş',data:simNetEk,borderColor:'#1d9e75',backgroundColor:'rgba(29,158,117,.1)',
+        borderWidth:2,pointRadius:3,fill:true,tension:.4
+      }]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+        scales:{y:{ticks:{callback:v=>'₺'+Math.round(v/1000)+'K'},grid:{color:'rgba(0,0,0,.05)'}},x:{grid:{display:false}}}}
+    });
+
+    // Zam senaryosu
+    const zamOranlar=[0,5,10,15,20,25,30];
+    const zamNetler=zamOranlar.map(z=>{
+      const yeniBrut=brut*(1+z/100);
+      const r=hesaplaAy(yeniBrut,ayIdx,0,eg,E_simPrev,0,arge,1.5,0,1);
+      return Math.round(r.J);
+    });
+    CH.zs=new Chart(document.getElementById('cZamSenaryosu'),{
+      type:'bar',
+      data:{labels:zamOranlar.map(z=>'%'+z+' zam'),datasets:[{
+        label:'Net Maaş',data:zamNetler,
+        backgroundColor:zamOranlar.map((_,i)=>i===0?'#aeaeb2':'#534AB7'),borderRadius:4
+      }]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+        scales:{y:{ticks:{callback:v=>'₺'+Math.round(v/1000)+'K'},grid:{color:'rgba(0,0,0,.05)'}},x:{grid:{display:false}}}}
+    });
+
+    // Dönüşüm eğrisi
+    const brutSim=[brut*0.5,brut*0.7,brut*0.9,brut,brut*1.1,brut*1.3,brut*1.5,brut*2,brut*2.5,brut*3].map(Math.round);
+    const netSim=brutSim.map(b=>{
+      const r=hesaplaAy(b,ayIdx,0,eg,0,0,arge,1.5,0,1);
+      return Math.round(r.J);
+    });
+    const oranSim=brutSim.map((b,i)=>(netSim[i]/b*100).toFixed(1));
+    document.getElementById('donusumEgriInfo').textContent=AYLAR[ayIdx]+' ayı için brüt→net dönüşüm eğrisi. Mevcut brütünüz: '+fmt(brut);
+    CH.de=new Chart(document.getElementById('cDonusumEgrisi'),{
+      type:'line',
+      data:{labels:brutSim.map(b=>'₺'+Math.round(b/1000)+'K'),datasets:[
+        {label:'Net Maaş',data:netSim,borderColor:'#5DCAA5',backgroundColor:'rgba(93,202,165,.1)',fill:true,tension:.3,pointRadius:3,borderWidth:2,yAxisID:'y'},
+        {label:'Elde Oranı %',data:oranSim,borderColor:'#EF9F27',backgroundColor:'rgba(239,159,39,.0)',fill:false,tension:.3,pointRadius:3,borderWidth:2,borderDash:[4,3],yAxisID:'y1'},
+      ]},
+      options:{responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{labels:{font:{size:11},color:'#6e6e73',boxWidth:10}}},
+        scales:{
+          y:{ticks:{callback:v=>'₺'+Math.round(v/1000)+'K'},grid:{color:'rgba(0,0,0,.05)'},position:'left'},
+          y1:{ticks:{callback:v=>'%'+v},grid:{display:false},position:'right',min:0,max:100},
+          x:{grid:{display:false}}
+        }
+      }
+    });
+  }
+
+  // ── KARŞILAŞTIRMA ──
+  if(t==='karsi'){
+    // İşveren maliyet analizi mevcut brüt için
+    const r=hesaplaAy(brut,ayIdx,0,eg,0,0,arge,1.5,0,1);
+    const isverenAylik=brut*1.205;
+    document.getElementById('isverenMaliyet').innerHTML=`
+      <div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #f2f2f7;font-size:13px;"><span style="color:#6e6e73;">Brüt Maaş</span><span style="font-weight:600;">${fmt(brut)}</span></div>
+      <div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #f2f2f7;font-size:13px;"><span style="color:#6e6e73;">İşveren SGK Payı (%20.5)</span><span style="font-weight:600;color:#534AB7;">${fmt(brut*0.205)}</span></div>
+      <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:2px solid #534AB7;font-size:14px;font-weight:700;"><span>İşverene Aylık Maliyet</span><span style="color:#534AB7;">${fmt(isverenAylik)}</span></div>
+      <div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #f2f2f7;font-size:13px;"><span style="color:#6e6e73;">Size Kalan Net</span><span style="font-weight:600;color:#1d9e75;">${fmt(r.J)}</span></div>
+      <div style="display:flex;justify-content:space-between;padding:7px 0;font-size:13px;"><span style="color:#6e6e73;">Net/İşveren Maliyet</span><span style="font-weight:600;">%${(r.J/isverenAylik*100).toFixed(1)}</span></div>
+    `;
+    // Karşılaştırma grafiği otomatik oluştur
+    const k1=document.getElementById('karsi1');
+    const k2=document.getElementById('karsi2');
+    if(k1&&!k1.value) k1.value=brut;
+    karsiHesapla();
+  }
+}
+
+// ── KARŞILAŞTIRMA HESAPLA ───────────────────────────────
+function karsiHesapla(){
+  const b1=parseFloat(document.getElementById('karsi1')?.value)||0;
+  const b2=parseFloat(document.getElementById('karsi2')?.value)||0;
+  if(!b1||!b2){ document.getElementById('karsiSonuclar').style.display='none'; return; }
+  const ayIdx=parseInt(document.getElementById('ay').value);
+  const arge=argeAktifMi(); const eg=arge?egitimDegeri():'lis';
+  const r1=hesaplaAy(b1,ayIdx,0,eg,0,0,arge,1.5,0,1);
+  const r2=hesaplaAy(b2,ayIdx,0,eg,0,0,arge,1.5,0,1);
+  document.getElementById('karsiSonuclar').style.display='';
+  if(CH.karsi)CH.karsi.destroy();
+  CH.karsi=new Chart(document.getElementById('cKarsi'),{
     type:'bar',
-    data:{labels:AYLAR,datasets:[
-      {label:'SGK+İşsizlik',data:sgkAy,backgroundColor:'#E24B4A',borderRadius:3,stack:'s'},
-      {label:'Efektif Vergi',data:vergAy,backgroundColor:'#EF9F27',borderRadius:3,stack:'s'}
-    ]},
+    data:{
+      labels:['Brüt','Net','SGK Kesinti','Gelir Vergisi','İşveren Maliyet'],
+      datasets:[
+        {label:'1. Çalışan',data:[b1,r1.J,b1*0.15,r1.G,b1*1.205],backgroundColor:'rgba(83,74,183,.8)',borderRadius:4},
+        {label:'2. Çalışan',data:[b2,r2.J,b2*0.15,r2.G,b2*1.205],backgroundColor:'rgba(29,158,117,.8)',borderRadius:4},
+      ]
+    },
     options:{responsive:true,maintainAspectRatio:false,
       plugins:{legend:{labels:{font:{size:11},color:'#6e6e73',boxWidth:10}}},
-      scales:{y:{ticks:{callback:v=>'₺'+Math.round(v/1000)+'K'},grid:{color:'rgba(0,0,0,.05)'}},x:{stacked:true}}}
+      scales:{y:{ticks:{callback:v=>'₺'+Math.round(v/1000)+'K'},grid:{color:'rgba(0,0,0,.05)'}},x:{grid:{display:false}}}}
   });
+  const fark=r2.J-r1.J;
+  document.getElementById('karsiTablo').innerHTML=`
+    <div style="font-size:13px;font-weight:700;margin-bottom:6px;color:#1d1d1f;">Aylık Karşılaştırma</div>
+    <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f2f2f7;font-size:12px;"><span style="color:#534AB7;font-weight:600;">1. Çalışan Net</span><span style="font-weight:700;">${fmt(r1.J)}</span></div>
+    <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f2f2f7;font-size:12px;"><span style="color:#1d9e75;font-weight:600;">2. Çalışan Net</span><span style="font-weight:700;">${fmt(r2.J)}</span></div>
+    <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f2f2f7;font-size:12px;"><span>Net Fark</span><span style="font-weight:700;color:${fark>=0?'#1d9e75':'#e24b4a'}">${fark>=0?'+':''}${fmt(fark)}</span></div>
+    <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f2f2f7;font-size:12px;"><span>1. Elde Oranı</span><span>%${(r1.J/b1*100).toFixed(1)}</span></div>
+    <div style="display:flex;justify-content:space-between;padding:6px 0;font-size:12px;"><span>2. Elde Oranı</span><span>%${(r2.J/b2*100).toFixed(1)}</span></div>
+  `;
 }
 
 function showTab(t){
   document.querySelectorAll('.tab').forEach(btn=>{
     btn.classList.toggle('active', btn.getAttribute('data-tab')===t);
   });
-  ['hesapla','mesai','ikramiye','aylik','analiz','kidem'].forEach(n=>{
+  ['hesapla','mesai','ikramiye','aylik','analiz','borc'].forEach(n=>{
     const el=document.getElementById('sec-'+n);
     if(el) el.classList.toggle('active',n===t);
   });
@@ -1318,9 +1923,9 @@ function showTab(t){
   const arge=argeAktifMi();
   const eg=arge?egitimDegeri():'lis';
   if(t==='analiz')guncelleAnaliz();
-  if(t==='kidem')kidemHesapla();
   if(t==='aylik')guncelleYillikTablo(getVeri(aktifYil).brut||0,eg,arge);
   if(t==='mesai')guncelleMesaiTablosu(brut,eg,arge);
+  if(t==='borc')borcRender();
 }
 
 // ─── İKRAMİYE — YENİ ESNEK SİSTEM ───────────────────────
@@ -1775,9 +2380,9 @@ function hizliHedefGuncelle(){
   const arge=argeAktifMi();const eg=arge?egitimDegeri():'lis';
   const ayIdx=parseInt(document.getElementById('ay').value)||0;
   let E_prev=0;
-  for(let i=0;i<ayIdx;i++)E_prev=hesaplaAy(brut,i,mesai15[i],eg,E_prev,ikramiyeSaatler[i],arge,1.5,mesai20[i]).E;
+  for(let i=0;i<ayIdx;i++)E_prev=hesaplaAy(brut,i,mesai15[i],eg,E_prev,ikramiyeSaatler[i],arge,1.5,mesai20[i],1).E;
   const ikSaat=ikramiyeSaatler[ayIdx]||0;
-  const rBase=hesaplaAy(brut,ayIdx,0,eg,E_prev,ikSaat,arge,1.5,0);
+  const rBase=hesaplaAy(brut,ayIdx,0,eg,E_prev,ikSaat,arge,1.5,0,gunOraniAl());
   const netBase=rBase.J+rBase.MIK;
   const hedefler=[
     {label:'+10%',val:Math.round(netBase*1.10/500)*500},
@@ -1801,9 +2406,9 @@ function hedefHesapla(){
   const ayIdx=parseInt(document.getElementById('ay').value)||0;
   if(!brut||!hedefVal){document.getElementById('hedefSonuc').style.display='none';document.getElementById('hedefHata').style.display='none';return;}
   let E_prev=0;
-  for(let i=0;i<ayIdx;i++)E_prev=hesaplaAy(brut,i,mesai15[i],eg,E_prev,ikramiyeSaatler[i],arge,1.5,mesai20[i]).E;
+  for(let i=0;i<ayIdx;i++)E_prev=hesaplaAy(brut,i,mesai15[i],eg,E_prev,ikramiyeSaatler[i],arge,1.5,mesai20[i],1).E;
   const ikSaat=ikramiyeSaatler[ayIdx]||0;
-  const rBase=hesaplaAy(brut,ayIdx,0,eg,E_prev,ikSaat,arge,1.5,0);
+  const rBase=hesaplaAy(brut,ayIdx,0,eg,E_prev,ikSaat,arge,1.5,0,gunOraniAl());
   const netBase=rBase.J+rBase.MIK;
   document.getElementById('hedefBazNet').value=fmt(netBase)+(ikSaat?' (ikramiye dahil)':'');
   if(hedefVal<=netBase){
@@ -1815,7 +2420,7 @@ function hedefHesapla(){
   document.getElementById('hedefHata').style.display='none';
   let gerekliSaat=(hedefVal-netBase)/((brut/225)*1.5*0.85*(1-rBase.vd));
   for(let iter=0;iter<25;iter++){
-    const r=hesaplaAy(brut,ayIdx,gerekliSaat,eg,E_prev,ikSaat,arge,1.5,0);
+    const r=hesaplaAy(brut,ayIdx,gerekliSaat,eg,E_prev,ikSaat,arge,1.5,0,gunOraniAl());
     const fark=hedefVal-(r.J+r.M+r.MIK);
     if(Math.abs(fark)<0.5)break;
     const nsb=(brut/225)*1.5*0.85*(1-r.vd);
@@ -1824,7 +2429,7 @@ function hedefHesapla(){
     if(gerekliSaat<0){gerekliSaat=0;break;}
   }
   const saatYuv=Math.ceil(gerekliSaat*2)/2;
-  const rSon=hesaplaAy(brut,ayIdx,saatYuv,eg,E_prev,ikSaat,arge,1.5,0);
+  const rSon=hesaplaAy(brut,ayIdx,saatYuv,eg,E_prev,ikSaat,arge,1.5,0,gunOraniAl());
   const toplamNet=rSon.J+rSon.M+rSon.MIK;
   const vdDegisti=rSon.vd!==rBase.vd;
   document.getElementById('hedefSonuc').style.display='block';
@@ -1858,7 +2463,7 @@ function yillikHedefHesapla(){
   if(!brut||!yillikHedef){document.getElementById('yillikSonuc').style.display='none';document.getElementById('yillikHata').style.display='none';return;}
   let E_prev=0,kazanilanTopla=0;
   for(let i=0;i<secilenAy;i++){
-    const r=hesaplaAy(brut,i,mesai15[i],eg,E_prev,ikramiyeSaatler[i],arge,1.5,mesai20[i]);
+    const r=hesaplaAy(brut,i,mesai15[i],eg,E_prev,ikramiyeSaatler[i],arge,1.5,mesai20[i],gunOraniAl());
     kazanilanTopla+=r.J+r.M+r.MIK;E_prev=r.E;
   }
   document.getElementById('yillikKazanilan').value=fmt(kazanilanTopla)+' ('+secilenAy+' ay)';
@@ -1870,7 +2475,7 @@ function yillikHedefHesapla(){
   let denSaat=0,lo=0,hi=300;
   for(let iter=0;iter<40;iter++){
     denSaat=(lo+hi)/2;let E2=E_prev,top2=0;
-    for(let i=secilenAy;i<12;i++){const r=hesaplaAy(brut,i,denSaat,eg,E2,ikramiyeSaatler[i],arge,1.5);top2+=r.J+r.M+r.MIK;E2=r.E;}
+    for(let i=secilenAy;i<12;i++){const r=hesaplaAy(brut,i,denSaat,eg,E2,ikramiyeSaatler[i],arge,1.5,0,gunOraniAl());top2+=r.J+r.M+r.MIK;E2=r.E;}
     if(top2<kalanGerekli)lo=denSaat;else hi=denSaat;
     if(hi-lo<0.1)break;
   }
@@ -1878,7 +2483,7 @@ function yillikHedefHesapla(){
   let E3=E_prev,genelTop=kazanilanTopla;
   let detayHtml='<table style="width:100%;border-collapse:collapse;font-size:12px;"><tr style="background:#e5e5ea;"><th style="padding:5px 8px;text-align:left;">Ay</th><th style="padding:5px 8px;text-align:right;">Mesai</th><th style="padding:5px 8px;text-align:right;">Net Maaş</th><th style="padding:5px 8px;text-align:right;">Net Mesai</th><th style="padding:5px 8px;text-align:right;">Net İkr.</th><th style="padding:5px 8px;text-align:right;">Toplam</th></tr>';
   for(let i=secilenAy;i<12;i++){
-    const r=hesaplaAy(brut,i,ortSaat,eg,E3,ikramiyeSaatler[i],arge,1.5);
+    const r=hesaplaAy(brut,i,ortSaat,eg,E3,ikramiyeSaatler[i],arge,1.5,0,gunOraniAl());
     const ayTop=r.J+r.M+r.MIK;genelTop+=ayTop;E3=r.E;
     detayHtml+=`<tr style="border-bottom:1px solid #f2f2f7;"><td style="padding:5px 8px;font-weight:500;">${AYLAR[i]}</td><td style="padding:5px 8px;text-align:right;">${ortSaat}s</td><td style="padding:5px 8px;text-align:right;">${fmt(r.J)}</td><td style="padding:5px 8px;text-align:right;color:#1d9e75;">${fmt(r.M)}</td><td style="padding:5px 8px;text-align:right;color:#8a6300;">${r.MIK?fmt(r.MIK):'—'}</td><td style="padding:5px 8px;text-align:right;font-weight:600;">${fmt(ayTop)}</td></tr>`;
   }
@@ -1920,147 +2525,7 @@ function dosyayaKaydet(){
 }
 
 
-// ─── KIDEM TAZMİNATI ──────────────────────────────────────
 // 2026 güncel kıdem tazminatı tavanı (Temmuz 2025 – Ocak 2026)
-const KIDEM_TAVAN_2026 = 64948.77;
-
-function kidemBugunSec(){
-  const bugun = new Date();
-  const yy = bugun.getFullYear();
-  const mm = String(bugun.getMonth()+1).padStart(2,'0');
-  const dd = String(bugun.getDate()).padStart(2,'0');
-  document.getElementById('kidemCikisTarihi').value = yy+'-'+mm+'-'+dd;
-  kidemHesapla();
-}
-
-function kidemHesapla(){
-  const gEl = document.getElementById('kidemGirisTarihi');
-  const cEl = document.getElementById('kidemCikisTarihi');
-  if(!gEl||!cEl||!gEl.value||!cEl.value){
-    document.getElementById('kidemSureKutu').style.display='none';
-    document.getElementById('kidemHakKutu').style.display='none';
-    document.getElementById('kidemDetayBos').style.display='block';
-    document.getElementById('kidemDetayIcerik').style.display='none';
-    document.getElementById('ihbarKutu').style.display='none';
-    return;
-  }
-  const giris = new Date(gEl.value);
-  const cikis = new Date(cEl.value);
-  if(cikis<=giris){
-    document.getElementById('kidemSureKutu').style.display='none';
-    return;
-  }
-
-  // ── Süre hesabı ──
-  let yilSay=0, aySay=0, gunSay=0;
-  let kal = new Date(giris);
-  while(true){const s=new Date(kal);s.setFullYear(s.getFullYear()+1);if(s>cikis)break;kal=s;yilSay++;}
-  while(true){const s=new Date(kal);s.setMonth(s.getMonth()+1);if(s>cikis)break;kal=s;aySay++;}
-  gunSay = Math.floor((cikis-kal)/(1000*60*60*24));
-  const toplamGun = Math.floor((cikis-giris)/(1000*60*60*24));
-
-  // Göster
-  document.getElementById('kidemSureKutu').style.display='block';
-  document.getElementById('kidemSureBuyuk').textContent=yilSay+' Yıl '+aySay+' Ay '+gunSay+' Gün';
-  document.getElementById('kidemYil').textContent=yilSay;
-  document.getElementById('kidemAy').textContent=aySay;
-  document.getElementById('kidemGunSay').textContent=gunSay;
-  document.getElementById('kidemToplamGun').textContent=toplamGun.toLocaleString('tr-TR');
-  document.getElementById('kidemSureAcik').textContent=
-    giris.toLocaleDateString('tr-TR',{day:'numeric',month:'long',year:'numeric'})+
-    ' → '+cikis.toLocaleDateString('tr-TR',{day:'numeric',month:'long',year:'numeric'});
-
-  // ── Hak ediş ──
-  const hakKutu = document.getElementById('kidemHakKutu');
-  hakKutu.style.display='block';
-  if(yilSay<1){
-    hakKutu.style.background='#fde8e8'; hakKutu.style.borderColor='#fca5a5';
-    document.getElementById('kidemHakBaslik').style.color='#c81e1e';
-    document.getElementById('kidemHakBaslik').textContent='❌ Kıdem tazminatı hakkı yok';
-    document.getElementById('kidemHakAcik').textContent='En az 1 yıl kesintisiz çalışma gereklidir. Mevcut: '+yilSay+' yıl '+aySay+' ay '+gunSay+' gün';
-    document.getElementById('kidemDetayBos').style.display='block';
-    document.getElementById('kidemDetayIcerik').style.display='none';
-    document.getElementById('ihbarKutu').style.display='none';
-    return;
-  }
-  hakKutu.style.background='#eef6f1'; hakKutu.style.borderColor='#b7dfc9';
-  document.getElementById('kidemHakBaslik').style.color='#1d9e75';
-  document.getElementById('kidemHakBaslik').textContent='✅ Kıdem tazminatına hak kazanıldı';
-
-  // ── Brüt maaş ──
-  const brutEl = document.getElementById('kidemBrut');
-  const brutGirilen = parseFloat(brutEl.value)||0;
-  const brutMaas = brutGirilen || (parseFloat(document.getElementById('brut').value)||0);
-
-  // ── KIDEM TAZMİNATI ──
-  // Doğru formül: Tavan × Toplam Gün ÷ 365
-  // (Tavan aşılıyorsa tavan, aşılmıyorsa gerçek maaş baz alınır)
-  const tavanUygulandimi = brutMaas > KIDEM_TAVAN_2026;
-  const kidemEsasUcret = tavanUygulandimi ? KIDEM_TAVAN_2026 : brutMaas;
-  const hesapGun = toplamGun; // takvim günü
-  const kidemBrut = Math.round(kidemEsasUcret * hesapGun / 365 * 100) / 100;
-  // Kıdem: GV muaf, sadece Damga Vergisi kesilir
-  const kidemDamga = Math.round(kidemBrut * 0.00759 * 100) / 100;
-  const kidemNet = Math.round((kidemBrut - kidemDamga) * 100) / 100;
-
-  document.getElementById('kidemHakAcik').textContent=
-    yilSay+' yıl '+aySay+' ay '+gunSay+' gün ('+toplamGun+' takvim günü)';
-
-  document.getElementById('kidemDetayBos').style.display='none';
-  document.getElementById('kidemDetayIcerik').style.display='block';
-  document.getElementById('kidemTazminat').textContent=fmt(kidemBrut);
-  document.getElementById('kidemNet').textContent=fmt(kidemNet);
-
-  const adimlar=[
-    {l:'Brüt Maaş',                              v:fmt(brutMaas),         r:''},
-    tavanUygulandimi
-      ? {l:'Kıdem Esas Ücret (tavan uygulandı)', v:fmt(KIDEM_TAVAN_2026), r:'color:#e24b4a;'}
-      : {l:'Kıdem Esas Ücret',                   v:fmt(brutMaas),         r:'color:#1d9e75;'},
-    {l:'Hesaplama Esas Gün',                     v:hesapGun+' gün',       r:''},
-    {l:'Kıdem Brüt  (Esas Ücret × Gün ÷ 365)',  v:fmt(kidemBrut),        r:'font-weight:700;color:#534AB7;'},
-    {l:'Damga Vergisi (%0,759)',                  v:'− '+fmt(kidemDamga),  r:'color:#e24b4a;'},
-    {l:'Gelir Vergisi',                           v:'Muaf',                r:'color:#1d9e75;'},
-    {l:'Net Kıdem Tazminatı',                     v:fmt(kidemNet),         r:'font-weight:700;color:#1d9e75;font-size:15px;'},
-  ].filter(Boolean);
-  document.getElementById('kidemHesapAdimlar').innerHTML=adimlar.map(a=>
-    '<div class="ri"><span class="rl">'+a.l+'</span><span class="rv" style="'+a.r+'">'+a.v+'</span></div>'
-  ).join('');
-
-  // ── İHBAR TAZMİNATI ──
-  // İhbar için gerçek brüt maaş kullanılır (tavan değil)
-  let ihbarHafta, ihbarGrubu;
-  if(toplamGun < 182)       { ihbarHafta=2; ihbarGrubu='6 aydan az → 2 hafta'; }
-  else if(toplamGun < 549)  { ihbarHafta=4; ihbarGrubu='6 ay–1,5 yıl → 4 hafta'; }
-  else if(toplamGun < 1096) { ihbarHafta=6; ihbarGrubu='1,5–3 yıl → 6 hafta'; }
-  else                       { ihbarHafta=8; ihbarGrubu='3 yıldan fazla → 8 hafta'; }
-  const ihbarGun = ihbarHafta * 7;
-  // Gerçek günlük brüt (÷30), tavan uygulanmaz
-  const ihbarGunluk = brutMaas / 30;
-  const ihbarBrut = Math.round(ihbarGunluk * ihbarGun * 100) / 100;
-  // İhbar: GV (%15) + Damga (%0,759) kesilir
-  const ihbarGV    = Math.round(ihbarBrut * 0.15    * 100) / 100;
-  const ihbarDamga = Math.round(ihbarBrut * 0.00759 * 100) / 100;
-  const ihbarNet   = Math.round((ihbarBrut - ihbarGV - ihbarDamga) * 100) / 100;
-
-  document.getElementById('ihbarKutu').style.display='block';
-  document.getElementById('ihbarSure').textContent=ihbarHafta+' hafta ('+ihbarGun+' gün)';
-  document.getElementById('ihbarGrubu').textContent=ihbarGrubu;
-  document.getElementById('ihbarTazminat').textContent=fmt(ihbarBrut);
-
-  const ihbarDetayEl = document.getElementById('ihbarDetaysatirlar');
-  if(ihbarDetayEl){
-    ihbarDetayEl.innerHTML=
-      '<div class="ri"><span class="rl">Günlük Brüt ('+fmt(brutMaas)+' ÷ 30)</span><span class="rv">'+fmt(ihbarGunluk)+'</span></div>'+
-      '<div class="ri"><span class="rl">İhbar Brüt ('+fmt(ihbarGunluk)+' × '+ihbarGun+' gün)</span><span class="rv font-weight:600;">'+fmt(ihbarBrut)+'</span></div>'+
-      '<div class="ri"><span class="rl">Gelir Vergisi (%15)</span><span class="rv neg">− '+fmt(ihbarGV)+'</span></div>'+
-      '<div class="ri"><span class="rl">Damga Vergisi (%0,759)</span><span class="rv neg">− '+fmt(ihbarDamga)+'</span></div>'+
-      '<div class="ri" style="margin-top:4px;"><span class="rl" style="font-weight:600;">Net İhbar Tazminatı</span><span class="rv pos" style="font-weight:700;font-size:14px;">'+fmt(ihbarNet)+'</span></div>';
-  }
-
-  const genelToplam = Math.round((kidemNet + ihbarNet)*100)/100;
-  const toplamEl = document.getElementById('kidemGenelToplam');
-  if(toplamEl) toplamEl.textContent = fmt(genelToplam);
-}
 
 // ── BAŞLATMA ─────────────────────────────────────────────
 yukle();
@@ -2092,12 +2557,330 @@ function navGit(id){
   if(event && event.target) event.target.classList.add('active-nav');
 }
 
-function sssToggle(el){
-  const a = el.nextElementSibling;
-  const arrow = el.querySelector('.sss-arrow');
-  if(a.style.display==='block'){a.style.display='none';arrow.style.transform='rotate(0deg)';}
-  else{a.style.display='block';arrow.style.transform='rotate(180deg)';}
+
+// ════════════ BORÇ TAKİBİ ════════════
+let _borclar = [];
+let _borcNextId = 1;
+let _borcGirisModu = 'taksit';
+
+const BORC_TUR_META = {
+  kredi:  {ikon:'🏦', renk:'#534AB7', bg:'#f0eefe'},
+  karti:  {ikon:'💳', renk:'#e24b4a', bg:'#fde8e8'},
+  taksit: {ikon:'🛒', renk:'#EF9F27', bg:'#fff8e1'},
+  kisisel:{ikon:'🤝', renk:'#1d9e75', bg:'#f0faf6'},
+  diger:  {ikon:'📌', renk:'#6e6e73', bg:'#f5f5f7'},
+};
+const BAYLAR_KISA = ['Oca','Şub','Mar','Nis','May','Haz','Tem','Ağu','Eyl','Eki','Kas','Ara'];
+
+function borcFmt(n){
+  if(isNaN(n)) return '₺0';
+  return '₺' + Math.round(n).toLocaleString('tr-TR');
 }
+
+// ── Modal ──
+function borcModalAc(){
+  document.getElementById('borcModalBg').classList.add('acik');
+  document.getElementById('bfTarih').value = new Date().toISOString().split('T')[0];
+}
+function borcModalKapat(){ document.getElementById('borcModalBg').classList.remove('acik'); }
+
+function borcGirisModu(mod){
+  _borcGirisModu = mod;
+  document.getElementById('bgTaksitModu').style.display = mod==='taksit' ? '' : 'none';
+  document.getElementById('bgToplamModu').style.display = mod==='toplam' ? '' : 'none';
+  document.getElementById('bmodTaksit').classList.toggle('aktif', mod==='taksit');
+  document.getElementById('bmodToplam').classList.toggle('aktif', mod==='toplam');
+  borcOnizle();
+}
+
+function borcOnizle(){
+  const kutu = document.getElementById('borcOnizleKutu');
+  if(_borcGirisModu==='taksit'){
+    const t = parseFloat(document.getElementById('bfTaksit').value)||0;
+    const k = parseInt(document.getElementById('bfKalan').value)||0;
+    if(t>0 && k>0){
+      kutu.style.display='';
+      kutu.innerHTML = `Toplam kalan borç: <b>${borcFmt(t*k)}</b> · ${k} ay boyunca aylık <b>${borcFmt(t)}</b>`;
+    } else kutu.style.display='none';
+  } else {
+    const top = parseFloat(document.getElementById('bfToplam').value)||0;
+    const sure = parseInt(document.getElementById('bfSure').value)||0;
+    if(top>0 && sure>0){
+      kutu.style.display='';
+      kutu.innerHTML = `Aylık taksit: <b>${borcFmt(top/sure)}</b> · ${sure} ay boyunca · Toplam <b>${borcFmt(top)}</b>`;
+    } else kutu.style.display='none';
+  }
+}
+
+function borcKaydet(){
+  const ad = document.getElementById('bfAd').value.trim();
+  const tur = document.getElementById('bfTur').value;
+  const tarih = document.getElementById('bfTarih').value;
+  let taksit, kalan;
+
+  if(_borcGirisModu==='taksit'){
+    taksit = parseFloat(document.getElementById('bfTaksit').value)||0;
+    kalan = parseInt(document.getElementById('bfKalan').value)||0;
+  } else {
+    const top = parseFloat(document.getElementById('bfToplam').value)||0;
+    const sure = parseInt(document.getElementById('bfSure').value)||0;
+    if(sure>0){ taksit = Math.round(top/sure); kalan = sure; } else { taksit=0; kalan=0; }
+  }
+
+  if(!ad || !taksit || !kalan || !tarih){ alert('Lütfen tüm alanları doldurun.'); return; }
+  _borclar.push({id:_borcNextId++, ad, tur, taksit, kalan, toplam:kalan, tarih});
+  borcModalKapat();
+  ['bfAd','bfTaksit','bfKalan','bfToplam','bfSure'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+  document.getElementById('borcOnizleKutu').style.display='none';
+  borcRender();
+}
+
+function borcSil(id){
+  if(!confirm('Bu borcu silmek istiyor musunuz?')) return;
+  _borclar = _borclar.filter(b => b.id !== id);
+  borcRender();
+}
+
+// ── Ana render ──
+let _chBorcYuk, _chBorcDagilim;
+function borcRender(){
+  const toplamKalan = _borclar.reduce((s,b)=>s+b.taksit*b.kalan,0);
+  const buAyToplam = _borclar.reduce((s,b)=>s+(b.kalan>0?b.taksit:0),0);
+  const maxKalanAy = Math.max(0,..._borclar.map(b=>b.kalan));
+  const aktifAdet = _borclar.filter(b=>b.kalan>0).length;
+
+  document.getElementById('bmToplam').textContent = borcFmt(toplamKalan);
+  document.getElementById('bmToplamAlt').textContent = _borclar.length + ' borç toplamı';
+  document.getElementById('bmBuAy').textContent = borcFmt(buAyToplam);
+  document.getElementById('bmBuAyAlt').textContent = aktifAdet + ' ödeme';
+  document.getElementById('bmAdet').textContent = aktifAdet;
+  document.getElementById('bmAdetAlt').textContent = 'devam eden';
+
+  if(maxKalanAy > 0){
+    const bitis = new Date();
+    bitis.setMonth(bitis.getMonth() + maxKalanAy);
+    document.getElementById('bmBitis').textContent = BAYLAR_KISA[bitis.getMonth()] + ' ' + bitis.getFullYear();
+    document.getElementById('bmBitisAlt').textContent = maxKalanAy + ' ay sonra';
+  } else {
+    document.getElementById('bmBitis').textContent = '🎉 Borçsuz';
+    document.getElementById('bmBitisAlt').textContent = '';
+  }
+
+  // Maaş ile ilişki — net maaşa oranı
+  const netMaas = (typeof window.sonNetMaas !== 'undefined' && window.sonNetMaas>0) ? window.sonNetMaas : 0;
+  const oranKutu = document.getElementById('borcMaasOran');
+  if(buAyToplam>0 && netMaas>0){
+    const oran = (buAyToplam/netMaas*100).toFixed(0);
+    const kalanNet = netMaas - buAyToplam;
+    oranKutu.style.display='';
+    oranKutu.innerHTML = `💡 Bu ayki borç ödemeniz (<b>${borcFmt(buAyToplam)}</b>), net maaşınızın <b>%${oran}</b>'ini oluşturuyor. Borç sonrası elinizde <b>${borcFmt(kalanNet)}</b> kalıyor.` +
+      (oran>50 ? ' <span style="color:#e24b4a;font-weight:600;">⚠ Borç yükü maaşınızın yarısından fazla.</span>' : '');
+  } else {
+    oranKutu.style.display='none';
+  }
+
+  // Borç kartları
+  const liste = document.getElementById('borcListesi');
+  if(_borclar.length === 0){
+    liste.innerHTML = '<div class="borc-empty"><div class="borc-empty-icon">🎉</div><div style="font-weight:600;color:#1d1d1f;margin-bottom:4px;">Hiç borcunuz yok!</div><div style="font-size:13px;">Borç eklemek için yukarıdaki butonu kullanın.</div></div>';
+  } else {
+    liste.innerHTML = _borclar.map(b => {
+      const m = BORC_TUR_META[b.tur];
+      const odenen = b.toplam - b.kalan;
+      const yuzde = (odenen / b.toplam * 100).toFixed(0);
+      return `<div class="borc-kart">
+        <div class="borc-ikon" style="background:${m.bg};">${m.ikon}</div>
+        <div>
+          <div class="borc-baslik">${b.ad}</div>
+          <div class="borc-alt">${b.kalan} taksit kaldı · ${odenen}/${b.toplam} ödendi</div>
+        </div>
+        <div class="borc-tutar">
+          <div class="borc-aylik">${borcFmt(b.taksit)}<span style="font-size:11px;color:#aeaeb2;">/ay</span></div>
+          <div class="borc-kalan">Kalan: ${borcFmt(b.taksit*b.kalan)}</div>
+          <button onclick="borcSil(${b.id})" style="border:none;background:none;color:#aeaeb2;cursor:pointer;font-size:11px;margin-top:3px;">✕ sil</button>
+        </div>
+        <div class="borc-progress"><div class="borc-progress-fill" style="width:${yuzde}%;background:${m.renk};"></div></div>
+      </div>`;
+    }).join('');
+  }
+
+  borcTakvimOlustur();
+  borcGrafikCiz();
+}
+
+let _takvimGorunum = 'kart';
+function takvimGorunum(mod){
+  _takvimGorunum = mod;
+  document.getElementById('takvimKartGorunum').style.display = mod==='kart' ? '' : 'none';
+  document.getElementById('takvimTabloGorunum').style.display = mod==='tablo' ? '' : 'none';
+  const kBtn = document.getElementById('tkvModKart');
+  const tBtn = document.getElementById('tkvModTablo');
+  kBtn.style.background = mod==='kart' ? '#534AB7' : 'transparent';
+  kBtn.style.color = mod==='kart' ? '#fff' : '#6e6e73';
+  tBtn.style.background = mod==='tablo' ? '#534AB7' : 'transparent';
+  tBtn.style.color = mod==='tablo' ? '#fff' : '#6e6e73';
+}
+
+function borcTakvimOlustur(){
+  const aktif = _borclar.filter(b => b.kalan > 0);
+  const maxAy = Math.max(0, ...aktif.map(b => b.kalan));
+  const simdi = new Date();
+
+  // ═══ 1. ZAMAN ÇİZELGESİ GÖRÜNÜMÜ ═══
+  const kartDiv = document.getElementById('takvimKartGorunum');
+  if(aktif.length === 0){
+    kartDiv.innerHTML = '<div style="text-align:center;padding:2rem;color:#aeaeb2;font-size:13px;">Aktif borç yok — borç ekleyince ödeme planınız burada görünür.</div>';
+  } else {
+    // En yüksek aylık ödemeyi bul (mini bar için referans)
+    let maxAylikOdeme = 0;
+    for(let i = 0; i < maxAy; i++){
+      const t = aktif.reduce((s,b) => s + (i < b.kalan ? b.taksit : 0), 0);
+      if(t > maxAylikOdeme) maxAylikOdeme = t;
+    }
+
+    let html = '';
+    let oncekiToplam = null;
+    for(let i = 0; i < maxAy; i++){
+      const ay = new Date(simdi);
+      ay.setMonth(simdi.getMonth() + i);
+      const ayAdi = BAYLAR_KISA[ay.getMonth()];
+      const yil = ay.getFullYear();
+
+      // Bu ayın ödemeleri
+      let satirToplam = 0;
+      let odemeler = '';
+      let bitenler = [];
+      aktif.forEach(b => {
+        if(i < b.kalan){
+          satirToplam += b.taksit;
+          const m = BORC_TUR_META[b.tur];
+          const sonTaksit = (i === b.kalan - 1);
+          odemeler += `<div class="tkv-odeme">
+            <span class="tkv-odeme-ad">${m.ikon} ${b.ad}${sonTaksit?' <span class="tkv-rozet son">SON TAKSİT</span>':''}</span>
+            <span class="tkv-odeme-tutar">${borcFmt(b.taksit)}</span>
+          </div>`;
+          if(sonTaksit) bitenler.push(b.ad);
+        }
+      });
+
+      // Yük azalma rozeti
+      let dususRozet = '';
+      if(oncekiToplam !== null && satirToplam < oncekiToplam){
+        dususRozet = `<span class="tkv-rozet dusuk">▼ ${borcFmt(oncekiToplam - satirToplam)} azaldı</span>`;
+      }
+      oncekiToplam = satirToplam;
+
+      const barYuzde = maxAylikOdeme > 0 ? (satirToplam / maxAylikOdeme * 100).toFixed(0) : 0;
+      const sonAyMi = (i === maxAy - 1);
+
+      html += `<div class="tkv-ay">
+        <div class="tkv-sol">
+          <div class="tkv-ay-adi">${ayAdi}</div>
+          <div class="tkv-ay-yil">${yil}</div>
+          <div class="tkv-nokta${sonAyMi?' bitti':''}"></div>
+        </div>
+        <div class="tkv-sag">
+          <div class="tkv-kutu">
+            <div class="tkv-toplam">
+              <span class="tkv-toplam-lbl">${aktif.filter(b=>i<b.kalan).length} ödeme ${dususRozet}</span>
+              <span class="tkv-toplam-tutar">${borcFmt(satirToplam)}</span>
+            </div>
+            ${odemeler}
+            <div class="tkv-mini-bar"><div class="tkv-mini-fill" style="width:${barYuzde}%;"></div></div>
+          </div>
+        </div>
+      </div>`;
+    }
+
+    // Borçsuzluk kutlaması
+    const bitisAy = new Date(simdi);
+    bitisAy.setMonth(simdi.getMonth() + maxAy);
+    html += `<div class="tkv-ay">
+      <div class="tkv-sol">
+        <div class="tkv-ay-adi">${BAYLAR_KISA[bitisAy.getMonth()]}</div>
+        <div class="tkv-ay-yil">${bitisAy.getFullYear()}</div>
+        <div class="tkv-nokta bitti"></div>
+      </div>
+      <div class="tkv-sag">
+        <div class="tkv-ozgur">
+          <div style="font-size:24px;margin-bottom:4px;">🎉</div>
+          <div style="font-size:14px;font-weight:700;color:#1d9e75;">Borçsuzsunuz!</div>
+          <div style="font-size:12px;color:#0f6e56;margin-top:2px;">Bu aydan itibaren ödemeniz kalmıyor.</div>
+        </div>
+      </div>
+    </div>`;
+
+    kartDiv.innerHTML = html;
+  }
+
+  // ═══ 2. TABLO GÖRÜNÜMÜ (mevcut) ═══
+  let bHtml = '<th style="text-align:left;">Ay</th>';
+  aktif.forEach(b => { bHtml += `<th>${b.ad}</th>`; });
+  bHtml += '<th style="background:#f0eefe;color:#534AB7;">TOPLAM</th>';
+  document.getElementById('borcTakvimBaslik').innerHTML = bHtml;
+
+  let gHtml = '';
+  let genelToplam = 0;
+  for(let i = 0; i < maxAy; i++){
+    const ay = new Date(simdi);
+    ay.setMonth(simdi.getMonth() + i);
+    const ayAdi = BAYLAR_KISA[ay.getMonth()] + ' ' + ay.getFullYear();
+    let satirToplam = 0, hucreler = '';
+    aktif.forEach(b => {
+      if(i < b.kalan){
+        satirToplam += b.taksit;
+        const sonTaksit = (i === b.kalan - 1);
+        hucreler += `<td>${borcFmt(b.taksit)}${sonTaksit?' <span class="borc-badge bb-son">SON</span>':''}</td>`;
+      } else {
+        hucreler += `<td><span class="borc-badge bb-bitti">✓</span></td>`;
+      }
+    });
+    genelToplam += satirToplam;
+    gHtml += `<tr><td>${ayAdi}</td>${hucreler}<td style="font-weight:700;color:${satirToplam>0?'#e24b4a':'#1d9e75'};">${borcFmt(satirToplam)}</td></tr>`;
+  }
+  let totHucre = '';
+  aktif.forEach(b => { totHucre += `<td>${borcFmt(b.taksit * b.kalan)}</td>`; });
+  gHtml += `<tr class="tot"><td>TOPLAM</td>${totHucre}<td>${borcFmt(genelToplam)}</td></tr>`;
+  document.getElementById('borcTakvimGovde').innerHTML = gHtml || '<tr><td colspan="10" style="text-align:center;padding:2rem;color:#aeaeb2;">Aktif borç yok</td></tr>';
+}
+
+function borcGrafikCiz(){
+  if(typeof Chart==='undefined') return; // CDN yüklenmediyse grafiksiz devam
+  const aktif = _borclar.filter(b => b.kalan > 0);
+  const maxAy = Math.min(24, Math.max(0, ...aktif.map(b => b.kalan)));
+  const simdi = new Date();
+
+  const labels = [], yukler = [];
+  for(let i = 0; i < maxAy; i++){
+    const ay = new Date(simdi);
+    ay.setMonth(simdi.getMonth() + i);
+    labels.push(BAYLAR_KISA[ay.getMonth()]);
+    yukler.push(aktif.reduce((s,b) => s + (i < b.kalan ? b.taksit : 0), 0));
+  }
+
+  if(_chBorcYuk) _chBorcYuk.destroy();
+  if(document.getElementById('cBorcYuk')){
+    _chBorcYuk = new Chart(document.getElementById('cBorcYuk'), {
+      type:'bar',
+      data:{labels, datasets:[{data:yukler, backgroundColor:'#534AB7', borderRadius:4}]},
+      options:{responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}},
+        scales:{y:{ticks:{callback:v=>'₺'+Math.round(v/1000)+'K'},grid:{color:'rgba(0,0,0,.05)'}},x:{grid:{display:false}}}}
+    });
+  }
+
+  if(_chBorcDagilim) _chBorcDagilim.destroy();
+  if(document.getElementById('cBorcDagilim') && aktif.length>0){
+    _chBorcDagilim = new Chart(document.getElementById('cBorcDagilim'), {
+      type:'doughnut',
+      data:{labels: aktif.map(b => b.ad),
+        datasets:[{data: aktif.map(b => b.taksit * b.kalan),
+          backgroundColor: aktif.map(b => BORC_TUR_META[b.tur].renk), borderWidth: 2, borderColor: '#fff'}]},
+      options:{responsive:true, maintainAspectRatio:false,
+        plugins:{legend:{position:'bottom', labels:{font:{size:11}, boxWidth:10}}}, cutout:'58%'}
+    });
+  }
+}
+
 </script>
 
 <!-- HAKKINDA -->
@@ -2145,42 +2928,6 @@ function sssToggle(el){
 </div>
 
 <!-- SSS -->
-<div class="page-section" id="sss">
-  <div class="section-inner">
-    <p class="section-title">Sık Sorulan Sorular</p>
-    <p class="section-sub">Merak ettiğiniz soruların cevapları burada</p>
-
-    <div class="sss-item">
-      <button class="sss-q" onclick="sssToggle(this)">Brüt maaş ile net maaş arasındaki fark nedir? <span class="sss-arrow">▾</span></button>
-      <div class="sss-a">Brüt maaş, işverenin size ödemeyi taahhüt ettiği toplam tutardır. Net maaş ise bu tutardan SGK primi (%14), işsizlik sigortası (%1) ve gelir vergisi düşüldükten, asgari geçim indirimi eklendikten sonra elinize geçen miktardır. Genellikle net maaş, brüt maaşın %75-85'i civarındadır.</div>
-    </div>
-
-    <div class="sss-item">
-      <button class="sss-q" onclick="sssToggle(this)">Gelir vergisi dilimleri 2026'da nasıl uygulanıyor? <span class="sss-arrow">▾</span></button>
-      <div class="sss-a">Türkiye'de gelir vergisi kümülatif (yıl içinde biriken) matrah üzerinden artan oranlı uygulanır. Yılın başında düşük dilimden (%15) başlar, matrah yükseldikçe üst dilimlere (%20, %27, %35, %40) geçilir. Bu nedenle yılın sonuna doğru elinize geçen net maaş azalabilir. Araç bu geçişleri otomatik hesaplar.</div>
-    </div>
-
-    <div class="sss-item">
-      <button class="sss-q" onclick="sssToggle(this)">Mesai ücreti nasıl hesaplanır? <span class="sss-arrow">▾</span></button>
-      <div class="sss-a">Yasal olarak normal çalışma saatinin üzerindeki çalışmalar için saat başı ücret en az %50 zamlı ödenir (×1,5). Hafta tatili ve ulusal bayramlarda yapılan mesailerde bu oran %100'e çıkar (×2,0). Saatlik ücret hesabında brüt maaş 225'e bölünür. Araç bu iki oranı ayrı ayrı hesaplayıp net tutarı gösterir.</div>
-    </div>
-
-    <div class="sss-item">
-      <button class="sss-q" onclick="sssToggle(this)">ARGe teşviği nedir, kime uygulanır? <span class="sss-arrow">▾</span></button>
-      <div class="sss-a">Araştırma-Geliştirme ve Tasarım Merkezlerinde çalışan personelin gelir vergisinin bir kısmı, eğitim durumuna göre işveren tarafından karşılanır. Ön lisans ve altı için %80, lisans için %90, yüksek lisans ve üstü için %95 oranında teşvik uygulanır.</div>
-    </div>
-
-    <div class="sss-item">
-      <button class="sss-q" onclick="sssToggle(this)">Kıdem tazminatına hak kazanma koşulları nelerdir? <span class="sss-arrow">▾</span></button>
-      <div class="sss-a">Kıdem tazminatına hak kazanmak için aynı işyerinde en az 1 yıl kesintisiz çalışmış olmak gerekir. İşveren tarafından haksız fesih, emeklilik, askerlik veya evlilik nedeniyle ayrılma gibi durumlarda hak doğar. Tazminat tutarı brüt maaş üzerinden hesaplanır ve 2026 kıdem tazminatı tavanı esas alınır.</div>
-    </div>
-
-    <div class="sss-item">
-      <button class="sss-q" onclick="sssToggle(this)">Hesaplamalar ne kadar doğru? <span class="sss-arrow">▾</span></button>
-      <div class="sss-a">Araç, 2026 yılı için geçerli yasal parametreleri kullanarak standart bir çalışan için hesaplama yapar. Özel durumlarda (kısmi çalışma, birden fazla işveren, engellilik indirimi vb.) sonuçlar farklılık gösterebilir. Kesin bordrolar için insan kaynakları veya muhasebe departmanınızla iletişime geçin.</div>
-    </div>
-  </div>
-</div>
 
 <!-- FOOTER -->
 <footer class="footer">
@@ -2188,8 +2935,10 @@ function sssToggle(el){
     <div class="footer-logo">maaş<span>hesaplama</span>.com</div>
     <div class="footer-links">
       <a href="#hesapla-bolum">Hesaplama Aracı</a>
+      <a href="kredi-hesaplama.html">Kredi Hesaplama</a>
+      <a href="kidem-hesaplama.html">Kıdem Tazminatı</a>
       <a href="#hakkinda">Hakkında</a>
-      <a href="#sss">SSS</a>
+      <a href="sss.html">SSS</a>
     </div>
     <div class="footer-copy">
       © 2026 maashesaplama.com — Bu araç bilgilendirme amaçlıdır, resmi bordro belgesi yerine geçmez.

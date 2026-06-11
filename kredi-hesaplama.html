@@ -169,13 +169,15 @@ input:focus,select:focus{border-color:#534AB7;box-shadow:0 0 0 3px rgba(83,74,18
 <!-- NAVBAR -->
 <nav class="navbar">
   <div class="navbar-inner">
-    <a class="nav-logo" href="#" onclick="maasGit()">
+    <a class="nav-logo" href="index.html">
       <div class="nav-logo-icon">₺</div>
       <span class="nav-logo-text">maaş<span>hesaplama</span>.com</span>
     </a>
     <div class="nav-links">
-      <button class="nav-link" onclick="maasGit()">Maaş Hesaplama</button>
-      <button class="nav-link active-nav">Kredi Hesaplama</button>
+      <a class="nav-link" href="index.html" style="text-decoration:none;">Maaş Hesaplama</a>
+      <button class="nav-link active-nav">🏦 Kredi Hesaplama</button>
+      <a class="nav-link" href="kidem-hesaplama.html" style="text-decoration:none;">⚖️ Kıdem Tazminatı</a>
+      <a class="nav-link" href="sss.html" style="text-decoration:none;">SSS</a>
       <button class="nav-link nav-cta" onclick="document.getElementById('hesapla-bolum').scrollIntoView({behavior:'smooth'})">Hemen Hesapla</button>
     </div>
   </div>
@@ -309,46 +311,16 @@ input:focus,select:focus{border-color:#534AB7;box-shadow:0 0 0 3px rgba(83,74,18
 </div>
 
 <!-- SSS -->
-<div class="page-section" id="sss" style="background:#fff;">
-  <div class="section-inner">
-    <p class="section-title">Sık Sorulan Sorular</p>
-    <p class="section-sub">Kredi hesaplama hakkında merak edilenler</p>
-
-    <div class="sss-item">
-      <button class="sss-q" onclick="sssToggle(this)">Eşit taksit (annüite) hesaplama nasıl çalışır? <span class="sss-arrow">▾</span></button>
-      <div class="sss-a">Eşit taksit yönteminde her ay aynı tutarı ödersiniz. Ancak aylık ödemenin içindeki ana para ve faiz oranı değişir. İlk aylarda faiz payı yüksek, ana para payı düşüktür. Ay geçtikçe kalan borç azaldığından faiz payı düşer, ana para payı artar. Bu yöntem Türkiye'deki bireysel kredilerde standart olarak uygulanır.</div>
-    </div>
-
-    <div class="sss-item">
-      <button class="sss-q" onclick="sssToggle(this)">KKDF ve BSMV nedir, kim öder? <span class="sss-arrow">▾</span></button>
-      <div class="sss-a">KKDF (Kaynak Kullanımını Destekleme Fonu) tüketici kredilerinde faiz üzerinden %15 oranında alınan bir fondur. BSMV (Banka ve Sigorta Muameleleri Vergisi) ise yine faiz üzerinden %5 oranında uygulanan bir vergidir. Her ikisi de bankalar tarafından tahsil edilir ve aylık taksitinize yansır. Konut kredileri KKDF'den muaf tutulmaktadır.</div>
-    </div>
-
-    <div class="sss-item">
-      <button class="sss-q" onclick="sssToggle(this)">Erken ödeme yaparsam ne olur? <span class="sss-arrow">▾</span></button>
-      <div class="sss-a">Erken ödeme yapmak istediğinizde banka kalan ana paranız üzerinden hesaplayarak size bir kapama tutarı bildirir. Banka yasal olarak erken kapama için komisyon alabilir (genellikle %1–2). Bu araç standart amortizasyon planını hesaplar; erken ödeme senaryoları için bankanızla iletişime geçmenizi öneririz.</div>
-    </div>
-
-    <div class="sss-item">
-      <button class="sss-q" onclick="sssToggle(this)">Hesaplama ne kadar doğru? <span class="sss-arrow">▾</span></button>
-      <div class="sss-a">Bu araç matematiksel olarak doğru eşit taksit (annüite) yöntemini kullanır. Sonuçlar %99+ hassasiyetle banka tablolarıyla örtüşür. Küçük farklılıklar bankacılık yazılımlarının yuvarlama kurallarından kaynaklanabilir. Kesin taksit planı için bankanızdan resmi ödeme planı belgesi talep edin.</div>
-    </div>
-
-    <div class="sss-item">
-      <button class="sss-q" onclick="sssToggle(this)">Masraf tutarı nedir? <span class="sss-arrow">▾</span></button>
-      <div class="sss-a">Bankalar kredi verirken dosya masrafı, ekspertiz ücreti veya sigorta gibi ek ücretler alabilir. Bu masraflar genellikle peşin tahsil edilir veya ilk taksitle alınır. Masraf tutarını girerek gerçek toplam maliyetinizi ve efektif yıllık maliyet oranınızı (YSMBM) daha doğru görebilirsiniz.</div>
-    </div>
-  </div>
-</div>
 
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-logo">maaş<span>hesaplama</span>.com</div>
     <div class="footer-links">
-      <a href="#" onclick="maasGit()">Maaş Hesaplama</a>
+      <a href="index.html">Maaş Hesaplama</a>
       <a href="#hesapla-bolum">Kredi Hesaplama</a>
-      <a href="#sss">SSS</a>
+      <a href="kidem-hesaplama.html">Kıdem Tazminatı</a>
+      <a href="sss.html">SSS</a>
     </div>
     <div class="footer-copy">
       © 2026 maashesaplama.com — Bu araç bilgilendirme amaçlıdır, resmi kredi belgesi yerine geçmez.
@@ -357,11 +329,6 @@ input:focus,select:focus{border-color:#534AB7;box-shadow:0 0 0 3px rgba(83,74,18
 </footer>
 
 <script>
-// ── MAAŞ SAYFASINA GİT ──
-function maasGit(){
-  window.location.href = 'index.html';
-}
-
 // ── STATE ──
 let secilenTur = 'ihtiyac';
 let ekAyarAcik = true;
@@ -748,6 +715,7 @@ function renderSonuclar(d){
 // ── GRAFİKLER ──
 let chartLine, chartDoughnut, chartBar;
 function cizGrafikler(tutar, topFaiz, topKkdf, topBsmv, masraf, kkdfOr){
+  if(typeof Chart==='undefined') return;
   // Her 3. ayı etiketle (daha temiz görünüm)
   const labeller = planVerisi.map(r => r.ay % 3 === 0 || r.ay === 1 ? r.ay + '.Ay' : '');
   const kumAna   = [];
@@ -890,13 +858,6 @@ function sifirla(){
   planVerisi = [];
 }
 
-// ── SSS ──
-function sssToggle(el){
-  const a = el.nextElementSibling;
-  const arrow = el.querySelector('.sss-arrow');
-  if(a.style.display === 'block'){ a.style.display = 'none'; arrow.style.transform = 'rotate(0deg)'; }
-  else{ a.style.display = 'block'; arrow.style.transform = 'rotate(180deg)'; }
-}
 
 // ── YARDIMCI FONKSİYONLAR ──
 function fmt(n){

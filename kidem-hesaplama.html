@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kıdem Tazminatı Hesaplama 2026 | İhbar Tazminatı Dahil</title>
+<meta name="description" content="İşe giriş ve çıkış tarihinize göre kıdem ve ihbar tazminatınızı 2026 tavan değerleriyle hesaplayın.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f5f7;color:#1d1d1f;min-height:100vh;}
+
+/* NAVBAR */
+.navbar{background:#fff;border-bottom:1px solid #e5e5ea;position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+.navbar-inner{max-width:1200px;margin:0 auto;padding:0 1.5rem;height:60px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-logo-icon{width:34px;height:34px;background:#534AB7;border-radius:9px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:17px;font-weight:700;}
+.nav-logo-text{font-size:16px;font-weight:700;color:#1d1d1f;letter-spacing:-.3px;}
+.nav-logo-text span{color:#534AB7;}
+.nav-links{display:flex;align-items:center;gap:6px;}
+.nav-link{padding:7px 14px;font-size:13px;font-weight:500;color:#6e6e73;text-decoration:none;border-radius:8px;cursor:pointer;border:none;background:none;}
+.nav-link:hover{background:#f5f5f7;color:#1d1d1f;}
+.nav-link.active-nav{background:#f0eefe;color:#534AB7;}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#f3f0fd 0%,#eaf3fd 100%);border-bottom:1px solid #e0dbf8;padding:2rem 0 1.75rem;}
+.hero-inner{max-width:1200px;margin:0 auto;padding:0 1.5rem;}
+.hero h1{font-size:28px;font-weight:700;letter-spacing:-.5px;margin-bottom:.4rem;}
+.hero h1 span{color:#534AB7;}
+.hero-sub{font-size:14px;color:#6e6e73;max-width:560px;line-height:1.6;}
+
+/* LAYOUT */
+.section-inner{max-width:1200px;margin:0 auto;padding:0 1.5rem;}
+.page-section{padding:2rem 0;}
+.card{background:#fff;border:1px solid #e5e5ea;border-radius:12px;padding:1.25rem 1.4rem;}
+.st{font-size:14px;font-weight:600;margin-bottom:.85rem;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+
+label{font-size:13px;color:#6e6e73;display:block;margin-bottom:4px;font-weight:500;}
+input,select{width:100%;font-size:13px;padding:8px 10px;border:1px solid #d2d2d7;border-radius:8px;background:#fff;color:#1d1d1f;outline:none;}
+input:focus,select:focus{border-color:#534AB7;box-shadow:0 0 0 3px rgba(83,74,183,.1);}
+
+.mc{background:#f5f5f7;border-radius:10px;padding:.9rem 1rem;}
+.ml{font-size:11px;color:#6e6e73;margin-bottom:3px;text-transform:uppercase;letter-spacing:.4px;font-weight:600;}
+.mv{font-size:20px;font-weight:700;}
+.ms{font-size:11px;color:#aeaeb2;margin-top:2px;}
+.mv.pur{color:#534AB7;}.mv.neg{color:#e24b4a;}.mv.pos{color:#1d9e75;}
+
+.ri{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid #f2f2f7;font-size:13px;}
+.ri:last-child{border-bottom:none;}
+.rl{color:#6e6e73;}
+.rv{font-weight:600;color:#1d1d1f;}
+.rv.pur{color:#534AB7;}.rv.neg{color:#e24b4a;}.rv.pos{color:#1d9e75;}
+
+/* FOOTER */
+.footer{background:#1d1d1f;color:#aeaeb2;padding:2rem 0;margin-top:2rem;}
+.footer-inner{max-width:1200px;margin:0 auto;padding:0 1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+.footer-logo{font-size:15px;font-weight:700;color:#fff;}
+.footer-logo span{color:#534AB7;}
+.footer-links{display:flex;gap:1.5rem;}
+.footer-links a{font-size:13px;color:#aeaeb2;text-decoration:none;}
+.footer-links a:hover{color:#fff;}
+.footer-copy{font-size:12px;color:#6e6e73;width:100%;border-top:1px solid #2d2d2f;margin-top:1rem;padding-top:1rem;text-align:center;}
+
+@media(max-width:768px){
+  .hero h1{font-size:24px;}
+  .g2{grid-template-columns:1fr;}
+  .nav-links .nav-link:not(.active-nav){display:none;}
+  .footer-inner{flex-direction:column;text-align:center;}
+  .footer-links{justify-content:center;}
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a class="nav-logo" href="index.html">
+      <div class="nav-logo-icon">₺</div>
+      <span class="nav-logo-text">maaş<span>hesaplama</span>.com</span>
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="index.html" style="text-decoration:none;">Maaş Hesaplama</a>
+      <a class="nav-link" href="kredi-hesaplama.html" style="text-decoration:none;">🏦 Kredi Hesaplama</a>
+      <button class="nav-link active-nav">⚖️ Kıdem Tazminatı</button>
+      <a class="nav-link" href="sss.html" style="text-decoration:none;">SSS</a>
+    </div>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <h1>Kıdem & İhbar Tazminatınızı <span>Hesaplayın</span></h1>
+    <p class="hero-sub">İşe giriş ve çıkış tarihinizi girin; kıdem tazminatı, ihbar tazminatı, damga vergisi kesintisi ve 2026 tavan kontrolü dahil net alacağınızı görün.</p>
+  </div>
+</div>
+
+<div class="page-section">
+<div class="section-inner">
+<div id="sec-kidem">
+  <div class="g2" style="gap:1rem;margin-bottom:1rem;">
+
+    <!-- SOL: Giriş -->
+    <div class="card">
+      <p class="st">⚖️ Kıdem Tazminatı Hesaplama</p>
+      <div style="display:grid;gap:12px;">
+        <div>
+          <label>İşe Giriş Tarihi</label>
+          <input type="date" id="kidemGirisTarihi" oninput="kidemHesapla()"
+            style="width:100%;font-size:14px;padding:8px 10px;border:1.5px solid #534AB7;border-radius:8px;">
+        </div>
+        <div>
+          <label>Ayrılma / Hesaplama Tarihi</label>
+          <div style="display:flex;gap:6px;">
+            <input type="date" id="kidemCikisTarihi" oninput="kidemHesapla()"
+              style="flex:1;font-size:14px;padding:8px 10px;border:1px solid #d2d2d7;border-radius:8px;">
+            <button onclick="kidemBugunSec()"
+              style="padding:8px 12px;background:#f5f5f7;border:1px solid #d2d2d7;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;">
+              Bugün
+            </button>
+          </div>
+        </div>
+        <div>
+          <label>Güncel Brüt Maaş (₺) <span style="font-size:11px;color:#aeaeb2;">— boş bırakılırsa yukarıdakini kullanır</span></label>
+          <input type="number" id="kidemBrut" placeholder="Otomatik" min="0" step="500" oninput="kidemHesapla()"
+            style="width:100%;font-size:14px;padding:8px 10px;border:1px solid #d2d2d7;border-radius:8px;">
+        </div>
+
+        <!-- Çalışma süresi göstergesi -->
+        <div id="kidemSureKutu" style="display:none;background:#f0eefd;border:1px solid #c9c2f0;border-radius:10px;padding:12px 14px;">
+          <div style="font-size:11px;color:#6e6e73;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px;">Toplam Çalışma Süresi</div>
+          <div style="font-size:26px;font-weight:700;color:#534AB7;" id="kidemSureBuyuk">—</div>
+          <div style="display:flex;gap:16px;margin-top:6px;flex-wrap:wrap;">
+            <div><span style="font-size:20px;font-weight:700;color:#534AB7;" id="kidemYil">0</span><span style="font-size:12px;color:#6e6e73;margin-left:3px;">Yıl</span></div>
+            <div><span style="font-size:20px;font-weight:700;color:#534AB7;" id="kidemAy">0</span><span style="font-size:12px;color:#6e6e73;margin-left:3px;">Ay</span></div>
+            <div><span style="font-size:20px;font-weight:700;color:#534AB7;" id="kidemGunSay">0</span><span style="font-size:12px;color:#6e6e73;margin-left:3px;">Gün</span></div>
+            <div><span style="font-size:16px;font-weight:600;color:#6e6e73;" id="kidemToplamGun">0</span><span style="font-size:11px;color:#aeaeb2;margin-left:3px;">toplam gün</span></div>
+          </div>
+          <div style="margin-top:8px;font-size:12px;color:#6e6e73;" id="kidemSureAcik">—</div>
+        </div>
+
+        <!-- Hak ediş durumu -->
+        <div id="kidemHakKutu" style="display:none;border-radius:10px;padding:12px 14px;border:1px solid;">
+          <div style="font-size:13px;font-weight:600;" id="kidemHakBaslik">—</div>
+          <div style="font-size:12px;color:#6e6e73;margin-top:4px;" id="kidemHakAcik">—</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SAĞ: Tazminat detayı -->
+    <div class="card">
+      <p class="st">📊 Hesaplama Detayı</p>
+      <div id="kidemDetayBos" style="color:#aeaeb2;font-size:13px;padding:2rem 0;text-align:center;">
+        İşe giriş ve ayrılma tarihini girin.
+      </div>
+      <div id="kidemDetayIcerik" style="display:none;">
+        <div class="g2" style="gap:8px;margin-bottom:1rem;">
+          <div class="mc"><div class="ml">Kıdem Tazminatı</div><div class="mv pur" id="kidemTazminat">₺0</div><div class="ms">brüt toplam</div></div>
+          <div class="mc"><div class="ml">Net Tahmini</div><div class="mv pos" id="kidemNet">₺0</div><div class="ms">~%15 GV varsayımı</div></div>
+        </div>
+        <div id="kidemHesapAdimlar" style="display:grid;gap:4px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Alt: Yasal bilgi ve tavan -->
+  <div class="card">
+    <p class="st">📋 2026 Yasal Kıdem Tazminatı Kuralları</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:1rem;">
+      <div class="mc">
+        <div class="ml">Kıdem Tazminatı Tavanı</div>
+        <div class="mv" style="color:#1d9e75;font-size:16px;" id="kidemTavan">₺64.948,77</div>
+        <div class="ms">Temmuz 2025–Ocak 2026</div>
+      </div>
+      <div class="mc">
+        <div class="ml">Minimum Hak Kazanma</div>
+        <div class="mv">1 Yıl</div>
+        <div class="ms">kesintisiz çalışma</div>
+      </div>
+      <div class="mc">
+        <div class="ml">Tazminat Formülü</div>
+        <div class="mv" style="font-size:14px;">Yıl × 30 Gün</div>
+        <div class="ms">brüt günlük ücret</div>
+      </div>
+    </div>
+    <div style="font-size:12px;color:#6e6e73;line-height:1.8;">
+      <div style="display:grid;gap:6px;">
+        <div style="display:flex;gap:8px;"><span style="color:#1d9e75;font-weight:600;">✓</span><span><strong>Hak kazanma koşulu:</strong> Aynı işyerinde kesintisiz en az 1 yıl çalışmış olmak</span></div>
+        <div style="display:flex;gap:8px;"><span style="color:#1d9e75;font-weight:600;">✓</span><span><strong>Hesaplama:</strong> Çalışma yılı × 30 günlük brüt ücret (günlük = aylık ÷ 30)</span></div>
+        <div style="display:flex;gap:8px;"><span style="color:#1d9e75;font-weight:600;">✓</span><span><strong>Tavan:</strong> Yıllık tavan tutarı geçilemez (her 6 ayda güncellenir)</span></div>
+        <div style="display:flex;gap:8px;"><span style="color:#e24b4a;font-weight:600;">✗</span><span><strong>İstifa:</strong> Kıdem tazminatı ödenmez (bazı istisnalar hariç)</span></div>
+        <div style="display:flex;gap:8px;"><span style="color:#1d9e75;font-weight:600;">✓</span><span><strong>İşten çıkarma:</strong> Haksız fesihte hem kıdem hem ihbar tazminatı hakkı doğar</span></div>
+        <div style="display:flex;gap:8px;"><span style="color:#1d9e75;font-weight:600;">✓</span><span><strong>İhbar süreleri:</strong> 0–6 ay → 2 hafta | 6–18 ay → 4 hafta | 18–36 ay → 6 hafta | 36+ ay → 8 hafta</span></div>
+        <div style="display:flex;gap:8px;"><span style="color:#1d9e75;font-weight:600;">✓</span><span><strong>Vergi:</strong> Kıdem tazminatı brüt tavan altında kalıyorsa gelir vergisi ve damga vergisinden muaf</span></div>
+        <div style="display:flex;gap:8px;"><span style="color:#534AB7;font-weight:600;">ℹ</span><span><strong>Evlilik istifası (kadınlar):</strong> Evlilik tarihinden itibaren 1 yıl içinde istifa edilirse kıdem tazminatı hakkı doğar</span></div>
+        <div style="display:flex;gap:8px;"><span style="color:#534AB7;font-weight:600;">ℹ</span><span><strong>Askerlik/emeklilik:</strong> Bu nedenle ayrılırsa kıdem tazminatı ödenir</span></div>
+      </div>
+    </div>
+
+    <!-- İhbar Tazminatı -->
+    <div id="ihbarKutu" style="display:none;margin-top:1rem;background:#f0f7ff;border:1px solid #b8d9f5;border-radius:10px;padding:12px 14px;">
+      <div style="font-size:13px;font-weight:600;color:#185FA5;margin-bottom:8px;">📣 İhbar Tazminatı (Haksız Fesih Durumunda)</div>
+      <div class="g2" style="gap:8px;">
+        <div class="mc" style="border:1px solid #b8d9f5;">
+          <div class="ml">İhbar Süresi</div>
+          <div class="mv" id="ihbarSure" style="color:#185FA5;">—</div>
+          <div class="ms" id="ihbarGrubu">çalışma süresine göre</div>
+        </div>
+        <div class="mc" style="border:1px solid #b8d9f5;">
+          <div class="ml">İhbar Tazminatı (Brüt)</div>
+          <div class="mv" id="ihbarTazminat" style="color:#185FA5;">—</div>
+          <div class="ms">ihbar süresi × günlük ücret</div>
+        </div>
+      </div>
+      <div id="ihbarDetaysatirlar" style="margin-top:8px;display:grid;gap:2px;"></div>
+      <div style="margin-top:12px;background:#f0eefd;border-radius:8px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-size:13px;font-weight:700;color:#534AB7;">Genel Toplam (Kıdem Net + İhbar Net)</span>
+        <span style="font-size:18px;font-weight:700;color:#534AB7;" id="kidemGenelToplam">—</span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">maaş<span>hesaplama</span>.com</div>
+    <div class="footer-links">
+      <a href="index.html">Maaş Hesaplama</a>
+      <a href="kredi-hesaplama.html">Kredi Hesaplama</a>
+      <a href="kidem-hesaplama.html">Kıdem Tazminatı</a>
+      <a href="sss.html">SSS</a>
+    </div>
+    <div class="footer-copy">© 2026 maashesaplama.com — Bu araç bilgilendirme amaçlıdır, resmi belge yerine geçmez.</div>
+  </div>
+</footer>
+
+<script>
+function fmt(n){
+  if(isNaN(n)) return '₺0,00';
+  return '₺' + n.toLocaleString('tr-TR', {minimumFractionDigits:2, maximumFractionDigits:2});
+}
+
+const KIDEM_TAVAN_2026 = 64948.77;
+
+function kidemBugunSec(){
+  const bugun = new Date();
+  const yy = bugun.getFullYear();
+  const mm = String(bugun.getMonth()+1).padStart(2,'0');
+  const dd = String(bugun.getDate()).padStart(2,'0');
+  document.getElementById('kidemCikisTarihi').value = yy+'-'+mm+'-'+dd;
+  kidemHesapla();
+}
+
+function kidemHesapla(){
+  const gEl = document.getElementById('kidemGirisTarihi');
+  const cEl = document.getElementById('kidemCikisTarihi');
+  if(!gEl||!cEl||!gEl.value||!cEl.value){
+    document.getElementById('kidemSureKutu').style.display='none';
+    document.getElementById('kidemHakKutu').style.display='none';
+    document.getElementById('kidemDetayBos').style.display='block';
+    document.getElementById('kidemDetayIcerik').style.display='none';
+    document.getElementById('ihbarKutu').style.display='none';
+    return;
+  }
+  const giris = new Date(gEl.value);
+  const cikis = new Date(cEl.value);
+  if(cikis<=giris){
+    document.getElementById('kidemSureKutu').style.display='none';
+    return;
+  }
+
+  // ── Süre hesabı ──
+  let yilSay=0, aySay=0, gunSay=0;
+  let kal = new Date(giris);
+  while(true){const s=new Date(kal);s.setFullYear(s.getFullYear()+1);if(s>cikis)break;kal=s;yilSay++;}
+  while(true){const s=new Date(kal);s.setMonth(s.getMonth()+1);if(s>cikis)break;kal=s;aySay++;}
+  gunSay = Math.floor((cikis-kal)/(1000*60*60*24));
+  const toplamGun = Math.floor((cikis-giris)/(1000*60*60*24));
+
+  // Göster
+  document.getElementById('kidemSureKutu').style.display='block';
+  document.getElementById('kidemSureBuyuk').textContent=yilSay+' Yıl '+aySay+' Ay '+gunSay+' Gün';
+  document.getElementById('kidemYil').textContent=yilSay;
+  document.getElementById('kidemAy').textContent=aySay;
+  document.getElementById('kidemGunSay').textContent=gunSay;
+  document.getElementById('kidemToplamGun').textContent=toplamGun.toLocaleString('tr-TR');
+  document.getElementById('kidemSureAcik').textContent=
+    giris.toLocaleDateString('tr-TR',{day:'numeric',month:'long',year:'numeric'})+
+    ' → '+cikis.toLocaleDateString('tr-TR',{day:'numeric',month:'long',year:'numeric'});
+
+  // ── Hak ediş ──
+  const hakKutu = document.getElementById('kidemHakKutu');
+  hakKutu.style.display='block';
+  if(yilSay<1){
+    hakKutu.style.background='#fde8e8'; hakKutu.style.borderColor='#fca5a5';
+    document.getElementById('kidemHakBaslik').style.color='#c81e1e';
+    document.getElementById('kidemHakBaslik').textContent='❌ Kıdem tazminatı hakkı yok';
+    document.getElementById('kidemHakAcik').textContent='En az 1 yıl kesintisiz çalışma gereklidir. Mevcut: '+yilSay+' yıl '+aySay+' ay '+gunSay+' gün';
+    document.getElementById('kidemDetayBos').style.display='block';
+    document.getElementById('kidemDetayIcerik').style.display='none';
+    document.getElementById('ihbarKutu').style.display='none';
+    return;
+  }
+  hakKutu.style.background='#eef6f1'; hakKutu.style.borderColor='#b7dfc9';
+  document.getElementById('kidemHakBaslik').style.color='#1d9e75';
+  document.getElementById('kidemHakBaslik').textContent='✅ Kıdem tazminatına hak kazanıldı';
+
+  // ── Brüt maaş ──
+  const brutEl = document.getElementById('kidemBrut');
+  const brutGirilen = parseFloat(brutEl.value)||0;
+  const brutMaas = brutGirilen;
+
+  // ── KIDEM TAZMİNATI ──
+  // Doğru formül: Tavan × Toplam Gün ÷ 365
+  // (Tavan aşılıyorsa tavan, aşılmıyorsa gerçek maaş baz alınır)
+  const tavanUygulandimi = brutMaas > KIDEM_TAVAN_2026;
+  const kidemEsasUcret = tavanUygulandimi ? KIDEM_TAVAN_2026 : brutMaas;
+  const hesapGun = toplamGun; // takvim günü
+  const kidemBrut = Math.round(kidemEsasUcret * hesapGun / 365 * 100) / 100;
+  // Kıdem: GV muaf, sadece Damga Vergisi kesilir
+  const kidemDamga = Math.round(kidemBrut * 0.00759 * 100) / 100;
+  const kidemNet = Math.round((kidemBrut - kidemDamga) * 100) / 100;
+
+  document.getElementById('kidemHakAcik').textContent=
+    yilSay+' yıl '+aySay+' ay '+gunSay+' gün ('+toplamGun+' takvim günü)';
+
+  document.getElementById('kidemDetayBos').style.display='none';
+  document.getElementById('kidemDetayIcerik').style.display='block';
+  document.getElementById('kidemTazminat').textContent=fmt(kidemBrut);
+  document.getElementById('kidemNet').textContent=fmt(kidemNet);
+
+  const adimlar=[
+    {l:'Brüt Maaş',                              v:fmt(brutMaas),         r:''},
+    tavanUygulandimi
+      ? {l:'Kıdem Esas Ücret (tavan uygulandı)', v:fmt(KIDEM_TAVAN_2026), r:'color:#e24b4a;'}
+      : {l:'Kıdem Esas Ücret',                   v:fmt(brutMaas),         r:'color:#1d9e75;'},
+    {l:'Hesaplama Esas Gün',                     v:hesapGun+' gün',       r:''},
+    {l:'Kıdem Brüt  (Esas Ücret × Gün ÷ 365)',  v:fmt(kidemBrut),        r:'font-weight:700;color:#534AB7;'},
+    {l:'Damga Vergisi (%0,759)',                  v:'− '+fmt(kidemDamga),  r:'color:#e24b4a;'},
+    {l:'Gelir Vergisi',                           v:'Muaf',                r:'color:#1d9e75;'},
+    {l:'Net Kıdem Tazminatı',                     v:fmt(kidemNet),         r:'font-weight:700;color:#1d9e75;font-size:15px;'},
+  ].filter(Boolean);
+  document.getElementById('kidemHesapAdimlar').innerHTML=adimlar.map(a=>
+    '<div class="ri"><span class="rl">'+a.l+'</span><span class="rv" style="'+a.r+'">'+a.v+'</span></div>'
+  ).join('');
+
+  // ── İHBAR TAZMİNATI ──
+  // İhbar için gerçek brüt maaş kullanılır (tavan değil)
+  let ihbarHafta, ihbarGrubu;
+  if(toplamGun < 182)       { ihbarHafta=2; ihbarGrubu='6 aydan az → 2 hafta'; }
+  else if(toplamGun < 549)  { ihbarHafta=4; ihbarGrubu='6 ay–1,5 yıl → 4 hafta'; }
+  else if(toplamGun < 1096) { ihbarHafta=6; ihbarGrubu='1,5–3 yıl → 6 hafta'; }
+  else                       { ihbarHafta=8; ihbarGrubu='3 yıldan fazla → 8 hafta'; }
+  const ihbarGun = ihbarHafta * 7;
+  // Gerçek günlük brüt (÷30), tavan uygulanmaz
+  const ihbarGunluk = brutMaas / 30;
+  const ihbarBrut = Math.round(ihbarGunluk * ihbarGun * 100) / 100;
+  // İhbar: GV (%15) + Damga (%0,759) kesilir
+  const ihbarGV    = Math.round(ihbarBrut * 0.15    * 100) / 100;
+  const ihbarDamga = Math.round(ihbarBrut * 0.00759 * 100) / 100;
+  const ihbarNet   = Math.round((ihbarBrut - ihbarGV - ihbarDamga) * 100) / 100;
+
+  document.getElementById('ihbarKutu').style.display='block';
+  document.getElementById('ihbarSure').textContent=ihbarHafta+' hafta ('+ihbarGun+' gün)';
+  document.getElementById('ihbarGrubu').textContent=ihbarGrubu;
+  document.getElementById('ihbarTazminat').textContent=fmt(ihbarBrut);
+
+  const ihbarDetayEl = document.getElementById('ihbarDetaysatirlar');
+  if(ihbarDetayEl){
+    ihbarDetayEl.innerHTML=
+      '<div class="ri"><span class="rl">Günlük Brüt ('+fmt(brutMaas)+' ÷ 30)</span><span class="rv">'+fmt(ihbarGunluk)+'</span></div>'+
+      '<div class="ri"><span class="rl">İhbar Brüt ('+fmt(ihbarGunluk)+' × '+ihbarGun+' gün)</span><span class="rv font-weight:600;">'+fmt(ihbarBrut)+'</span></div>'+
+      '<div class="ri"><span class="rl">Gelir Vergisi (%15)</span><span class="rv neg">− '+fmt(ihbarGV)+'</span></div>'+
+      '<div class="ri"><span class="rl">Damga Vergisi (%0,759)</span><span class="rv neg">− '+fmt(ihbarDamga)+'</span></div>'+
+      '<div class="ri" style="margin-top:4px;"><span class="rl" style="font-weight:600;">Net İhbar Tazminatı</span><span class="rv pos" style="font-weight:700;font-size:14px;">'+fmt(ihbarNet)+'</span></div>';
+  }
+
+  const genelToplam = Math.round((kidemNet + ihbarNet)*100)/100;
+  const toplamEl = document.getElementById('kidemGenelToplam');
+  if(toplamEl) toplamEl.textContent = fmt(genelToplam);
+}
+
+// Sayfa açılışında bugünü çıkış tarihi yap
+window.onload = function(){
+  const bugun = new Date().toISOString().split('T')[0];
+  document.getElementById('kidemCikisTarihi').value = bugun;
+};
+</script>
+</body>
+</html>
