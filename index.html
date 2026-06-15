@@ -254,7 +254,7 @@ input:focus,select:focus{border-color:#534AB7;box-shadow:0 0 0 3px rgba(83,74,18
         <!-- NET → BRÜT MODU -->
         <div id="netInputKutu" style="display:none;">
           <label>Hedef Net Maaş (₺)</label>
-          <input type="number" id="hedefNetMaas" value="" min="0" step="500" placeholder="Örn: 50.000"
+          <input type="number" id="hedefNetMaas" autocomplete="off" value="" min="0" step="500" placeholder="Örn: 50.000"
             oninput="nettenBruteHesapla()"
             style="width:100%;font-size:15px;font-weight:700;padding:9px 12px;border:2px solid #1d9e75;border-radius:8px;color:#1d9e75;">
           <div id="nettenBruteSonuc" style="margin-top:8px;display:none;">
@@ -271,7 +271,7 @@ input:focus,select:focus{border-color:#534AB7;box-shadow:0 0 0 3px rgba(83,74,18
         </div>
         <div>
           <label>Başlangıç Brüt Maaş (₺)</label>
-          <input type="number" id="brut" value="" min="0" step="500" oninput="zamGuncelleVeHesapla()">
+          <input type="number" id="brut" autocomplete="off" value="" min="0" step="500" oninput="zamGuncelleVeHesapla()">
         </div>
         <div>
           <label>Seçili Ay Güncel Maaş (₺)</label>
