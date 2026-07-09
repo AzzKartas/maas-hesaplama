@@ -5,37 +5,61 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kredi Hesaplama 2026 | Ay Ay Taksit Planı</title>
 <meta name="description" content="Kredi tutarı, faiz oranı ve taksit sayısına göre ay ay ödeme planınızı hesaplayın. Masraf, KKDF ve BSMV dahil toplam maliyet.">
+<link rel="canonical" href="https://maashesaplama.com/kredi-hesaplama.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="maaşhesaplama.com">
+<meta property="og:title" content="Kredi Hesaplama 2026 | Ay Ay Taksit Planı">
+<meta property="og:description" content="Kredi tutarı, faiz oranı ve taksit sayısına göre ay ay ödeme planınızı hesaplayın. Masraf, KKDF ve BSMV dahil toplam maliyet.">
+<meta property="og:url" content="https://maashesaplama.com/kredi-hesaplama.html">
+<meta property="og:locale" content="tr_TR">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kredi Hesaplama 2026 | Ay Ay Taksit Planı">
+<meta name="twitter:description" content="Kredi tutarı, faiz oranı ve taksit sayısına göre ay ay ödeme planınızı hesaplayın. Masraf, KKDF ve BSMV dahil toplam maliyet.">
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "maaşhesaplama.com — Kredi Hesaplama",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "url": "https://maashesaplama.com/kredi-hesaplama.html",
+    "description": "Kredi tutarı, faiz oranı ve taksit sayısına göre ay ay ödeme planı, erken kapama simülasyonu ve teklif karşılaştırma aracı.",
+    "offers": {"@type": "Offer", "price": "0", "priceCurrency": "TRY"},
+    "inLanguage": "tr-TR"
+  }
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f5f7;color:#1d1d1f;min-height:100vh;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg-page);color:var(--text-primary);min-height:100vh;transition:background .2s,color .2s;}
 
 /* ── NAVBAR ── */
-.navbar{background:#fff;border-bottom:1px solid #e5e5ea;position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.06);}
-.navbar-inner{max-width:1200px;margin:0 auto;padding:0 1.5rem;height:60px;display:flex;align-items:center;justify-content:space-between;}
+.navbar{background:#26215C;border-bottom:none;position:sticky;top:0;z-index:100;}
+.navbar-inner{max-width:1200px;margin:0 auto;padding:0 1.5rem;height:52px;display:flex;align-items:center;justify-content:space-between;}
 .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
-.nav-logo-icon{width:34px;height:34px;background:#534AB7;border-radius:9px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:17px;font-weight:700;}
-.nav-logo-text{font-size:16px;font-weight:700;color:#1d1d1f;letter-spacing:-.3px;}
-.nav-logo-text span{color:#534AB7;}
+.nav-logo-icon{width:30px;height:30px;background:#534AB7;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#EEEDFE;font-size:14px;font-weight:600;}
+.nav-logo-text{font-size:15px;font-weight:600;color:#EEEDFE;letter-spacing:-.2px;}
+.nav-logo-text span{color:#AFA9EC;}
 .nav-links{display:flex;align-items:center;gap:6px;}
-.nav-link{padding:7px 14px;font-size:13px;font-weight:500;color:#6e6e73;text-decoration:none;border-radius:8px;transition:background .15s,color .15s;cursor:pointer;border:none;background:none;}
-.nav-link:hover{background:#f5f5f7;color:#1d1d1f;}
-.nav-link.active-nav{background:#f0eefe;color:#534AB7;}
+.nav-link{padding:5px 12px;font-size:12px;font-weight:500;color:rgba(255,255,255,0.65);text-decoration:none;border-radius:6px;transition:background .15s,color .15s;cursor:pointer;border:none;background:none;}
+.nav-link:hover{background:rgba(255,255,255,0.1);color:#fff;}
+.nav-link.active-nav{background:rgba(255,255,255,0.15);color:#fff;}
 .nav-cta{padding:7px 16px;background:#534AB7;color:#fff!important;border-radius:8px;font-weight:600;}
 .nav-cta:hover{background:#443da0!important;color:#fff!important;}
 
 /* ── HERO ── */
-.hero{background:linear-gradient(135deg,#f3f0fd 0%,#eaf3fd 100%);border-bottom:1px solid #e0dbf8;padding:2.5rem 0 2rem;}
+.hero{background:#26215C;border-bottom:none;padding:2.5rem 0 2rem;}
 .hero-inner{max-width:1200px;margin:0 auto;padding:0 1.5rem;}
-.hero-badge{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid #c9c2f0;border-radius:20px;padding:4px 12px;font-size:12px;font-weight:600;color:#534AB7;margin-bottom:1rem;}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(83,74,183,0.35);border:0.5px solid rgba(255,255,255,0.15);border-radius:4px;padding:3px 9px;font-size:10px;font-weight:600;color:#CECBF6;letter-spacing:.5px;text-transform:uppercase;margin-bottom:.75rem;}
 .hero-badge::before{content:'';width:7px;height:7px;background:#1d9e75;border-radius:50%;display:inline-block;}
-.hero h1{font-size:32px;font-weight:700;color:#1d1d1f;margin-bottom:.6rem;letter-spacing:-.5px;line-height:1.2;}
-.hero h1 span{color:#534AB7;}
-.hero-sub{font-size:15px;color:#6e6e73;max-width:600px;line-height:1.6;margin-bottom:1.5rem;}
+.hero h1{font-size:26px;font-weight:600;color:#fff;margin-bottom:.6rem;letter-spacing:-.5px;line-height:1.2;}
+.hero h1 span{color:#AFA9EC;}
+.hero-sub{font-size:13px;color:rgba(255,255,255,0.55);max-width:600px;line-height:1.6;margin-bottom:1.5rem;}
 .hero-stats{display:flex;gap:2rem;flex-wrap:wrap;}
 .hero-stat{display:flex;flex-direction:column;}
-.hero-stat-val{font-size:20px;font-weight:700;color:#534AB7;}
-.hero-stat-lbl{font-size:12px;color:#6e6e73;margin-top:2px;}
+.hero-stat-val{font-size:18px;font-weight:600;color:#fff;}
+.hero-stat-lbl{font-size:11px;color:rgba(255,255,255,0.45);margin-top:2px;}
 
 /* ── SECTION ── */
 .page-section{padding:2.5rem 0;}
@@ -45,7 +69,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .section-sub{font-size:14px;color:#6e6e73;margin-bottom:1.5rem;}
 
 /* ── KART & FORM ── */
-.card{background:#fff;border:1px solid #e5e5ea;border-radius:12px;padding:1.25rem 1.4rem;}
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.4rem;transition:background .2s,border-color .2s;}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
 .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
@@ -60,7 +84,7 @@ input:focus,select:focus{border-color:#534AB7;box-shadow:0 0 0 3px rgba(83,74,18
 .st{font-size:14px;font-weight:600;color:#1d1d1f;margin-bottom:.85rem;}
 
 /* ── METRİK KUTUCUKLAR ── */
-.mc{background:#f5f5f7;border-radius:10px;padding:.9rem 1rem;}
+.mc{background:var(--bg-soft);border-radius:10px;padding:.9rem 1rem;transition:background .2s;}
 .ml{font-size:11px;color:#6e6e73;margin-bottom:3px;text-transform:uppercase;letter-spacing:.4px;font-weight:600;}
 .mv{font-size:20px;font-weight:700;color:#1d1d1f;}
 .ms{font-size:11px;color:#aeaeb2;margin-top:2px;}
@@ -77,9 +101,9 @@ input:focus,select:focus{border-color:#534AB7;box-shadow:0 0 0 3px rgba(83,74,18
 
 /* ── TABLO ── */
 .kt{width:100%;border-collapse:collapse;font-size:12px;}
-.kt th{text-align:right;padding:8px 10px;font-size:11px;font-weight:700;color:#6e6e73;border-bottom:2px solid #e5e5ea;background:#f5f5f7;white-space:nowrap;}
+.kt th{text-align:right;padding:8px 10px;font-size:11px;font-weight:700;color:var(--text-secondary);border-bottom:2px solid var(--border);background:var(--bg-soft);white-space:nowrap;}
 .kt th:first-child{text-align:left;}
-.kt td{padding:7px 10px;border-bottom:1px solid #f2f2f7;text-align:right;font-size:12px;color:#1d1d1f;}
+.kt td{padding:7px 10px;border-bottom:1px solid var(--border-soft);text-align:right;font-size:12px;color:var(--text-primary);}
 .kt td:first-child{text-align:left;font-weight:600;color:#534AB7;}
 .kt tr:hover td{background:#fafafe;}
 .kt tr.alt-row td{background:#fafafa;}
@@ -137,7 +161,7 @@ input:focus,select:focus{border-color:#534AB7;box-shadow:0 0 0 3px rgba(83,74,18
 .sss-a{display:none;padding:0 1.2rem 1rem;font-size:13px;color:#6e6e73;line-height:1.7;border-top:1px solid #f2f2f7;}
 
 /* ── FOOTER ── */
-.footer{background:#1d1d1f;color:#aeaeb2;padding:2rem 0;}
+.footer{background:#1A1648;color:#aeaeb2;padding:2rem 0;border-top:0.5px solid rgba(255,255,255,0.08);}
 .footer-inner{max-width:1200px;margin:0 auto;padding:0 1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
 .footer-logo{font-size:15px;font-weight:700;color:#fff;}
 .footer-logo span{color:#534AB7;}
@@ -162,7 +186,54 @@ input:focus,select:focus{border-color:#534AB7;box-shadow:0 0 0 3px rgba(83,74,18
   .g3{grid-template-columns:1fr;}
   .g4{grid-template-columns:1fr 1fr;}
 }
+
+:root{
+  --bg-page:#f5f5f7; --bg-card:#fff; --bg-soft:#f5f5f7; --bg-soft2:#fafafa;
+  --text-primary:#1d1d1f; --text-secondary:#6e6e73; --text-muted:#aeaeb2;
+  --border:#e5e5ea; --border-soft:#f2f2f7; --border-input:#d2d2d7;
+  --shadow-card:none;
+}
+[data-theme="dark"]{
+  --bg-page:#121218; --bg-card:#1c1c24; --bg-soft:#242430; --bg-soft2:#20202a;
+  --text-primary:#f0f0f5; --text-secondary:#a8a8b8; --text-muted:#75758a;
+  --border:#33333e; --border-soft:#2a2a34; --border-input:#3a3a46;
+  --shadow-card:0 1px 3px rgba(0,0,0,.4);
+}
+[data-theme="dark"] body{background:var(--bg-page);}
+[data-theme="dark"] .card,[data-theme="dark"] .mc{background:var(--bg-card);border-color:var(--border);box-shadow:var(--shadow-card);}
+[data-theme="dark"] input,[data-theme="dark"] select{background:var(--bg-card);color:var(--text-primary);border-color:var(--border-input);}
+[data-theme="dark"] input::placeholder{color:var(--text-muted);}
+[data-theme="dark"] .yt th,[data-theme="dark"] .kt th,[data-theme="dark"] .bt-wrap thead th{background:var(--bg-soft);color:var(--text-secondary);border-color:var(--border);}
+[data-theme="dark"] .yt td,[data-theme="dark"] .kt td,[data-theme="dark"] .bt-wrap tbody td{border-color:var(--border-soft);color:var(--text-primary);}
+[data-theme="dark"] .yt tr:not(.tot):hover td,[data-theme="dark"] .kt tr:hover td{background:var(--bg-soft2);}
+[data-theme="dark"] .yt tr.tot td,[data-theme="dark"] .kt tr.tot td{background:var(--bg-soft);}
+[data-theme="dark"] .ri{border-color:var(--border-soft);}
+[data-theme="dark"] .rl{color:var(--text-secondary);}
+[data-theme="dark"] .rv{color:var(--text-primary);}
+[data-theme="dark"] .ml{color:var(--text-secondary);}
+[data-theme="dark"] .mv{color:var(--text-primary);}
+[data-theme="dark"] .ms{color:var(--text-muted);}
+[data-theme="dark"] .tab{color:var(--text-secondary);}
+[data-theme="dark"] h1,[data-theme="dark"] .section-title,[data-theme="dark"] p.st{color:var(--text-primary);}
+[data-theme="dark"] hr{border-color:var(--border)!important;}
+[data-theme="dark"] .info-mor{background:#232047;border-color:#3d3878;color:#c9c2f0;}
+[data-theme="dark"] .info{background:#2a2410;border-color:#4d3f0f;color:#e8d488;}
+[data-theme="dark"] label{color:var(--text-secondary);}
+[data-theme="dark"] .footer{background:#0d0d12;}
+[data-theme="dark"] .sss-item{background:var(--bg-card);border-color:var(--border);}
+[data-theme="dark"] .sss-a{border-color:var(--border-soft);color:var(--text-secondary);}
+[data-theme="dark"] .empty-state{color:var(--text-secondary);}
+.ust-sec{display:none;}
+.ust-sec.active{display:block;}
 </style>
+<script>
+(function(){
+  try{
+    const kayitli = localStorage.getItem('maasHes_tema');
+    if(kayitli === 'dark') document.documentElement.setAttribute('data-theme','dark');
+  }catch(e){}
+})();
+</script>
 </head>
 <body>
 
@@ -179,6 +250,8 @@ input:focus,select:focus{border-color:#534AB7;box-shadow:0 0 0 3px rgba(83,74,18
       <a class="nav-link" href="kidem-hesaplama.html" style="text-decoration:none;">⚖️ Kıdem Tazminatı</a>
       <a class="nav-link" href="sss.html" style="text-decoration:none;">SSS</a>
       <button class="nav-link nav-cta" onclick="document.getElementById('hesapla-bolum').scrollIntoView({behavior:'smooth'})">Hemen Hesapla</button>
+    <a class="nav-link" href="rehber.html">📖 Rehber</a>
+    <button onclick="temaDegistir()" id="temaBtn" title="Karanlık mod" style="width:32px;height:32px;border-radius:8px;border:none;background:rgba(255,255,255,.1);color:#fff;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;margin-left:2px;">🌙</button>
     </div>
   </div>
 </nav>
@@ -188,18 +261,29 @@ input:focus,select:focus{border-color:#534AB7;box-shadow:0 0 0 3px rgba(83,74,18
   <div class="hero-inner">
     <div class="hero-badge">Ay Ay Ödeme Planı</div>
     <h1>Kredinizi <span>Ay Ay</span><br>Detaylıca Hesaplayın</h1>
-    <p class="hero-sub">Faiz, masraf, KKDF ve BSMV dahil toplam maliyetinizi görün. İhtiyaç, konut, taşıt ve ticari krediler için kapsamlı ödeme planı.</p>
+    <p class="hero-sub">Faiz, KKDF, BSMV ve masraf dahil gerçek toplam maliyetinizi görün. Efektif yıllık maliyet oranı (YSMBM), zaman çizelgesi ve grafik analizi ile ihtiyaç, konut, taşıt ve ticari krediler için kapsamlı ödeme planı.</p>
     <div class="hero-stats">
       <div class="hero-stat"><span class="hero-stat-val">4</span><span class="hero-stat-lbl">Kredi türü</span></div>
       <div class="hero-stat"><span class="hero-stat-val">%100</span><span class="hero-stat-lbl">Ücretsiz</span></div>
       <div class="hero-stat"><span class="hero-stat-val">Detaylı</span><span class="hero-stat-lbl">Ay ay plan</span></div>
-      <div class="hero-stat"><span class="hero-stat-val">CSV</span><span class="hero-stat-lbl">Dışa aktarım</span></div>
+      <div class="hero-stat"><span class="hero-stat-val">KKDF+BSMV</span><span class="hero-stat-lbl">Vergi dahil</span></div>
     </div>
   </div>
 </div>
 
+<!-- ÜST SEKME ÇUBUĞU -->
+<div class="page-section" style="padding-bottom:0;">
+<div class="section-inner">
+  <div style="display:flex;gap:4px;background:var(--bg-soft);border-radius:12px;padding:4px;margin-bottom:1.5rem;flex-wrap:wrap;">
+    <button class="ust-tab-btn active" data-usttab="hesapla" onclick="anaTabGit('hesapla')" style="flex:1;min-width:150px;padding:10px 14px;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;border:none;background:#534AB7;color:#fff;">🧮 Kredi Hesapla</button>
+    <button class="ust-tab-btn" data-usttab="uygunluk" onclick="anaTabGit('uygunluk')" style="flex:1;min-width:150px;padding:10px 14px;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;border:none;background:transparent;color:var(--text-secondary);">💰 Ne Kadar Çekebilirim?</button>
+    <button class="ust-tab-btn" data-usttab="karsilastir" onclick="anaTabGit('karsilastir')" style="flex:1;min-width:150px;padding:10px 14px;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;border:none;background:transparent;color:var(--text-secondary);">⚖️ Teklif Karşılaştır</button>
+  </div>
+</div>
+</div>
+
 <!-- ANA HESAPLAMA BÖLÜMÜ -->
-<div class="page-section" id="hesapla-bolum">
+<div class="page-section ust-sec active" id="hesapla-bolum" style="padding-top:0;">
 <div class="section-inner">
 
 <div style="display:grid;grid-template-columns:380px 1fr;gap:1.25rem;align-items:start;" id="mainGrid">
@@ -278,8 +362,12 @@ input:focus,select:focus{border-color:#534AB7;box-shadow:0 0 0 3px rgba(83,74,18
         <button class="btn-hesapla" onclick="hesapla()">Hesapla & Plan Oluştur →</button>
         <div style="display:flex;gap:8px;">
           <button class="btn-sifirla" onclick="sifirla()" style="flex:1;">Sıfırla</button>
-          <button class="btn-excel" onclick="csvIndir()" id="csvBtn" style="flex:1;display:none;">⬇ CSV İndir</button>
+          <button class="btn-excel" onclick="excelIndir()" id="csvBtn" style="flex:1;display:none;">📥 Excel İndir</button>
         </div>
+        <button onclick="borclarimaEkle()" id="borcAktarBtn" style="display:none;width:100%;margin-top:8px;padding:10px;background:#26215C;color:#fff;border:none;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;">
+          💳 Bu Krediyi "Borçlarım"a Ekle →
+        </button>
+        <div id="borcAktarMesaj" style="display:none;margin-top:8px;background:#f0faf6;border:1px solid #1d9e75;border-radius:8px;padding:8px 10px;font-size:12px;color:#0f6e56;text-align:center;"></div>
       </div>
     </div>
 
@@ -310,6 +398,97 @@ input:focus,select:focus{border-color:#534AB7;box-shadow:0 0 0 3px rgba(83,74,18
 </div>
 </div>
 
+<!-- ═══ NE KADAR KREDİ ÇEKEBİLİRİM ═══ -->
+<div class="page-section ust-sec" id="uygunluk-bolum">
+<div class="section-inner">
+  <div style="display:grid;grid-template-columns:380px 1fr;gap:1.25rem;align-items:start;">
+
+    <div class="card">
+      <p class="st">💰 Kredi Uygunluk Hesaplayıcı</p>
+      <div style="font-size:12px;color:var(--text-secondary);margin-bottom:1rem;line-height:1.6;">Net gelirinize göre çekebileceğiniz tahmini maksimum kredi tutarını hesaplar. Bankalar genelde aylık taksitin net gelirin belirli bir oranını aşmamasını ister.</div>
+      <div style="display:grid;gap:12px;">
+        <div>
+          <label>Net Aylık Geliriniz (₺)</label>
+          <input type="number" id="uyGelir" placeholder="Örn: 40.000" min="0" step="500" oninput="uygunlukHesapla()">
+        </div>
+        <div>
+          <label>Halihazırda Ödediğiniz Diğer Taksitler (₺) <span style="font-size:11px;color:var(--text-muted);">(opsiyonel)</span></label>
+          <input type="number" id="uyDigerTaksit" placeholder="0" min="0" step="100" value="0" oninput="uygunlukHesapla()">
+        </div>
+        <div>
+          <label>Maksimum Taksit / Gelir Oranı (%)</label>
+          <input type="number" id="uyOran" value="40" min="10" max="70" step="5" oninput="uygunlukHesapla()">
+          <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">Bankalar genelde %30-50 arası bir oran kullanır. Emin değilseniz %40 makul bir varsayımdır.</div>
+        </div>
+        <div class="g2" style="gap:8px;">
+          <div>
+            <label>Vade (ay)</label>
+            <select id="uyVade" onchange="uygunlukHesapla()">
+              <option value="12">12 ay</option>
+              <option value="24" selected>24 ay</option>
+              <option value="36">36 ay</option>
+              <option value="48">48 ay</option>
+              <option value="60">60 ay</option>
+            </select>
+          </div>
+          <div>
+            <label>Tahmini Aylık Faiz (%)</label>
+            <input type="number" id="uyFaiz" value="3.5" min="0" step="0.1" oninput="uygunlukHesapla()">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="uygunlukSonuc">
+      <div class="empty-state">
+        <div class="empty-icon">💰</div>
+        <div class="empty-title">Net gelirinizi girin</div>
+        <div class="empty-sub">Tahmini çekebileceğiniz maksimum kredi tutarını hesaplayalım.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="uyari-kutu" style="margin-top:1rem;max-width:900px;">⚠️ Bu hesaplama <b>genel bir tahmindir</b>. Her banka kendi risk politikasına, kredi notunuza, diğer yükümlülüklerinize ve ürün türüne göre farklı bir değerlendirme yapar. Kesin sonuç için bankanıza başvurmanız gerekir.</div>
+</div>
+</div>
+
+<!-- ═══ TEKLİF KARŞILAŞTIRMA ═══ -->
+<div class="page-section ust-sec" id="karsilastir-bolum">
+<div class="section-inner">
+  <div class="card" style="margin-bottom:1rem;">
+    <p class="st">⚖️ İki Kredi Teklifini Karşılaştır</p>
+    <div style="font-size:12px;color:var(--text-secondary);margin-bottom:1rem;">Farklı bankalardan aldığınız iki teklifi yan yana koyup hangisinin toplam maliyetinin daha düşük olduğunu görün.</div>
+
+    <div class="g2" style="gap:1rem;">
+      <div style="border:1.5px solid #534AB7;border-radius:12px;padding:14px;">
+        <p style="font-size:13px;font-weight:700;color:#534AB7;margin-bottom:10px;">Teklif A</p>
+        <div style="display:grid;gap:10px;">
+          <div><label>Kredi Tutarı (₺)</label><input type="number" id="tkA_tutar" placeholder="100.000" oninput="teklifKarsilastir()"></div>
+          <div class="g2" style="gap:8px;">
+            <div><label>Taksit Sayısı</label><input type="number" id="tkA_taksit" placeholder="24" oninput="teklifKarsilastir()"></div>
+            <div><label>Aylık Faiz (%)</label><input type="number" id="tkA_faiz" placeholder="3.5" step="0.1" oninput="teklifKarsilastir()"></div>
+          </div>
+          <div><label>Masraf (₺) <span style="font-size:11px;color:var(--text-muted);">(opsiyonel)</span></label><input type="number" id="tkA_masraf" placeholder="0" value="0" oninput="teklifKarsilastir()"></div>
+        </div>
+      </div>
+      <div style="border:1.5px solid #1d9e75;border-radius:12px;padding:14px;">
+        <p style="font-size:13px;font-weight:700;color:#1d9e75;margin-bottom:10px;">Teklif B</p>
+        <div style="display:grid;gap:10px;">
+          <div><label>Kredi Tutarı (₺)</label><input type="number" id="tkB_tutar" placeholder="100.000" oninput="teklifKarsilastir()"></div>
+          <div class="g2" style="gap:8px;">
+            <div><label>Taksit Sayısı</label><input type="number" id="tkB_taksit" placeholder="24" oninput="teklifKarsilastir()"></div>
+            <div><label>Aylık Faiz (%)</label><input type="number" id="tkB_faiz" placeholder="3.2" step="0.1" oninput="teklifKarsilastir()"></div>
+          </div>
+          <div><label>Masraf (₺) <span style="font-size:11px;color:var(--text-muted);">(opsiyonel)</span></label><input type="number" id="tkB_masraf" placeholder="0" value="0" oninput="teklifKarsilastir()"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="teklifSonuc"></div>
+</div>
+</div>
+
 <!-- SSS -->
 
 <!-- FOOTER -->
@@ -320,6 +499,7 @@ input:focus,select:focus{border-color:#534AB7;box-shadow:0 0 0 3px rgba(83,74,18
       <a href="index.html">Maaş Hesaplama</a>
       <a href="#hesapla-bolum">Kredi Hesaplama</a>
       <a href="kidem-hesaplama.html">Kıdem Tazminatı</a>
+      <a href="rehber.html">Rehber</a>
       <a href="sss.html">SSS</a>
     </div>
     <div class="footer-copy">
@@ -479,6 +659,8 @@ function hesapla(){
 
   hesaplandi = true;
   document.getElementById('csvBtn').style.display = 'flex';
+  document.getElementById('borcAktarBtn').style.display = 'block';
+  document.getElementById('borcAktarMesaj').style.display = 'none';
 }
 
 // ── YSMBM (Yıllık Standart Maliyet Bileşeni) ──
@@ -534,6 +716,7 @@ function renderSonuclar(d){
       <button class="tab active" onclick="showTab2('ozet')">Özet</button>
       <button class="tab" onclick="showTab2('plan')">Ay Ay Plan</button>
       <button class="tab" onclick="showTab2('grafik')">Grafik</button>
+      <button class="tab" onclick="showTab2('erken')">⏱️ Erken Kapama</button>
     </div>
 
     <!-- ÖZET TAB -->
@@ -704,7 +887,30 @@ function renderSonuclar(d){
         </div>
       </div>
     </div>
+
+    <!-- ERKEN KAPAMA TAB -->
+    <div id="tab-erken" class="sec">
+      <div class="card" style="margin-bottom:1rem;">
+        <p class="st">⏱️ Erken Kapama Simülasyonu</p>
+        <div style="font-size:12px;color:#6e6e73;margin-bottom:1rem;line-height:1.6;">Kredinizi belirli bir ayda erken kapatırsanız ne kadar faizden tasarruf edeceğinizi hesaplayın. Bankalar erken kapamada kalan anapara üzerinden genelde %1-2 komisyon alabilir.</div>
+        <div class="g2" style="gap:1rem;">
+          <div>
+            <label>Hangi Ayda Kapatmak İstiyorsunuz?</label>
+            <select id="erkenAy" onchange="erkenKapamaHesapla()"></select>
+          </div>
+          <div>
+            <label>Banka Erken Kapama Komisyonu (%) <span style="font-size:11px;color:#aeaeb2;">(opsiyonel)</span></label>
+            <input type="number" id="erkenKomisyon" value="0" min="0" max="10" step="0.1" oninput="erkenKapamaHesapla()">
+          </div>
+        </div>
+      </div>
+
+      <div id="erkenSonuclar"></div>
+    </div>
   `;
+
+  // Ay seçim listesini doldur
+  setTimeout(() => { erkenAySecimiDoldur(); }, 60);
 
   // Grafikleri çiz
   setTimeout(() => {
@@ -816,23 +1022,46 @@ function planSatirHTML(r, kkdfOr){
   </tr>`;
 }
 
-// ── CSV İNDİR ──
-function csvIndir(){
+// ── EXCEL İNDİR (Kredi) ──
+function excelIndir(){
   if(!planVerisi.length) return;
+  if(typeof XLSX === 'undefined'){ alert('Excel kütüphanesi yüklenemedi.'); return; }
   const kkdfOr = parseFloat(document.getElementById('kkdf').value) / 100;
-  let csv = 'Ay,Tarih,Taksit (TL),Anapara (TL),Faiz (TL)';
-  if(kkdfOr > 0) csv += ',KKDF (TL)';
-  csv += ',BSMV (TL),Kalan Bakiye (TL)\n';
+  const wb = XLSX.utils.book_new();
+
+  // Ödeme planı sayfası
+  const basliklar = ['Ay','Tarih','Taksit (₺)','Anapara (₺)','Faiz (₺)'];
+  if(kkdfOr > 0) basliklar.push('KKDF (₺)');
+  basliklar.push('BSMV (₺)', 'Kalan Bakiye (₺)');
+  const satirlar = [basliklar];
   planVerisi.forEach(r => {
-    csv += `${r.ay},${formatTarihCSV(r.tarih)},${r.taksit.toFixed(2)},${r.anaPara.toFixed(2)},${r.faiz.toFixed(2)}`;
-    if(kkdfOr > 0) csv += `,${r.kkdf.toFixed(2)}`;
-    csv += `,${r.bsmv.toFixed(2)},${r.kalanBakiye.toFixed(2)}\n`;
+    const satir = [r.ay, formatTarihCSV(r.tarih),
+      +r.taksit.toFixed(2), +r.anaPara.toFixed(2), +r.faiz.toFixed(2)];
+    if(kkdfOr > 0) satir.push(+r.kkdf.toFixed(2));
+    satir.push(+r.bsmv.toFixed(2), +r.kalanBakiye.toFixed(2));
+    satirlar.push(satir);
   });
-  const blob = new Blob(['\uFEFF'+csv], {type:'text/csv;charset=utf-8;'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'kredi-odeme-plani.csv';
-  a.click();
+  const ws = XLSX.utils.aoa_to_sheet(satirlar);
+  ws['!cols'] = basliklar.map(() => ({wch:16}));
+  XLSX.utils.book_append_sheet(wb, ws, 'Ödeme Planı');
+
+  // Özet sayfası
+  const ozet = [
+    ['Kredi Türü', document.querySelector('.kredi-chip.selected')?.textContent || '-'],
+    ['Kredi Tutarı (₺)', parseFloat(document.getElementById('tutar').value)||0],
+    ['Taksit Sayısı', planVerisi.length],
+    ['Aylık Taksit (₺)', +planVerisi[0]?.taksit.toFixed(2)||0],
+    ['Toplam Ödeme (₺)', +planVerisi.reduce((s,r)=>s+r.taksit,0).toFixed(2)],
+    ['Toplam Faiz (₺)', +planVerisi.reduce((s,r)=>s+r.faiz,0).toFixed(2)],
+    ['Toplam KKDF (₺)', +planVerisi.reduce((s,r)=>s+r.kkdf,0).toFixed(2)],
+    ['Toplam BSMV (₺)', +planVerisi.reduce((s,r)=>s+r.bsmv,0).toFixed(2)],
+    ['Masraf (₺)', parseFloat(document.getElementById('masraf').value)||0],
+  ];
+  const ws2 = XLSX.utils.aoa_to_sheet([['Alan','Değer'], ...ozet]);
+  ws2['!cols'] = [{wch:22},{wch:16}];
+  XLSX.utils.book_append_sheet(wb, ws2, 'Özet');
+
+  XLSX.writeFile(wb, 'kredi-odeme-plani.xlsx');
 }
 
 // ── SIFIRLA ──
@@ -848,6 +1077,8 @@ function sifirla(){
   document.getElementById('taksitLabel').textContent = '';
   document.getElementById('faizBilgi').textContent = '';
   document.getElementById('csvBtn').style.display = 'none';
+  document.getElementById('borcAktarBtn').style.display = 'none';
+  document.getElementById('borcAktarMesaj').style.display = 'none';
   document.getElementById('sonuclar').innerHTML = `
     <div class="empty-state" id="bosEkran">
       <div class="empty-icon">🏦</div>
@@ -883,6 +1114,294 @@ function mobilKontrol(){
 }
 window.addEventListener('resize', mobilKontrol);
 mobilKontrol();
+// ════════════ ERKEN KAPAMA SİMÜLASYONU ════════════
+function erkenAySecimiDoldur(){
+  const sel = document.getElementById('erkenAy');
+  if(!sel || !planVerisi.length) return;
+  sel.innerHTML = planVerisi.map(r =>
+    `<option value="${r.ay}">${r.ay}. Ay (${formatTarih(r.tarih)}) — Kalan bakiye: ${fmt(r.kalanBakiye)}</option>`
+  ).join('');
+  // Varsayılan: ortadaki bir ay
+  sel.value = Math.max(1, Math.floor(planVerisi.length/2));
+  erkenKapamaHesapla();
+}
+
+function erkenKapamaHesapla(){
+  const secilenAy = parseInt(document.getElementById('erkenAy')?.value);
+  const komisyonOrani = parseFloat(document.getElementById('erkenKomisyon')?.value)||0;
+  const sonucDiv = document.getElementById('erkenSonuclar');
+  if(!sonucDiv || !planVerisi.length || !secilenAy) return;
+
+  const satir = planVerisi.find(r => r.ay === secilenAy);
+  if(!satir) return;
+
+  // Normal planda bu aya kadar ödenecek toplam ve bu aydan sonraki kalan ödemeler
+  const buAyaKadarOdenen = planVerisi.filter(r => r.ay <= secilenAy).reduce((s,r)=>s+r.taksit,0);
+  const kalanTaksitler = planVerisi.filter(r => r.ay > secilenAy);
+  const kalanToplamNormal = kalanTaksitler.reduce((s,r)=>s+r.taksit,0);
+  const kalanFaizNormal = kalanTaksitler.reduce((s,r)=>s+r.faiz+r.kkdf+r.bsmv,0);
+  const kalanAnaparaNormal = kalanTaksitler.reduce((s,r)=>s+r.anaPara,0);
+
+  // Erken kapama tutarı: o aydaki kalan bakiye + komisyon
+  const kalanBakiye = satir.kalanBakiye;
+  const komisyonTutari = kalanBakiye * (komisyonOrani/100);
+  const erkenKapamaTutari = kalanBakiye + komisyonTutari;
+
+  // Tasarruf: (normal kalan ödemeler toplamı) - (erken kapama tutarı)
+  const tasarrufBrut = kalanToplamNormal - kalanBakiye;
+  const tasarrufNet = kalanToplamNormal - erkenKapamaTutari;
+  const kalanAySayisi = kalanTaksitler.length;
+
+  const toplamOdemeNormal = buAyaKadarOdenen + kalanToplamNormal;
+  const toplamOdemeErken = buAyaKadarOdenen + erkenKapamaTutari;
+
+  sonucDiv.innerHTML = `
+    <div class="g4" style="margin-bottom:1rem;">
+      <div class="mc">
+        <div class="ml">Erken Kapama Tutarı</div>
+        <div class="mv pur">${fmt(erkenKapamaTutari)} ₺</div>
+        <div class="ms">${secilenAy}. ayda ödenecek</div>
+      </div>
+      <div class="mc">
+        <div class="ml">Kalan Taksit Sayısı</div>
+        <div class="mv">${kalanAySayisi} ay</div>
+        <div class="ms">iptal olacak</div>
+      </div>
+      <div class="mc">
+        <div class="ml">Faizden Tasarruf</div>
+        <div class="mv pos">${fmt(tasarrufNet)} ₺</div>
+        <div class="ms">${komisyonTutari>0?'Komisyon dahil net':'Net tasarruf'}</div>
+      </div>
+      <div class="mc">
+        <div class="ml">Tasarruf Oranı</div>
+        <div class="mv" style="color:#1d9e75;">%${kalanToplamNormal>0?((tasarrufNet/kalanToplamNormal)*100).toFixed(1):'0'}</div>
+        <div class="ms">kalan ödemeye göre</div>
+      </div>
+    </div>
+
+    <div class="g2" style="gap:1rem;">
+      <div class="card">
+        <p class="st">Normal Plan (Erken Kapama Yapılmazsa)</p>
+        <div class="ri"><span class="rl">${secilenAy}. Aya Kadar Ödenen</span><span class="rv">${fmt(buAyaKadarOdenen)} ₺</span></div>
+        <div class="ri"><span class="rl">Kalan ${kalanAySayisi} Taksit Toplamı</span><span class="rv">${fmt(kalanToplamNormal)} ₺</span></div>
+        <div class="ri"><span class="rl">— Kalan Anapara</span><span class="rv pos">${fmt(kalanAnaparaNormal)} ₺</span></div>
+        <div class="ri"><span class="rl">— Kalan Faiz+Vergi</span><span class="rv neg">${fmt(kalanFaizNormal)} ₺</span></div>
+        <hr style="border:none;border-top:1px solid #e5e5ea;margin:8px 0;">
+        <div class="ri"><span class="rl" style="font-weight:700;">Toplam Ödenecek</span><span class="rv" style="font-size:15px;">${fmt(toplamOdemeNormal)} ₺</span></div>
+      </div>
+      <div class="card" style="border:1.5px solid #1d9e75;">
+        <p class="st" style="color:#0f6e56;">Erken Kapama Yapılırsa</p>
+        <div class="ri"><span class="rl">${secilenAy}. Aya Kadar Ödenen</span><span class="rv">${fmt(buAyaKadarOdenen)} ₺</span></div>
+        <div class="ri"><span class="rl">Kalan Bakiye (Anapara)</span><span class="rv pos">${fmt(kalanBakiye)} ₺</span></div>
+        ${komisyonTutari>0?`<div class="ri"><span class="rl">+ Erken Kapama Komisyonu (%${komisyonOrani})</span><span class="rv neg">${fmt(komisyonTutari)} ₺</span></div>`:''}
+        <hr style="border:none;border-top:1px solid #e5e5ea;margin:8px 0;">
+        <div class="ri"><span class="rl" style="font-weight:700;">Toplam Ödenecek</span><span class="rv pos" style="font-size:15px;">${fmt(toplamOdemeErken)} ₺</span></div>
+        <div class="ri"><span class="rl" style="font-weight:700;">Tasarruf</span><span class="rv" style="font-size:15px;color:#1d9e75;font-weight:800;">${fmt(tasarrufNet)} ₺</span></div>
+      </div>
+    </div>
+
+    <div class="info-mor" style="margin-top:1rem;">
+      💡 Bu hesaplama, kredinizi <b>${secilenAy}. ayda</b> kapatırsanız kalan ${kalanAySayisi} taksitin faiz kısmından ne kadar tasarruf edeceğinizi gösterir. Bankalar erken kapamada kalan anaparanın en fazla %1-2'si kadar komisyon talep edebilir (yasal üst sınır) — bu oranı yukarıdaki kutuya girerek net tasarrufunuzu görebilirsiniz.
+    </div>
+  `;
+}
+
+// ════════════ BORÇLARIMA AKTAR (localStorage köprüsü) ════════════
+function borclarimaEkle(){
+  if(!hesaplandi || !planVerisi.length){ alert('Önce krediyi hesaplayın.'); return; }
+
+  const turEtiket = document.querySelector('.kredi-chip.selected')?.textContent?.trim() || 'Kredi';
+  const aylikTaksit = planVerisi[0].taksit;
+  const kalanTaksit = planVerisi.length;
+  const turMap = {'İhtiyaç':'kredi','Konut':'kredi','Taşıt':'kredi','Ticari':'kredi'};
+
+  const faizOrani = parseFloat(document.getElementById('faiz').value)||0;
+  const pending = {
+    ad: turEtiket + ' Kredisi',
+    tur: 'kredi',
+    taksit: Math.round(aylikTaksit*100)/100,
+    kalan: kalanTaksit,
+    toplam: kalanTaksit,
+    tarih: planVerisi[0].tarih instanceof Date ? planVerisi[0].tarih.toISOString().split('T')[0] : document.getElementById('tarih').value,
+    faiz: faizOrani,
+  };
+
+  try{
+    localStorage.setItem('maasHes_pendingBorc', JSON.stringify(pending));
+    const mesajEl = document.getElementById('borcAktarMesaj');
+    mesajEl.style.display = 'block';
+    mesajEl.innerHTML = `✅ Kredi hazırlandı! <a href="index.html#borc-aktar" style="color:#0f6e56;font-weight:700;text-decoration:underline;">Borçlarım sayfasını aç →</a>`;
+  }catch(e){
+    alert('Bu tarayıcıda aktarım desteklenmiyor. Lütfen bilgileri Borçlarım sayfasına manuel girin.');
+  }
+}
+
+// ── TEMA (Karanlık Mod) ──────────────────────────────
+function temaDegistir(){
+  const html = document.documentElement;
+  const suanKoyuMu = html.getAttribute('data-theme') === 'dark';
+  if(suanKoyuMu){
+    html.removeAttribute('data-theme');
+    localStorage.setItem('maasHes_tema','light');
+  } else {
+    html.setAttribute('data-theme','dark');
+    localStorage.setItem('maasHes_tema','dark');
+  }
+  temaBtnGuncelle();
+}
+function temaBtnGuncelle(){
+  const btn = document.getElementById('temaBtn');
+  if(!btn) return;
+  const koyuMu = document.documentElement.getAttribute('data-theme')==='dark';
+  btn.textContent = koyuMu ? '☀️' : '🌙';
+  btn.title = koyuMu ? 'Aydınlık mod' : 'Karanlık mod';
+}
+window.addEventListener('DOMContentLoaded', temaBtnGuncelle);
+
+// ════════════ ÜST SEKME GEÇİŞİ ════════════
+function anaTabGit(id){
+  document.querySelectorAll('.ust-sec').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.ust-tab-btn').forEach(btn=>{
+    const aktif = btn.getAttribute('data-usttab')===id;
+    btn.classList.toggle('active', aktif);
+    btn.style.background = aktif ? '#534AB7' : 'transparent';
+    btn.style.color = aktif ? '#fff' : 'var(--text-secondary)';
+  });
+  const hedefId = id==='hesapla' ? 'hesapla-bolum' : (id==='uygunluk' ? 'uygunluk-bolum' : 'karsilastir-bolum');
+  document.getElementById(hedefId).classList.add('active');
+}
+
+// ════════════ NE KADAR KREDİ ÇEKEBİLİRİM ════════════
+function uygunlukHesapla(){
+  const gelir = parseFloat(document.getElementById('uyGelir').value)||0;
+  const digerTaksit = parseFloat(document.getElementById('uyDigerTaksit').value)||0;
+  const oran = parseFloat(document.getElementById('uyOran').value)||40;
+  const vade = parseInt(document.getElementById('uyVade').value)||24;
+  const faizAy = (parseFloat(document.getElementById('uyFaiz').value)||0)/100;
+
+  const sonucDiv = document.getElementById('uygunlukSonuc');
+  if(gelir<=0){
+    sonucDiv.innerHTML = `<div class="empty-state"><div class="empty-icon">💰</div><div class="empty-title">Net gelirinizi girin</div><div class="empty-sub">Tahmini çekebileceğiniz maksimum kredi tutarını hesaplayalım.</div></div>`;
+    return;
+  }
+
+  const maksTaksit = (gelir * oran/100) - digerTaksit;
+
+  if(maksTaksit<=0){
+    sonucDiv.innerHTML = `<div class="card"><div style="text-align:center;padding:1.5rem;color:#e24b4a;font-size:13px;">Mevcut diğer taksitleriniz, belirlediğiniz orana göre tüm ödeme kapasitenizi kullanıyor. Yeni bir kredi için uygun görünmüyorsunuz.</div></div>`;
+    return;
+  }
+
+  let maksKredi;
+  if(faizAy===0){
+    maksKredi = maksTaksit * vade;
+  } else {
+    maksKredi = maksTaksit * (1-Math.pow(1+faizAy,-vade))/faizAy;
+  }
+
+  sonucDiv.innerHTML = `
+    <div class="g2" style="gap:1rem;">
+      <div class="mc" style="background:#f5f2ff;">
+        <div class="ml">Tahmini Maksimum Kredi</div>
+        <div class="mv pur" style="font-size:24px;">${fmt(maksKredi)} ₺</div>
+        <div class="ms">${vade} ay vade ile</div>
+      </div>
+      <div class="mc" style="background:#f0faf6;">
+        <div class="ml">Maksimum Aylık Taksit</div>
+        <div class="mv" style="font-size:24px;color:#1d9e75;">${fmt(maksTaksit)} ₺</div>
+        <div class="ms">Net gelirinizin %${oran}'i</div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:1rem;">
+      <p class="st">Hesaplama Detayı</p>
+      <div class="ri"><span class="rl">Net Aylık Geliriniz</span><span class="rv">${fmt(gelir)} ₺</span></div>
+      <div class="ri"><span class="rl">Maks. Taksit/Gelir Oranı</span><span class="rv">%${oran}</span></div>
+      <div class="ri"><span class="rl">Ayrılabilir Tutar (Oran × Gelir)</span><span class="rv">${fmt(gelir*oran/100)} ₺</span></div>
+      ${digerTaksit>0?`<div class="ri"><span class="rl">− Mevcut Diğer Taksitler</span><span class="rv neg">${fmt(digerTaksit)} ₺</span></div>`:''}
+      <div class="ri"><span class="rl" style="font-weight:700;">= Kullanılabilir Aylık Taksit</span><span class="rv pos" style="font-weight:700;">${fmt(maksTaksit)} ₺</span></div>
+      <hr style="border:none;border-top:1px solid var(--border);margin:8px 0;">
+      <div class="ri"><span class="rl">Vade</span><span class="rv">${vade} ay</span></div>
+      <div class="ri"><span class="rl">Tahmini Aylık Faiz</span><span class="rv">%${(faizAy*100).toFixed(2)}</span></div>
+      <div class="ri"><span class="rl" style="font-weight:700;">Tahmini Maksimum Kredi Tutarı</span><span class="rv pur" style="font-weight:700;font-size:15px;">${fmt(maksKredi)} ₺</span></div>
+    </div>
+    <button onclick="uygunluktanHesaplaTasi()" style="margin-top:1rem;width:100%;padding:11px;background:#26215C;color:#fff;border:none;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;">🧮 Bu Tutarla Ödeme Planı Oluştur →</button>
+  `;
+}
+
+function uygunluktanHesaplaTasi(){
+  const gelir = parseFloat(document.getElementById('uyGelir').value)||0;
+  const digerTaksit = parseFloat(document.getElementById('uyDigerTaksit').value)||0;
+  const oran = parseFloat(document.getElementById('uyOran').value)||40;
+  const vade = parseInt(document.getElementById('uyVade').value)||24;
+  const faizAy = parseFloat(document.getElementById('uyFaiz').value)||0;
+  const maksTaksit = (gelir * oran/100) - digerTaksit;
+  const faizOran = faizAy/100;
+  let maksKredi = faizOran===0 ? maksTaksit*vade : maksTaksit*(1-Math.pow(1+faizOran,-vade))/faizOran;
+
+  anaTabGit('hesapla');
+  setTimeout(()=>{
+    document.getElementById('tutar').value = Math.round(maksKredi/1000)*1000;
+    document.getElementById('taksit').value = vade;
+    document.getElementById('faiz').value = faizAy;
+    document.getElementById('hesapla-bolum').scrollIntoView({behavior:'smooth'});
+  }, 100);
+}
+
+// ════════════ TEKLİF KARŞILAŞTIRMA ════════════
+function krediHesaplaBasit(tutar, taksitSayisi, faizAy, masraf){
+  if(!tutar || !taksitSayisi || faizAy===undefined) return null;
+  const r = faizAy/100;
+  let aylikTaksit;
+  if(r===0){ aylikTaksit = tutar/taksitSayisi; }
+  else{ aylikTaksit = tutar * (r*Math.pow(1+r,taksitSayisi))/(Math.pow(1+r,taksitSayisi)-1); }
+  const toplamOdeme = aylikTaksit*taksitSayisi + (masraf||0);
+  const toplamFaiz = toplamOdeme - tutar - (masraf||0);
+  return { aylikTaksit, toplamOdeme, toplamFaiz };
+}
+
+function teklifKarsilastir(){
+  const a_tutar = parseFloat(document.getElementById('tkA_tutar').value)||0;
+  const a_taksit = parseInt(document.getElementById('tkA_taksit').value)||0;
+  const a_faiz = parseFloat(document.getElementById('tkA_faiz').value)||0;
+  const a_masraf = parseFloat(document.getElementById('tkA_masraf').value)||0;
+
+  const b_tutar = parseFloat(document.getElementById('tkB_tutar').value)||0;
+  const b_taksit = parseInt(document.getElementById('tkB_taksit').value)||0;
+  const b_faiz = parseFloat(document.getElementById('tkB_faiz').value)||0;
+  const b_masraf = parseFloat(document.getElementById('tkB_masraf').value)||0;
+
+  const sonucDiv = document.getElementById('teklifSonuc');
+
+  if(!a_tutar||!a_taksit||!b_tutar||!b_taksit){
+    sonucDiv.innerHTML = `<div class="empty-state"><div class="empty-icon">⚖️</div><div class="empty-title">İki teklifin bilgilerini de girin</div><div class="empty-sub">Kredi tutarı, taksit sayısı ve faiz oranını doldurun.</div></div>`;
+    return;
+  }
+
+  const rA = krediHesaplaBasit(a_tutar, a_taksit, a_faiz, a_masraf);
+  const rB = krediHesaplaBasit(b_tutar, b_taksit, b_faiz, b_masraf);
+
+  const aDahaUcuz = rA.toplamOdeme <= rB.toplamOdeme;
+  const fark = Math.abs(rA.toplamOdeme - rB.toplamOdeme);
+
+  sonucDiv.innerHTML = `
+    <div class="g2" style="gap:1rem;margin-bottom:1rem;">
+      <div class="card" style="border:1.5px solid ${aDahaUcuz?'#534AB7':'var(--border)'};">
+        <p class="st" style="color:#534AB7;">Teklif A ${aDahaUcuz?'<span style="font-size:10px;background:#534AB7;color:#fff;padding:2px 8px;border-radius:10px;">DAHA UCUZ</span>':''}</p>
+        <div class="ri"><span class="rl">Aylık Taksit</span><span class="rv">${fmt(rA.aylikTaksit)} ₺</span></div>
+        <div class="ri"><span class="rl">Toplam Faiz</span><span class="rv neg">${fmt(rA.toplamFaiz)} ₺</span></div>
+        <div class="ri"><span class="rl" style="font-weight:700;">Toplam Maliyet</span><span class="rv" style="font-weight:700;font-size:15px;">${fmt(rA.toplamOdeme)} ₺</span></div>
+      </div>
+      <div class="card" style="border:1.5px solid ${!aDahaUcuz?'#1d9e75':'var(--border)'};">
+        <p class="st" style="color:#1d9e75;">Teklif B ${!aDahaUcuz?'<span style="font-size:10px;background:#1d9e75;color:#fff;padding:2px 8px;border-radius:10px;">DAHA UCUZ</span>':''}</p>
+        <div class="ri"><span class="rl">Aylık Taksit</span><span class="rv">${fmt(rB.aylikTaksit)} ₺</span></div>
+        <div class="ri"><span class="rl">Toplam Faiz</span><span class="rv neg">${fmt(rB.toplamFaiz)} ₺</span></div>
+        <div class="ri"><span class="rl" style="font-weight:700;">Toplam Maliyet</span><span class="rv" style="font-weight:700;font-size:15px;">${fmt(rB.toplamOdeme)} ₺</span></div>
+      </div>
+    </div>
+    <div class="info-mor">💡 <b>Teklif ${aDahaUcuz?'A':'B'}</b>, toplam maliyet açısından <b>${fmt(fark)}</b> daha ucuz. ${a_taksit!==b_taksit?'Not: Vadeler farklı olduğundan aylık taksit tutarlarını değil, toplam maliyeti karşılaştırmak daha sağlıklıdır.':''}</div>
+  `;
+}
+
 </script>
 </body>
 </html>
