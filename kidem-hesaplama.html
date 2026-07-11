@@ -5,12 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kıdem Tazminatı Hesaplama 2026 | İhbar Tazminatı Dahil</title>
 <meta name="description" content="İşe giriş ve çıkış tarihinize göre kıdem ve ihbar tazminatınızı 2026 tavan değerleriyle hesaplayın.">
-<link rel="canonical" href="https://maashesaplama.com/kidem-hesaplama.html">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#26215C">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="hesap123123">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="canonical" href="https://courageous-pothos-b8c8f9.netlify.app/kidem-hesaplama.html">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="maaşhesaplama.com">
+<meta property="og:site_name" content="hesap123123.com">
 <meta property="og:title" content="Kıdem Tazminatı Hesaplama 2026 | İhbar Tazminatı Dahil">
 <meta property="og:description" content="İşe giriş ve çıkış tarihinize göre kıdem ve ihbar tazminatınızı 2026 tavan değerleriyle hesaplayın.">
-<meta property="og:url" content="https://maashesaplama.com/kidem-hesaplama.html">
+<meta property="og:url" content="https://courageous-pothos-b8c8f9.netlify.app/kidem-hesaplama.html">
 <meta property="og:locale" content="tr_TR">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kıdem Tazminatı Hesaplama 2026 | İhbar Tazminatı Dahil">
@@ -19,10 +27,10 @@
 {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "maaşhesaplama.com — Kıdem Tazminatı Hesaplama",
+    "name": "hesap123123.com — Kıdem Tazminatı Hesaplama",
     "applicationCategory": "FinanceApplication",
     "operatingSystem": "Web",
-    "url": "https://maashesaplama.com/kidem-hesaplama.html",
+    "url": "https://courageous-pothos-b8c8f9.netlify.app/kidem-hesaplama.html",
     "description": "Kıdem ve ihbar tazminatı, yıllık izin hakkı hesaplama aracı. 2026 tavan değerleriyle güncel.",
     "offers": {"@type": "Offer", "price": "0", "priceCurrency": "TRY"},
     "inLanguage": "tr-TR"
@@ -144,7 +152,7 @@ input:focus,select:focus{border-color:#534AB7;box-shadow:0 0 0 3px rgba(83,74,18
   <div class="navbar-inner">
     <a class="nav-logo" href="index.html">
       <div class="nav-logo-icon">₺</div>
-      <span class="nav-logo-text">maaş<span>hesaplama</span>.com</span>
+      <span class="nav-logo-text">hesap<span>123123</span>.com</span>
     </a>
     <div class="nav-links">
       <a class="nav-link" href="index.html" style="text-decoration:none;">Maaş Hesaplama</a>
@@ -238,8 +246,8 @@ input:focus,select:focus{border-color:#534AB7;box-shadow:0 0 0 3px rgba(83,74,18
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:1rem;">
       <div class="mc">
         <div class="ml">Kıdem Tazminatı Tavanı</div>
-        <div class="mv" style="color:#1d9e75;font-size:16px;" id="kidemTavan">₺64.948,77</div>
-        <div class="ms">Ocak–Haziran 2026 dönemi</div>
+        <div class="mv" style="color:#1d9e75;font-size:16px;" id="kidemTavan">₺73.729,87</div>
+        <div class="ms">Temmuz–Aralık 2026 dönemi</div>
       </div>
       <div class="mc">
         <div class="ml">Minimum Hak Kazanma</div>
@@ -290,6 +298,30 @@ input:focus,select:focus{border-color:#534AB7;box-shadow:0 0 0 3px rgba(83,74,18
       </div>
     </div>
 
+    <!-- İŞSİZLİK MAAŞI HESAPLAYICI -->
+    <div class="card" style="margin-top:1rem;">
+      <p class="st">🛡️ İşsizlik Ödeneği (İşsizlik Maaşı) Hesaplayıcı</p>
+      <div style="font-size:12px;color:var(--text-secondary);margin-bottom:1rem;line-height:1.6;">İşe giriş/çıkış tarihinize ve son 4 aylık ortalama brüt maaşınıza göre İŞKUR'dan alabileceğiniz tahmini işsizlik ödeneğini hesaplar.</div>
+      <div class="g2" style="gap:1rem;">
+        <div style="display:grid;gap:10px;">
+          <div>
+            <label>Son 4 Aylık Ortalama Brüt Maaşınız (₺) <span style="font-size:11px;color:var(--text-muted);">(boşsa güncel brüt kullanılır)</span></label>
+            <input type="number" id="issizOrtBrut" placeholder="Otomatik" min="0" step="500" oninput="issizlikHesapla()">
+          </div>
+          <div>
+            <label>Son 3 Yılda Ödenen İşsizlik Sig. Prim Günü <span style="font-size:11px;color:var(--text-muted);">(bilmiyorsanız boş bırakın)</span></label>
+            <input type="number" id="issizPrimGun" placeholder="Otomatik: giriş-çıkış tarihinden hesaplanır" min="0" oninput="issizlikHesapla()">
+          </div>
+        </div>
+        <div id="issizlikSonuc">
+          <div style="text-align:center;padding:1.5rem 1rem;color:var(--text-muted);font-size:12.5px;">İşe giriş ve çıkış tarihinizi yukarıdan girin.</div>
+        </div>
+      </div>
+      <div style="margin-top:12px;font-size:11.5px;color:var(--text-secondary);line-height:1.7;background:var(--bg-soft);border-radius:8px;padding:10px 12px;">
+        📌 <b>Hak kazanma şartı:</b> Son 120 gün kesintisiz prim ödenmiş olması + son 3 yılda en az 600 gün işsizlik sigortası primi ödenmiş olması. Ayrıca iş akdinizin <b>kendi isteğiniz dışında</b> (işveren feshi, haklı fesih vb.) sona ermiş olması gerekir. Kendi isteğiyle istifa edenler genellikle hak kazanamaz.
+      </div>
+    </div>
+
     <!-- İhbar Tazminatı -->
     <div id="ihbarKutu" style="display:none;margin-top:1rem;background:#f0f7ff;border:1px solid #b8d9f5;border-radius:10px;padding:12px 14px;">
       <div style="font-size:13px;font-weight:600;color:#185FA5;margin-bottom:8px;">📣 İhbar Tazminatı (Haksız Fesih Durumunda)</div>
@@ -316,9 +348,49 @@ input:focus,select:focus{border-color:#534AB7;box-shadow:0 0 0 3px rgba(83,74,18
 </div>
 </div>
 
+<!-- ÇOKLU İŞYERİ / KIDEM GEÇMİŞİ -->
+<div class="page-section" style="padding-top:0;">
+<div class="section-inner">
+  <div class="card">
+    <p class="st">📋 Çoklu İşyeri Geçmişi (Kariyer Takibi)</p>
+    <div style="font-size:12px;color:var(--text-secondary);margin-bottom:1rem;line-height:1.6;">Birden fazla işyerinde çalıştıysanız, her dönemi ayrı ayrı ekleyip toplam kariyeriniz boyunca hak ettiğiniz/edeceğiniz kıdem tazminatını görün. Her işveren kıdem tazminatını kendi döneminize göre ayrı öder.</div>
+
+    <div class="g2" style="gap:1rem;margin-bottom:1rem;">
+      <div>
+        <label>İşyeri Adı <span style="font-size:11px;color:var(--text-muted);">(opsiyonel)</span></label>
+        <input type="text" id="ciAd" placeholder="Örn: ABC Şirketi" autocomplete="off">
+      </div>
+      <div>
+        <label>Brüt Maaş (₺, o dönemdeki)</label>
+        <input type="number" id="ciBrut" placeholder="Örn: 45.000" min="0" step="500">
+      </div>
+      <div>
+        <label>Giriş Tarihi</label>
+        <input type="date" id="ciGiris" autocomplete="off">
+      </div>
+      <div>
+        <label>Çıkış Tarihi</label>
+        <input type="date" id="ciCikis" autocomplete="off">
+      </div>
+    </div>
+    <button onclick="isyeriEkle()" style="width:100%;padding:10px;background:#534AB7;color:#fff;border:none;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;">+ İşyeri Ekle</button>
+
+    <div id="isyeriListesi" style="margin-top:14px;"></div>
+
+    <div id="isyeriToplam" style="display:none;margin-top:14px;background:#f0eefd;border-radius:10px;padding:12px 14px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-size:13px;font-weight:700;color:#534AB7;">Toplam Kariyer Kıdem Tazminatı (Net)</span>
+        <span style="font-size:18px;font-weight:800;color:#534AB7;" id="isyeriToplamDeger">—</span>
+      </div>
+      <div style="font-size:11px;color:var(--text-secondary);margin-top:4px;" id="isyeriToplamAlt"></div>
+    </div>
+  </div>
+</div>
+</div>
+
 <footer class="footer">
   <div class="footer-inner">
-    <div class="footer-logo">maaş<span>hesaplama</span>.com</div>
+    <div class="footer-logo">hesap<span>123123</span>.com</div>
     <div class="footer-links">
       <a href="index.html">Maaş Hesaplama</a>
       <a href="kredi-hesaplama.html">Kredi Hesaplama</a>
@@ -326,7 +398,7 @@ input:focus,select:focus{border-color:#534AB7;box-shadow:0 0 0 3px rgba(83,74,18
       <a href="rehber.html">Rehber</a>
       <a href="sss.html">SSS</a>
     </div>
-    <div class="footer-copy">© 2026 maashesaplama.com — Bu araç bilgilendirme amaçlıdır, resmi belge yerine geçmez.</div>
+    <div class="footer-copy">© 2026 hesap123123.com — Bu araç bilgilendirme amaçlıdır, resmi belge yerine geçmez.</div>
   </div>
 </footer>
 
@@ -336,7 +408,7 @@ function fmt(n){
   return '₺' + n.toLocaleString('tr-TR', {minimumFractionDigits:2, maximumFractionDigits:2});
 }
 
-const KIDEM_TAVAN_2026 = 64948.77;
+const KIDEM_TAVAN_2026 = 73729.87;
 
 function kidemBugunSec(){
   const bugun = new Date();
@@ -476,6 +548,7 @@ function kidemHesapla(){
   if(toplamEl) toplamEl.textContent = fmt(genelToplam);
 
   izinHesapla();
+  issizlikHesapla();
 }
 
 // ════════════ YILLIK İZİN HESAPLAYICI ════════════
@@ -569,6 +642,191 @@ function temaBtnGuncelle(){
 }
 window.addEventListener('DOMContentLoaded', temaBtnGuncelle);
 
+// ════════════ İŞSİZLİK ÖDENEĞİ HESAPLAYICI ════════════
+const ASGARI_UCRET_BRUT_2026 = 33030.00;
+
+function issizlikHesapla(){
+  const girisStr = document.getElementById('kidemGirisTarihi')?.value;
+  const cikisStr = document.getElementById('kidemCikisTarihi')?.value;
+  const sonucDiv = document.getElementById('issizlikSonuc');
+  if(!sonucDiv) return;
+
+  if(!girisStr){
+    sonucDiv.innerHTML = '<div style="text-align:center;padding:1.5rem 1rem;color:var(--text-muted);font-size:12.5px;">İşe giriş ve çıkış tarihinizi yukarıdan girin.</div>';
+    return;
+  }
+
+  const giris = new Date(girisStr);
+  const cikis = cikisStr ? new Date(cikisStr) : new Date();
+  if(giris > cikis){
+    sonucDiv.innerHTML = '<div style="text-align:center;padding:1.5rem 1rem;color:#e24b4a;font-size:12.5px;">Giriş tarihi çıkış tarihinden sonra olamaz.</div>';
+    return;
+  }
+
+  const gunFark = Math.floor((cikis-giris)/(1000*60*60*24));
+  const manuelPrimGun = parseFloat(document.getElementById('issizPrimGun')?.value)||0;
+  const primGunu = manuelPrimGun>0 ? manuelPrimGun : gunFark;
+
+  const brutMaasEl = document.getElementById('kidemBrut');
+  const ortBrutEl = document.getElementById('issizOrtBrut');
+  const ortBrut = (parseFloat(ortBrutEl?.value)||0) || (parseFloat(brutMaasEl?.value)||0);
+
+  if(!ortBrut){
+    sonucDiv.innerHTML = '<div style="text-align:center;padding:1.5rem 1rem;color:var(--text-muted);font-size:12.5px;">Brüt maaşınızı (yukarıdaki "Güncel Brüt Maaş" alanına veya buraya) girin.</div>';
+    return;
+  }
+
+  // Hak kazanma kontrolü
+  if(primGunu < 600){
+    sonucDiv.innerHTML = `
+      <div class="uyari-kutu">
+        ⚠️ <b>İşsizlik ödeneğine hak kazanamıyorsunuz.</b><br>
+        Son 3 yılda en az 600 gün işsizlik sigortası primi ödenmiş olması gerekir. Mevcut süreniz: <b>${primGunu.toLocaleString('tr-TR')} gün</b>.
+      </div>`;
+    return;
+  }
+
+  // Ödenek süresi kademesi
+  let odenekSuresi, kademeAciklama;
+  if(primGunu < 900){ odenekSuresi = 180; kademeAciklama = '600–899 gün kademesi'; }
+  else if(primGunu < 1080){ odenekSuresi = 240; kademeAciklama = '900–1079 gün kademesi'; }
+  else { odenekSuresi = 300; kademeAciklama = '1080+ gün kademesi'; }
+
+  // Ödenek tutarı: ortalama brüt * %40, tavan = asgari ücret brüt * %80
+  const hesaplananOdenek = ortBrut * 0.40;
+  const tavanOdenek = ASGARI_UCRET_BRUT_2026 * 0.80;
+  const brutOdenek = Math.min(hesaplananOdenek, tavanOdenek);
+  const tavanaTakildiMi = hesaplananOdenek > tavanOdenek;
+
+  const damgaVergisi = brutOdenek * 0.00759;
+  const netOdenek = brutOdenek - damgaVergisi;
+  const toplamAySayisi = odenekSuresi/30;
+  const toplamNetOdenek = netOdenek * toplamAySayisi;
+
+  sonucDiv.innerHTML = `
+    <div class="mc" style="text-align:center;margin-bottom:8px;">
+      <div class="ml" style="justify-content:center;">Aylık Net İşsizlik Ödeneği</div>
+      <div class="mv pos" style="font-size:24px;">${fmt(netOdenek)}</div>
+      <div class="ms">${odenekSuresi} gün (${toplamAySayisi} ay) boyunca</div>
+    </div>
+    <div class="ri"><span class="rl">Ödenek Süresi</span><span class="rv">${odenekSuresi} gün (${kademeAciklama})</span></div>
+    <div class="ri"><span class="rl">Aylık Brüt Ödenek</span><span class="rv">${fmt(brutOdenek)}</span></div>
+    <div class="ri"><span class="rl">− Damga Vergisi</span><span class="rv neg">${fmt(damgaVergisi)}</span></div>
+    <div class="ri"><span class="rl" style="font-weight:700;">Toplam Alınacak (${toplamAySayisi} ay)</span><span class="rv pos" style="font-weight:700;">${fmt(toplamNetOdenek)}</span></div>
+    ${tavanaTakildiMi?`<div style="font-size:11px;color:#8a6300;background:#fff8e1;border-radius:8px;padding:8px 10px;margin-top:8px;">📌 Ödeneğiniz brüt asgari ücretin %80 tavanına takıldı (2026 tavan: ${fmt(tavanOdenek)}). Gerçek hesaplanan tutar ${fmt(hesaplananOdenek)} olurdu.</div>`:''}
+  `;
+}
+
+// ════════════ ÇOKLU İŞYERİ / KIDEM GEÇMİŞİ ════════════
+let _isyeriListe = [];
+let _isyeriNextId = 1;
+
+function isyeriKidemHesaplaBasit(brutMaas, girisStr, cikisStr){
+  const giris = new Date(girisStr);
+  const cikis = new Date(cikisStr);
+  if(giris > cikis || !brutMaas) return null;
+
+  const gunFark = Math.floor((cikis-giris)/(1000*60*60*24));
+  if(gunFark < 365) return {gunFark, kidemNet: 0, kidemBrut: 0, hakKazanilmadi: true};
+
+  const tavanUygulandimi = brutMaas > KIDEM_TAVAN_2026;
+  const esasUcret = tavanUygulandimi ? KIDEM_TAVAN_2026 : brutMaas;
+  const kidemBrut = Math.round((esasUcret/365)*gunFark*100)/100;
+  const damgaVergisi = Math.round(kidemBrut*0.00759*100)/100;
+  const kidemNet = Math.round((kidemBrut-damgaVergisi)*100)/100;
+
+  return {gunFark, kidemBrut, damgaVergisi, kidemNet, tavanUygulandimi};
+}
+
+function isyeriEkle(){
+  const ad = document.getElementById('ciAd').value.trim() || 'İsimsiz İşyeri';
+  const brut = parseFloat(document.getElementById('ciBrut').value)||0;
+  const girisStr = document.getElementById('ciGiris').value;
+  const cikisStr = document.getElementById('ciCikis').value;
+
+  if(!brut || !girisStr || !cikisStr){ alert('Lütfen brüt maaş, giriş ve çıkış tarihini girin.'); return; }
+  if(new Date(girisStr) > new Date(cikisStr)){ alert('Giriş tarihi çıkış tarihinden sonra olamaz.'); return; }
+
+  _isyeriListe.push({id:_isyeriNextId++, ad, brut, girisStr, cikisStr});
+
+  document.getElementById('ciAd').value = '';
+  document.getElementById('ciBrut').value = '';
+  document.getElementById('ciGiris').value = '';
+  document.getElementById('ciCikis').value = '';
+
+  isyeriRender();
+}
+
+function isyeriSil(id){
+  _isyeriListe = _isyeriListe.filter(x=>x.id!==id);
+  isyeriRender();
+}
+
+function isyeriRender(){
+  const listeDiv = document.getElementById('isyeriListesi');
+  const toplamDiv = document.getElementById('isyeriToplam');
+
+  if(_isyeriListe.length===0){
+    listeDiv.innerHTML = '';
+    toplamDiv.style.display = 'none';
+    return;
+  }
+
+  let toplamNet = 0, toplamGun = 0;
+  let html = '<div style="display:grid;gap:8px;">';
+  _isyeriListe.forEach(is=>{
+    const sonuc = isyeriKidemHesaplaBasit(is.brut, is.girisStr, is.cikisStr);
+    const girisF = new Date(is.girisStr).toLocaleDateString('tr-TR');
+    const cikisF = new Date(is.cikisStr).toLocaleDateString('tr-TR');
+
+    if(!sonuc || sonuc.hakKazanilmadi){
+      html += `<div style="background:var(--bg-soft);border-radius:10px;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;">
+        <div>
+          <div style="font-size:13px;font-weight:700;">${is.ad}</div>
+          <div style="font-size:11px;color:var(--text-muted);">${girisF} — ${cikisF} · 1 yıldan az, hak kazanılmadı</div>
+        </div>
+        <button onclick="isyeriSil(${is.id})" style="border:none;background:none;color:#e24b4a;cursor:pointer;font-size:12px;">✕ Sil</button>
+      </div>`;
+      return;
+    }
+
+    toplamNet += sonuc.kidemNet;
+    toplamGun += sonuc.gunFark;
+
+    html += `<div style="background:var(--bg-soft);border-radius:10px;padding:12px 14px;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+        <div>
+          <div style="font-size:13px;font-weight:700;">${is.ad}</div>
+          <div style="font-size:11px;color:var(--text-muted);">${girisF} — ${cikisF} · ${(sonuc.gunFark/365).toFixed(1)} yıl · Brüt: ${fmt(is.brut)}</div>
+        </div>
+        <button onclick="isyeriSil(${is.id})" style="border:none;background:none;color:#e24b4a;cursor:pointer;font-size:12px;flex-shrink:0;">✕ Sil</button>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;padding-top:8px;border-top:1px solid var(--border);">
+        <span style="font-size:12px;color:var(--text-secondary);">Net Kıdem Tazminatı${sonuc.tavanUygulandimi?' <span style="color:#e24b4a;">(tavan uygulandı)</span>':''}</span>
+        <span style="font-size:15px;font-weight:700;color:#1d9e75;">${fmt(sonuc.kidemNet)}</span>
+      </div>
+    </div>`;
+  });
+  html += '</div>';
+  listeDiv.innerHTML = html;
+
+  if(toplamNet>0){
+    toplamDiv.style.display = '';
+    document.getElementById('isyeriToplamDeger').textContent = fmt(toplamNet);
+    document.getElementById('isyeriToplamAlt').textContent = `${_isyeriListe.length} işyeri · Toplam ${(toplamGun/365).toFixed(1)} yıl kariyer süresi`;
+  } else {
+    toplamDiv.style.display = 'none';
+  }
+}
+
+</script>
+
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load', function(){
+    navigator.serviceWorker.register('sw.js').catch(function(){});
+  });
+}
 </script>
 </body>
 </html>

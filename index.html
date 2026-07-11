@@ -5,12 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Maaş Hesaplama 2026 | Brüt Net Maaş Hesaplayıcı</title>
 <meta name="description" content="2026 yılı güncel vergi dilimleri ile brüt veya net maaşınızı, SGK kesintilerini, mesai ücretlerini, ikramiyenizi ve borçlarınızı kolayca hesaplayın.">
-<link rel="canonical" href="https://maashesaplama.com/">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#26215C">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="hesap123123">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="canonical" href="https://courageous-pothos-b8c8f9.netlify.app/">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="maaşhesaplama.com">
+<meta property="og:site_name" content="hesap123123.com">
 <meta property="og:title" content="Maaş Hesaplama 2026 | Brüt Net Maaş Hesaplayıcı">
 <meta property="og:description" content="2026 yılı güncel vergi dilimleri ile brüt veya net maaşınızı, SGK kesintilerini, mesai ücretlerini, ikramiyenizi ve borçlarınızı kolayca hesaplayın.">
-<meta property="og:url" content="https://maashesaplama.com/">
+<meta property="og:url" content="https://courageous-pothos-b8c8f9.netlify.app/">
 <meta property="og:locale" content="tr_TR">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Maaş Hesaplama 2026 | Brüt Net Maaş Hesaplayıcı">
@@ -19,10 +27,10 @@
 {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "maaşhesaplama.com — Maaş Hesaplama",
+    "name": "hesap123123.com — Maaş Hesaplama",
     "applicationCategory": "FinanceApplication",
     "operatingSystem": "Web",
-    "url": "https://maashesaplama.com/",
+    "url": "https://courageous-pothos-b8c8f9.netlify.app/",
     "description": "2026 güncel vergi dilimleri ile brüt veya net maaş, SGK kesintileri, mesai, ikramiye ve borç hesaplama aracı.",
     "offers": {"@type": "Offer", "price": "0", "priceCurrency": "TRY"},
     "inLanguage": "tr-TR"
@@ -297,7 +305,7 @@ input:focus,select:focus{border-color:#534AB7;box-shadow:0 0 0 3px rgba(83,74,18
   <div class="navbar-inner">
     <a class="nav-logo" href="#hesapla">
       <div class="nav-logo-icon">₺</div>
-      <span class="nav-logo-text">maaş<span>hesaplama</span>.com</span>
+      <span class="nav-logo-text">hesap<span>123123</span>.com</span>
     </a>
     <div class="nav-links">
       <button class="nav-link active-nav" onclick="navGit('hesapla')">Hesaplama Aracı</button>
@@ -1272,6 +1280,31 @@ input:focus,select:focus{border-color:#534AB7;box-shadow:0 0 0 3px rgba(83,74,18
           <button onclick="borcStratejiHesapla()" style="padding:9px 18px;background:#534AB7;color:#fff;border:none;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer;height:38px;">🔄 Hesapla</button>
         </div>
         <div id="stratSonuclar"></div>
+      </div>
+
+      <!-- ═══ KREDİ KARTI ASGARİ ÖDEME TUZAĞI ═══ -->
+      <div class="card" style="margin-top:1rem;border:1.5px solid #e24b4a;">
+        <p class="st" style="color:#a32d2d;">⚠️ Kredi Kartı Asgari Ödeme Tuzağı</p>
+        <div style="font-size:12px;color:var(--text-secondary);margin-bottom:12px;line-height:1.6;">Kredi kartı borcunuzu sadece asgari tutarla öderseniz gerçekte ne kadar sürede biter ve ne kadar faiz ödersiniz? Bu, Türkiye'de en yaygın borç tuzaklarından biridir.</div>
+        <div class="g2" style="gap:1rem;margin-bottom:12px;">
+          <div>
+            <label>Güncel Kart Borcunuz (₺)</label>
+            <input type="number" id="akBorc" placeholder="Örn: 20.000" min="0" step="500" oninput="asgariTuzakHesapla()">
+          </div>
+          <div>
+            <label>Kartın Aylık Faiz Oranı (%)</label>
+            <input type="number" id="akFaiz" placeholder="Örn: 4.25" min="0" step="0.05" oninput="asgariTuzakHesapla()">
+          </div>
+          <div>
+            <label>Asgari Ödeme Oranı (%) <span style="font-size:11px;color:var(--text-muted);">(banka belirler, genelde %20-40)</span></label>
+            <input type="number" id="akAsgariOran" value="30" min="5" max="50" step="5" oninput="asgariTuzakHesapla()">
+          </div>
+          <div>
+            <label>Alternatif: Aylık Sabit Ödeme (₺) <span style="font-size:11px;color:var(--text-muted);">(opsiyonel karşılaştırma)</span></label>
+            <input type="number" id="akSabitOdeme" placeholder="Örn: 3.000" min="0" step="100" oninput="asgariTuzakHesapla()">
+          </div>
+        </div>
+        <div id="asgariTuzakSonuc"></div>
       </div>
     </div>
   </div>
@@ -4374,13 +4407,87 @@ function butceHesapla(){
   lejant.innerHTML = lejantHtml;
 }
 
+// ════════════ KREDİ KARTI ASGARİ ÖDEME TUZAĞI ════════════
+function asgariTuzakSimule(borc, faizAy, odemeOrani, sabitTutar){
+  let bakiye = borc;
+  let ay = 0, toplamFaiz = 0, toplamOdenen = 0;
+  const MAX_AY = 600;
+
+  while(bakiye > 1 && ay < MAX_AY){
+    ay++;
+    const faizTutari = bakiye * (faizAy/100);
+    toplamFaiz += faizTutari;
+    bakiye += faizTutari;
+
+    let odeme;
+    if(sabitTutar){
+      odeme = Math.min(sabitTutar, bakiye);
+    } else {
+      odeme = Math.max(bakiye * (odemeOrani/100), 0);
+      odeme = Math.min(odeme, bakiye);
+    }
+    bakiye -= odeme;
+    toplamOdenen += odeme;
+  }
+
+  return { ay, toplamFaiz, toplamOdenen, bitmedi: ay>=MAX_AY && bakiye>1 };
+}
+
+function asgariTuzakHesapla(){
+  const borc = parseFloat(document.getElementById('akBorc')?.value)||0;
+  const faiz = parseFloat(document.getElementById('akFaiz')?.value)||0;
+  const oran = parseFloat(document.getElementById('akAsgariOran')?.value)||30;
+  const sabitTutar = parseFloat(document.getElementById('akSabitOdeme')?.value)||0;
+
+  const sonucDiv = document.getElementById('asgariTuzakSonuc');
+  if(!sonucDiv) return;
+
+  if(!borc || !faiz){
+    sonucDiv.innerHTML = `<div style="text-align:center;padding:1.5rem;color:var(--text-muted);font-size:12.5px;background:var(--bg-soft);border-radius:8px;">Borç tutarı ve faiz oranını girin.</div>`;
+    return;
+  }
+
+  const asgari = asgariTuzakSimule(borc, faiz, oran, 0);
+
+  let karsilastirmaHtml = '';
+  if(sabitTutar>0){
+    const sabit = asgariTuzakSimule(borc, faiz, oran, sabitTutar);
+    const farkAy = asgari.ay - sabit.ay;
+    const farkFaiz = asgari.toplamFaiz - sabit.toplamFaiz;
+    karsilastirmaHtml = `
+      <div class="card" style="border:1.5px solid #1d9e75;margin-top:10px;">
+        <p class="st" style="color:#0f6e56;">✅ Sabit ${borcFmt(sabitTutar)} Ödeseydiniz</p>
+        <div class="ri"><span class="rl">Bitiş Süresi</span><span class="rv">${sabit.bitmedi?'50 yıldan fazla':sabit.ay+' ay'}</span></div>
+        <div class="ri"><span class="rl">Toplam Ödenen Faiz</span><span class="rv neg">${borcFmt(sabit.toplamFaiz)}</span></div>
+        <div class="ri" style="font-weight:700;"><span class="rl">Tasarruf</span><span class="rv pos">${farkAy>0?farkAy+' ay daha erken, ':''}${borcFmt(Math.max(0,farkFaiz))} daha az faiz</span></div>
+      </div>`;
+  }
+
+  sonucDiv.innerHTML = `
+    <div class="card" style="border:1.5px solid #e24b4a;background:#fff8f8;">
+      <p class="st" style="color:#a32d2d;">🚨 Sadece Asgari (%${oran}) Ödeseniz</p>
+      <div class="ri"><span class="rl">Borcun Bitme Süresi</span><span class="rv neg" style="font-weight:700;">${asgari.bitmedi?'50 yıldan fazla (bitmeyebilir!)':asgari.ay+' ay ('+(asgari.ay/12).toFixed(1)+' yıl)'}</span></div>
+      <div class="ri"><span class="rl">Toplam Ödenen Faiz</span><span class="rv neg" style="font-weight:700;">${borcFmt(asgari.toplamFaiz)}</span></div>
+      <div class="ri"><span class="rl">Toplam Geri Ödeme</span><span class="rv" style="font-weight:700;">${borcFmt(asgari.toplamOdenen)}</span></div>
+      <div class="ri"><span class="rl">Borcunuzun Kaç Katını Öderdiniz</span><span class="rv neg" style="font-weight:700;">×${(asgari.toplamOdenen/borc).toFixed(1)}</span></div>
+    </div>
+    ${karsilastirmaHtml}
+    <div class="uyari-kutu" style="margin-top:10px;">
+      ⚠️ ${asgari.bitmedi
+        ? `Bu faiz ve ödeme oranıyla borcunuz <b>büyüyerek devam ediyor</b> — asgari ödemeniz oluşan faizi bile karşılamıyor olabilir. Bu klasik "borç sarmalı" durumudur.`
+        : `Sadece asgari ödeme yaparak borcunuzu kapatmak <b>${asgari.ay} ay (${(asgari.ay/12).toFixed(1)} yıl)</b> sürüyor ve orijinal borcunuzun <b>${(asgari.toplamOdenen/borc).toFixed(1)} katını</b> ödemiş oluyorsunuz. Mümkünse asgarinin üzerinde ödeme yapmanız önerilir.`
+      }
+    </div>
+  `;
+}
+
 </script>
 
 <!-- HAKKINDA -->
 <div class="page-section" id="hakkinda" style="background:#fff;">
   <div class="section-inner">
     <p class="section-title">Bu Araç Hakkında</p>
-    <p class="section-sub">maashesaplama.com nedir, nasıl çalışır?</p>
+    <p class="section-sub">hesap123123.com nedir, nasıl çalışır?</p>
     <div class="hakkinda-grid">
       <div class="hk-card">
         <div class="hk-icon mor">📊</div>
@@ -4425,7 +4532,7 @@ function butceHesapla(){
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
-    <div class="footer-logo">maaş<span>hesaplama</span>.com</div>
+    <div class="footer-logo">hesap<span>123123</span>.com</div>
     <div class="footer-links">
       <a href="#hesapla-bolum">Hesaplama Aracı</a>
       <a href="kredi-hesaplama.html">Kredi Hesaplama</a>
@@ -4435,7 +4542,7 @@ function butceHesapla(){
       <a href="sss.html">SSS</a>
     </div>
     <div class="footer-copy">
-      © 2026 maashesaplama.com — Bu araç bilgilendirme amaçlıdır, resmi bordro belgesi yerine geçmez.
+      © 2026 hesap123123.com — Bu araç bilgilendirme amaçlıdır, resmi bordro belgesi yerine geçmez.
     </div>
   </div>
 </footer>
@@ -4443,7 +4550,7 @@ function butceHesapla(){
 <!-- ═══ YAZDIRILABİLİR BORDRO ALANI (sadece print modunda görünür) ═══ -->
 <div id="bordroPrintArea">
   <div class="bp-header">
-    <div class="bp-logo">₺ maaşhesaplama.com</div>
+    <div class="bp-logo">₺ hesap123123.com</div>
     <div class="bp-baslik">ÜCRET BORDROSU</div>
   </div>
   <table class="bp-bilgi">
@@ -4463,7 +4570,15 @@ function butceHesapla(){
     </tfoot>
   </table>
 
-  <div class="bp-not">Bu belge maashesaplama.com hesaplama aracı ile oluşturulmuştur; resmi bordro belgesi yerine geçmez. İK/Muhasebe departmanınızın onaylı bordrosu esas alınmalıdır.</div>
+  <div class="bp-not">Bu belge hesap123123.com hesaplama aracı ile oluşturulmuştur; resmi bordro belgesi yerine geçmez. İK/Muhasebe departmanınızın onaylı bordrosu esas alınmalıdır.</div>
 </div>
+
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load', function(){
+    navigator.serviceWorker.register('sw.js').catch(function(){});
+  });
+}
+</script>
 </body>
 </html>

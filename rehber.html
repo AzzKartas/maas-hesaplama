@@ -3,24 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rehber — Maaş, Vergi, SGK ve Tazminat Yazıları | maashesaplama.com</title>
+<title>Rehber — Maaş, Vergi, SGK ve Tazminat Yazıları | hesap123123.com</title>
 <meta name="description" content="Gelir vergisi dilimleri, SGK teşvikleri, kıdem ve ihbar tazminatı hakkında kapsamlı rehber yazıları.">
-<link rel="canonical" href="https://maashesaplama.com/rehber.html">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#26215C">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="hesap123123">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="canonical" href="https://courageous-pothos-b8c8f9.netlify.app/rehber.html">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="maaşhesaplama.com">
-<meta property="og:title" content="Rehber — Maaş, Vergi, SGK ve Tazminat Yazıları | maashesaplama.com">
+<meta property="og:site_name" content="hesap123123.com">
+<meta property="og:title" content="Rehber — Maaş, Vergi, SGK ve Tazminat Yazıları | hesap123123.com">
 <meta property="og:description" content="Gelir vergisi dilimleri, SGK teşvikleri, kıdem ve ihbar tazminatı hakkında kapsamlı rehber yazıları.">
-<meta property="og:url" content="https://maashesaplama.com/rehber.html">
+<meta property="og:url" content="https://courageous-pothos-b8c8f9.netlify.app/rehber.html">
 <meta property="og:locale" content="tr_TR">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Rehber — Maaş, Vergi, SGK ve Tazminat Yazıları | maashesaplama.com">
+<meta name="twitter:title" content="Rehber — Maaş, Vergi, SGK ve Tazminat Yazıları | hesap123123.com">
 <meta name="twitter:description" content="Gelir vergisi dilimleri, SGK teşvikleri, kıdem ve ihbar tazminatı hakkında kapsamlı rehber yazıları.">
 <script type="application/ld+json">
 {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "name": "Bordro ve Finans Rehberi",
-    "url": "https://maashesaplama.com/rehber.html",
+    "url": "https://courageous-pothos-b8c8f9.netlify.app/rehber.html",
     "description": "Gelir vergisi dilimleri, SGK teşvikleri, kıdem ve ihbar tazminatı hakkında kapsamlı rehber yazıları.",
     "inLanguage": "tr-TR"
   }
@@ -144,7 +152,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <div class="navbar-inner">
     <a class="nav-logo" href="index.html">
       <div class="nav-logo-icon">₺</div>
-      <span class="nav-logo-text">maaş<span>hesaplama</span>.com</span>
+      <span class="nav-logo-text">hesap<span>123123</span>.com</span>
     </a>
     <div class="nav-links">
       <a class="nav-link" href="index.html">Maaş Hesaplama</a>
@@ -213,7 +221,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
 <footer class="footer">
   <div class="footer-inner">
-    <div class="footer-logo">maaş<span>hesaplama</span>.com</div>
+    <div class="footer-logo">hesap<span>123123</span>.com</div>
     <div class="footer-links">
       <a href="index.html">Maaş Hesaplama</a>
       <a href="kredi-hesaplama.html">Kredi Hesaplama</a>
@@ -221,7 +229,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <a href="rehber.html">Rehber</a>
       <a href="sss.html">SSS</a>
     </div>
-    <div class="footer-copy">© 2026 maashesaplama.com — Bu içerik bilgilendirme amaçlıdır, resmi mevzuat veya danışmanlık yerine geçmez.</div>
+    <div class="footer-copy">© 2026 hesap123123.com — Bu içerik bilgilendirme amaçlıdır, resmi mevzuat veya danışmanlık yerine geçmez.</div>
   </div>
 </footer>
 
@@ -241,6 +249,14 @@ function temaBtnGuncelle(){
   btn.title = koyuMu ? 'Aydınlık mod' : 'Karanlık mod';
 }
 window.addEventListener('DOMContentLoaded', temaBtnGuncelle);
+</script>
+
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load', function(){
+    navigator.serviceWorker.register('sw.js').catch(function(){});
+  });
+}
 </script>
 </body>
 </html>

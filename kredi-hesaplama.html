@@ -5,12 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kredi Hesaplama 2026 | Ay Ay Taksit Planı</title>
 <meta name="description" content="Kredi tutarı, faiz oranı ve taksit sayısına göre ay ay ödeme planınızı hesaplayın. Masraf, KKDF ve BSMV dahil toplam maliyet.">
-<link rel="canonical" href="https://maashesaplama.com/kredi-hesaplama.html">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#26215C">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="hesap123123">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="canonical" href="https://courageous-pothos-b8c8f9.netlify.app/kredi-hesaplama.html">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="maaşhesaplama.com">
+<meta property="og:site_name" content="hesap123123.com">
 <meta property="og:title" content="Kredi Hesaplama 2026 | Ay Ay Taksit Planı">
 <meta property="og:description" content="Kredi tutarı, faiz oranı ve taksit sayısına göre ay ay ödeme planınızı hesaplayın. Masraf, KKDF ve BSMV dahil toplam maliyet.">
-<meta property="og:url" content="https://maashesaplama.com/kredi-hesaplama.html">
+<meta property="og:url" content="https://courageous-pothos-b8c8f9.netlify.app/kredi-hesaplama.html">
 <meta property="og:locale" content="tr_TR">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kredi Hesaplama 2026 | Ay Ay Taksit Planı">
@@ -19,10 +27,10 @@
 {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "maaşhesaplama.com — Kredi Hesaplama",
+    "name": "hesap123123.com — Kredi Hesaplama",
     "applicationCategory": "FinanceApplication",
     "operatingSystem": "Web",
-    "url": "https://maashesaplama.com/kredi-hesaplama.html",
+    "url": "https://courageous-pothos-b8c8f9.netlify.app/kredi-hesaplama.html",
     "description": "Kredi tutarı, faiz oranı ve taksit sayısına göre ay ay ödeme planı, erken kapama simülasyonu ve teklif karşılaştırma aracı.",
     "offers": {"@type": "Offer", "price": "0", "priceCurrency": "TRY"},
     "inLanguage": "tr-TR"
@@ -242,7 +250,7 @@ input:focus,select:focus{border-color:#534AB7;box-shadow:0 0 0 3px rgba(83,74,18
   <div class="navbar-inner">
     <a class="nav-logo" href="index.html">
       <div class="nav-logo-icon">₺</div>
-      <span class="nav-logo-text">maaş<span>hesaplama</span>.com</span>
+      <span class="nav-logo-text">hesap<span>123123</span>.com</span>
     </a>
     <div class="nav-links">
       <a class="nav-link" href="index.html" style="text-decoration:none;">Maaş Hesaplama</a>
@@ -494,7 +502,7 @@ input:focus,select:focus{border-color:#534AB7;box-shadow:0 0 0 3px rgba(83,74,18
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
-    <div class="footer-logo">maaş<span>hesaplama</span>.com</div>
+    <div class="footer-logo">hesap<span>123123</span>.com</div>
     <div class="footer-links">
       <a href="index.html">Maaş Hesaplama</a>
       <a href="#hesapla-bolum">Kredi Hesaplama</a>
@@ -503,7 +511,7 @@ input:focus,select:focus{border-color:#534AB7;box-shadow:0 0 0 3px rgba(83,74,18
       <a href="sss.html">SSS</a>
     </div>
     <div class="footer-copy">
-      © 2026 maashesaplama.com — Bu araç bilgilendirme amaçlıdır, resmi kredi belgesi yerine geçmez.
+      © 2026 hesap123123.com — Bu araç bilgilendirme amaçlıdır, resmi kredi belgesi yerine geçmez.
     </div>
   </div>
 </footer>
@@ -1402,6 +1410,14 @@ function teklifKarsilastir(){
   `;
 }
 
+</script>
+
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load', function(){
+    navigator.serviceWorker.register('sw.js').catch(function(){});
+  });
+}
 </script>
 </body>
 </html>
